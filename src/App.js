@@ -6,17 +6,17 @@ import Movie from './components/Movie';
 const App = () => {
 
   const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
-  const [date, setDate] = useState(null);
-  const [nation, setNation] = useState('K')
+  const [movies, setMovies] = useState(null);
+  const [date, setDate] = useState("20210214");
+  const [nation, setNation] = useState('K');
+
   const getMovies = async () => {
     const {
       data: {
         boxOfficeResult: {dailyBoxOfficeList}
       }
     } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${date}&repNationCd=${nation}`);
-    setMovies({dailyBoxOfficeList});
-    console.log(dailyBoxOfficeList);
+    setMovies(dailyBoxOfficeList);
     setLoading(false);
   };
   
@@ -38,18 +38,38 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="buttonBlock">
-        <button value="K" onClick={NationHandler}>국내영화</button>
-        <button value="F" onClick={NationHandler}>해외영화</button>
+    <section className='container'>
+      <div className="searchBox">
+        <div className="buttonBlock">
+          <button value="K" onClick={NationHandler}>국내영화</button>
+          <button value="F" onClick={NationHandler}>해외영화</button>
+        </div>
+        <input 
+          type="text" 
+          placeholder="조회 날짜 입력 예) 20210214"
+          onChange={dateHandler}
+          />
+        <div className='loader'>
+
       </div>
-      <input 
-        type="text" 
-        placeholder="조회 날짜 입력 예) 20210214"
-        onChange={dateHandler}/>
-      <div>{loading? "Loading data.." : "Success load"}
+        {loading ? 
+          "검색 조건을 설정해주세요." : 
+          (<div className="movies">
+            {movies.map(movie=> (
+              <Movie title={movie.movieNm} 
+                    id={movie.movieCd}
+                    key={movie.movieCd} 
+                    openDt={movie.openDt}  
+                    rank={movie.rank}  
+                    rankOldAndNew={movie.rankOldAndNew}  
+                    audiAcc={movie.audiAcc}
+              />
+          ))
+        }
+        </div>
+        )}
       </div>
-    </>
+    </section>
   );
 };
 
