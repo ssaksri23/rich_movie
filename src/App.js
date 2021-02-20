@@ -9,6 +9,8 @@ const App = () => {
   const [movies, setMovies] = useState(null);
   const [date, setDate] = useState("20210214");
   const [nation, setNation] = useState('K');
+  const [posters, setPosters] = useState([]);
+  const [names, setNames] = useState(null);
 
   const getMovies = async () => {
     const {
@@ -16,7 +18,11 @@ const App = () => {
         boxOfficeResult: {dailyBoxOfficeList}
       }
     } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${date}&repNationCd=${nation}`);
+
     setMovies(dailyBoxOfficeList);
+
+//https://www.data.go.kr/data/3035985/openapi.do
+//영화 이미지 불러올 검색 api 키 발급 신청 (검토중..)
     setLoading(false);
   };
   

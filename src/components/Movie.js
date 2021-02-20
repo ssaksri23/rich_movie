@@ -8,7 +8,7 @@ const MovieBlock = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 1rem 3rem;
-    background: #cefff7;
+    background: #dddddd;
     margin-top: 1rem;
 
     .side__left {
@@ -17,13 +17,13 @@ const MovieBlock = styled.div`
         align-items: center;
         
         .movie__title {
-            flex: 0.5;
+            flex: 1;
             width: 2rem;
         }
 
         .rankBlock {
             display: flex;
-            flex: 1;
+            flex: 0.3;
             .movie__rank{
                 border: 1px solid black;
                 border-radius: 50%;
@@ -52,16 +52,16 @@ const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
     return (
         <MovieBlock>
             <div className="side__left">
-                <h2 className="movie__title">{title}</h2>
                 <div className="rankBlock">
                     <h5 className="movie__rank">{rank}</h5>
-                    <h6 className="movie__rankOldAndNew">{rankOldAndNew}</h6>
-
+                    <h6 className="movie__rankOldAndNew">{rankOldAndNew}
+                    </h6>
                 </div>
+                <h2 className="movie__title">{title}</h2>
             </div>
             <div className="side__right">
-                <h5 className="movie__openDate">{openDt}</h5>
-                <h6 className="audiAcc">{audiAcc}</h6>
+                <h3 className="movie__openDate">개봉일 : {openDt}</h3>
+                <h5 className="audiAcc">관객 수(누적) : {audiAcc}</h5>
             </div>
         </MovieBlock>
             
