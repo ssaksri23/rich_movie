@@ -1,23 +1,24 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import Movie from './components/Movie';
-
+import Conditions from './components/Conditions';
+import GlobalStyles from './GlobalStyles';
 
 const App = () => {
 
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState(null);
-  const [date, setDate] = useState("20210214");
-  const [nation, setNation] = useState('K');
+  const [date, setDate] = useState('');
+  const [nation, setNation] = useState('');
   const [posters, setPosters] = useState([]);
   const [names, setNames] = useState(null);
 
-  const getMovies = async () => {
+  const getMovies = async (DATE) => {
     const {
       data: {
         boxOfficeResult: {dailyBoxOfficeList}
       }
-    } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${date}&repNationCd=${nation}`);
+    } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${DATE}&repNationCd=${nation}`);
 
     setMovies(dailyBoxOfficeList);
 
@@ -29,24 +30,32 @@ const App = () => {
   useEffect(()=> {
     if(date)
       getMovies();
-  }, [date]);
+  }, []);
 
-  const dateHandler = (e) => {
+  const DateHandler = useCallback(e => {
       let inputDate ='';
-      inputDate += e.target.value;
+      inputDate = e.target.value;
       if(inputDate.length === 8)
         setDate(e.target.value);
-  };
+  }, []);
 
-  const NationHandler = (e) => {
+  const SubmitDate = useCallback(e => {
+    (date.length === 8 ? getMovies(date) : alert('입력하신 날짜를 확인해주세요.'));
+  })
+
+  
+  const NationHandler = useCallback(e => {
     let Nation = e.target.value === 'K'? setNation('K') : setNation('F');
     return Nation;
-  }
+  }, [nation]);
 
   return (
     <section className='container'>
-      <div className="searchBox">
-        <div className="buttonBlock">
+      <GlobalStyles/>
+      <Conditions dateHandler={DateHandler} nationHandler={NationHandler} submitDate={SubmitDate} />
+      {/* 리팩토링 구문 ==> Conditions.js //
+      <div className="conditions-wrapper">
+        <div className="buttons-block">
           <button value="K" onClick={NationHandler}>국내영화</button>
           <button value="F" onClick={NationHandler}>해외영화</button>
         </div>
@@ -55,9 +64,9 @@ const App = () => {
           placeholder="조회 날짜 입력 예) 20210214"
           onChange={dateHandler}
           />
-        <div className='loader'>
+      </div> */}
 
-      </div>
+      <div className='loader'>
         {loading ? 
           "검색 조건을 설정해주세요." : 
           (<div className="movies">
@@ -70,8 +79,7 @@ const App = () => {
                     rankOldAndNew={movie.rankOldAndNew}  
                     audiAcc={movie.audiAcc}
               />
-          ))
-        }
+            ))}
         </div>
         )}
       </div>

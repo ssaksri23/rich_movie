@@ -24,15 +24,22 @@ const MovieBlock = styled.div`
         .rankBlock {
             display: flex;
             flex: 0.3;
+
             .movie__rank{
-                border: 1px solid black;
+                font-size: 1.4rem;
+                margin: 0;
+                    border: 1px solid black;
                 border-radius: 50%;
-                padding: 0.5rem 1rem;
-                font-size: 1.3rem;
+                margin: 0;
+                padding: 1rem;
+                width: 2rem;
+                text-align: center;
             }
 
+
             .movie__rankOldAndNew{
-                align-self: baseline;
+                align-self: flex-start;
+                margin: 0;
             }
         }
     }
@@ -49,6 +56,8 @@ const MovieBlock = styled.div`
 
 
 const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
+    
+    audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //천 단위 (,) 붙이는 코드
     return (
         <MovieBlock>
             <div className="side__left">
@@ -61,7 +70,7 @@ const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
             </div>
             <div className="side__right">
                 <h3 className="movie__openDate">개봉일 : {openDt}</h3>
-                <h5 className="audiAcc">관객 수(누적) : {audiAcc}</h5>
+                <h5 className="audiAcc">관객 수(누적) : {audiAcc}명</h5>
             </div>
         </MovieBlock>
             
