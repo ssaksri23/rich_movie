@@ -2,14 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
+import palette from '../lib/palette';
 
 const MovieBlock = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 1rem 3rem;
-    background: #dddddd;
-    margin-top: 1rem;
+    padding: 3rem 3rem;
+    background: ${palette['wrapperColor']};
+
+    & + & {
+        margin-top: 0.5rem;
+    }
 
     .side__left {
         flex: 1;
@@ -18,21 +21,21 @@ const MovieBlock = styled.div`
         
         .movie__title {
             flex: 1;
-            width: 2rem;
+            width: 5rem;
+            font-size: 2.2rem;
+            color: ${palette['fontStrongColor']};
         }
 
-        .rankBlock {
+        .movie__rank-block {
             display: flex;
             flex: 0.3;
 
             .movie__rank{
-                font-size: 1.4rem;
-                margin: 0;
-                    border: 1px solid black;
+                font-size: 3rem;
+                border: 1px solid ${palette['backgroundColor']};
                 border-radius: 50%;
-                margin: 0;
                 padding: 1rem;
-                width: 2rem;
+                width: 1.5em;
                 text-align: center;
             }
 
@@ -45,10 +48,10 @@ const MovieBlock = styled.div`
     }
 
     .side__right {
-        flex: 1;
+        flex: 0.5;
         display: inherit;
         flex-flow: column wrap;
-        justify-content: center;
+        justify-content: space-around;
         align-items: flex-end;
     }
 `
@@ -61,7 +64,7 @@ const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
     return (
         <MovieBlock>
             <div className="side__left">
-                <div className="rankBlock">
+                <div className="movie__rank-block">
                     <h5 className="movie__rank">{rank}</h5>
                     <h6 className="movie__rankOldAndNew">{rankOldAndNew}
                     </h6>

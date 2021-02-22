@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import palette from '../lib/palette';
 
 const Container = styled.div`
     width: 100%;
@@ -7,8 +8,9 @@ const Container = styled.div`
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    padding: 1em 5em;
+    padding: 1.5rem 5rem;
     background: #3d3c3c;
+    border-bottom: 1rem solid ${palette['fontStrongColor']};
 `
 
 const ConditionWrapper = styled.div`
