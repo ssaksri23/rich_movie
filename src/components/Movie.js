@@ -1,8 +1,9 @@
 //노마드코더 rendering Movies 영상
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import palette from '../lib/palette';
+import cn from 'classnames';
 
 const MovieBlock = styled.div`
     display: flex;
@@ -43,6 +44,11 @@ const MovieBlock = styled.div`
             .movie__rankOldAndNew{
                 align-self: flex-start;
                 margin: 0;
+                font-weight: 500;
+                ${props => props.rankOldAndNew === 'NEW'? 
+                    {color: palette['NewRankColor']}: 
+                    {color: palette['OldRankColor']}
+                }
             }
         }
     }
@@ -59,15 +65,18 @@ const MovieBlock = styled.div`
 
 
 const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
+
     
+    // console.log(rankOldAndNew === 'NEW');
     audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); //천 단위 (,) 붙이는 코드
     return (
-        <MovieBlock>
+        <MovieBlock rankOldAndNew={rankOldAndNew}>
             <div className="side__left">
                 <div className="movie__rank-block">
                     <h5 className="movie__rank">{rank}</h5>
-                    <h6 className="movie__rankOldAndNew">{rankOldAndNew}
-                    </h6>
+                    <h4 className='movie__rankOldAndNew'>
+                        {rankOldAndNew ==="NEW"? 'new' : 'old'}
+                    </h4>
                 </div>
                 <h2 className="movie__title">{title}</h2>
             </div>
