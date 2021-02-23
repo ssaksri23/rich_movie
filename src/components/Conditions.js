@@ -113,11 +113,11 @@ const Conditions = ({date, dateHandler, nationHandler, submitDate}) => {
                         placeholder="조회 날짜 입력 예) 20210214"
                         value={date}
                         onChange={dateHandler}
-                        onKeyDown={enterKey}>
+                        onKeyUp={enterKey}>
                     </DateInput>
                     <SearchButton 
                         onClick={submitDate}
-                        onKeydown={submitDate} 
+                        onKeyUp={submitDate} 
                     >
                         검색
                     </SearchButton>

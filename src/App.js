@@ -3,10 +3,19 @@ import axios from 'axios';
 import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
+import styled from 'styled-components';
+
+const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+`
+
 
 const App = () => {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movies, setMovies] = useState(null);
   const [date, setDate] = useState('');
   const [nation, setNation] = useState('');
@@ -14,23 +23,29 @@ const App = () => {
   const [names, setNames] = useState(null);
 
   const getMovies = async (DATE) => {
-    const {
-      data: {
-        boxOfficeResult: {dailyBoxOfficeList}
-      }
-    } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${DATE}&repNationCd=${nation}`);
+    
+    try {
+      const {
+        data: {
+          boxOfficeResult: {dailyBoxOfficeList}
+        }
+      } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${DATE}&repNationCd=${nation}`);
+      setMovies(dailyBoxOfficeList);
+    }catch(e){
+      setError(true);
+      console.log('에러 원인:',e);
+    }
 
-    setMovies(dailyBoxOfficeList);
 
 //https://www.data.go.kr/data/3035985/openapi.do
 //영화 이미지 불러올 검색 api 키 발급 신청 (검토중..)
     setLoading(false);
   };
   
-  useEffect(()=> {
-    if(date)
-      getMovies();
-  }, []);
+  // useEffect(()=> {
+  //   if(date)
+  //     getMovies();
+  // }, []);
 
   const DateHandler = useCallback(e => {
       let inputDate ='';
@@ -41,7 +56,7 @@ const App = () => {
 
   const SubmitDate = useCallback(e => {
     (date.length === 8 ? getMovies(date) : alert('입력하신 날짜를 확인해주세요.'));
-  }, [])
+  }, [date])
 
   
   const NationHandler = useCallback(e => {
@@ -66,9 +81,7 @@ const App = () => {
           />
       </div> */}
 
-      <div className='loader'>
         {loading ? 
-          "검색 조건을 설정해주세요." : 
           (<div className="movies">
             {movies.map(movie=> (
               <Movie title={movie.movieNm} 
@@ -79,10 +92,14 @@ const App = () => {
                     rankOldAndNew={movie.rankOldAndNew}  
                     audiAcc={movie.audiAcc}
               />
+            
             ))}
-        </div>
-        )}
-      </div>
+          </div>) :
+            (<LoaderWrapper>
+                {"검색 조건을 설정해주세요."} 
+            </LoaderWrapper>)
+        }
+      
     </section>
   );
 };
