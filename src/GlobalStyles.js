@@ -7,7 +7,7 @@ html, body {
     margin: 0;
     padding: 0;
     background: ${palette['backgroundColor']};
-    color: ${palette['fontColor']};
+    color: ${palette['basicColor']};
     
     ::-webkit-scrollbar { display: none};
 }

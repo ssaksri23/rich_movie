@@ -35,24 +35,24 @@ const App = () => {
   const DateHandler = useCallback(e => {
       let inputDate ='';
       inputDate = e.target.value;
-      if(inputDate.length === 8)
-        setDate(e.target.value);
+      inputDate.length === 8 || (parseInt(inputDate) || inputDate === '') ?
+        setDate(e.target.value):alert('숫자 형식으로 입력해주세요!') && setDate('')
   }, []);
 
   const SubmitDate = useCallback(e => {
     (date.length === 8 ? getMovies(date) : alert('입력하신 날짜를 확인해주세요.'));
-  })
+  }, [])
 
   
   const NationHandler = useCallback(e => {
     let Nation = e.target.value === 'K'? setNation('K') : setNation('F');
     return Nation;
-  }, [nation]);
+  }, []);
 
   return (
     <section className='container'>
       <GlobalStyles/>
-      <Conditions dateHandler={DateHandler} nationHandler={NationHandler} submitDate={SubmitDate} />
+      <Conditions date={date} dateHandler={DateHandler} nationHandler={NationHandler} submitDate={SubmitDate} />
       {/* 리팩토링 구문 ==> Conditions.js //
       <div className="conditions-wrapper">
         <div className="buttons-block">

@@ -24,7 +24,7 @@ const MovieBlock = styled.div`
             flex: 1;
             width: 5rem;
             font-size: 2.2rem;
-            color: ${palette['fontStrongColor']};
+            color: ${palette['strongColor']};
         }
 
         .movie__rank-block {

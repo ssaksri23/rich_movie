@@ -30,6 +30,7 @@ const SearchForm = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 `
 
 const NationButton = styled.button`
@@ -65,7 +66,7 @@ const DateInput = styled.input`
     font-size: 1.2rem;
     margin: 0;
     margin-right: 0.3rem;
-    padding: 0;
+    padding: 0.11rem 0;
 
     &::placeholder{
         font-size: 1rem;
@@ -75,20 +76,30 @@ const SearchButton = styled.button`
     border-radius: 0;
     font-size: 0.96rem;
     width: 4rem;
-    padding: 0.22rem 0;
+    padding: 0.25rem 0;
     cursor: pointer;
 
     &:hover { 
-        background: #64c6ff;
+        background: ${palette['strongColor']};
     }
 
     &:active{
-        background: #448bb4;
+        background: ${palette['basicColor']};
+    }
+
+    &:focus {
+        outline:auto;
     }
 
 `
 
-const Conditions = ({dateHandler, nationHandler, submitDate}) => {
+
+
+const Conditions = ({date, dateHandler, nationHandler, submitDate}) => {
+
+    const enterKey = () => {
+        return window.event.keyCode === 13? submitDate() : false;
+    }
     return (
         <Container>
             <ConditionWrapper>
@@ -100,13 +111,18 @@ const Conditions = ({dateHandler, nationHandler, submitDate}) => {
                     <DateInput
                         type="text" 
                         placeholder="조회 날짜 입력 예) 20210214"
-                        onChange={dateHandler}>
+                        value={date}
+                        onChange={dateHandler}
+                        onKeyDown={enterKey}>
                     </DateInput>
-                    <SearchButton onClick={submitDate}>
+                    <SearchButton 
+                        onClick={submitDate}
+                        onKeydown={submitDate} 
+                    >
                         검색
                     </SearchButton>
-
                 </SearchForm>
+                <h5 style={{textAlign:"left", width: "100%"}}>검색 가능 연도: 2004년 ~ 2021년</h5>
             </ConditionWrapper>
         </Container>
     );
