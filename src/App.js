@@ -22,6 +22,8 @@ const App = () => {
   const [posters, setPosters] = useState([]);
   const [names, setNames] = useState(null);
 
+
+
   const getMovies = async (DATE) => {
     
     try {
@@ -34,7 +36,13 @@ const App = () => {
       } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${DATE}&repNationCd=${nation}`);
       setMovies(dailyBoxOfficeList);
 
-      const titles = dailyBoxOfficeList;
+      // dailyBoxOfficeList = [{rnum:'', rank:'', rankOldAndNew:'', movieNm: '원더우먼'}]
+      // titles = ['원더우먼', '화양연화','조제','소울','도굴', ...]
+      const TitleAndDates = dailyBoxOfficeList.map(movie => ({name: movie.movieNm, date: movie.openDt}))
+
+
+      // GetPosterImg();
+      console.log(`TitleAndDates: ${TitleAndDates}`);
     }catch(e){
       setError(true);
       console.log('에러 원인:',e);
@@ -48,6 +56,18 @@ const App = () => {
     //   getMovies();
  
   }, []);
+
+
+  // const GetPosterImg = async() => {
+
+  //   // 개봉일 날짜를 8자리 수로 변환하는 코드 필요
+  //   // 검색 조건 : 제목, 개봉일
+
+  //   const USER_KEY = '9J3U3PF6Q9127H323N04';
+  //     const image = await axios.get(`http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=N&title=7광구&ServiceKey=${USER_KEY}`)
+  //     // console.log('image.data.Data[0].Result[1].rating:',image.data.Data[0].Result[1].posterUrl);
+  //     console.log(image);
+  // }
 
   const DateHandler = useCallback(e => {
       let inputDate ='';
