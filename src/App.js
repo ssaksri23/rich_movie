@@ -25,27 +25,29 @@ const App = () => {
   const getMovies = async (DATE) => {
     
     try {
+      setMovies(null);
+      setLoading(true);
       const {
         data: {
           boxOfficeResult: {dailyBoxOfficeList}
         }
       } = await axios.get(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${DATE}&repNationCd=${nation}`);
       setMovies(dailyBoxOfficeList);
+
+      const titles = dailyBoxOfficeList;
     }catch(e){
       setError(true);
       console.log('에러 원인:',e);
     }
 
-
-//https://www.data.go.kr/data/3035985/openapi.do
-//영화 이미지 불러올 검색 api 키 발급 신청 (검토중..)
     setLoading(false);
   };
   
-  // useEffect(()=> {
-  //   if(date)
-  //     getMovies();
-  // }, []);
+  useEffect(()=> {
+    // if(date)
+    //   getMovies();
+ 
+  }, []);
 
   const DateHandler = useCallback(e => {
       let inputDate ='';
@@ -64,24 +66,13 @@ const App = () => {
     return Nation;
   }, []);
 
+
   return (
     <section className='container'>
       <GlobalStyles/>
       <Conditions date={date} dateHandler={DateHandler} nationHandler={NationHandler} submitDate={SubmitDate} />
-      {/* 리팩토링 구문 ==> Conditions.js //
-      <div className="conditions-wrapper">
-        <div className="buttons-block">
-          <button value="K" onClick={NationHandler}>국내영화</button>
-          <button value="F" onClick={NationHandler}>해외영화</button>
-        </div>
-        <input 
-          type="text" 
-          placeholder="조회 날짜 입력 예) 20210214"
-          onChange={dateHandler}
-          />
-      </div> */}
 
-        {loading ? 
+      {movies?
           (<div className="movies">
             {movies.map(movie=> (
               <Movie title={movie.movieNm} 
@@ -92,14 +83,19 @@ const App = () => {
                     rankOldAndNew={movie.rankOldAndNew}  
                     audiAcc={movie.audiAcc}
               />
-            
             ))}
-          </div>) :
-            (<LoaderWrapper>
-                {"검색 조건을 설정해주세요."} 
-            </LoaderWrapper>)
-        }
-      
+          </div>):
+          loading? 
+            (
+              <LoaderWrapper>
+                데이터를 불러오는 중..
+              </LoaderWrapper>) :
+            (
+              <LoaderWrapper>
+                검색 조건을 설정해주세요.
+              </LoaderWrapper>
+            )
+      }
     </section>
   );
 };
