@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import palette from '../lib/palette';
+import DropdownComponent from './DropdownComponent';
 
 const Container = styled.div`
     width: 100%;
@@ -20,6 +21,7 @@ const ConditionWrapper = styled.div`
 `
 const ButtonBlock = styled.div`
     display: flex;
+    display: none;
     justify-content: space-around;
 `
 const SearchForm = styled.div`
@@ -95,6 +97,9 @@ const Conditions = ({date, dateHandler, nationHandler, SearchExcute}) => {
     const enterKey = () => {
         return window.event.keyCode === 13? SearchExcute() : false;
     }
+
+   
+
     return (
         <Container>
             <ConditionWrapper>
@@ -102,17 +107,18 @@ const Conditions = ({date, dateHandler, nationHandler, SearchExcute}) => {
                     <NationButton value="K" onClick={nationHandler}>국내영화</NationButton>
                     <NationButton value="F" onClick={nationHandler}>해외영화</NationButton>
                 </ButtonBlock>
+                <DropdownComponent item1="국내영화" item2="해외영화" nationHandler={nationHandler}/>
                 <SearchForm>
                     <DateInput
                         type="text" 
                         placeholder="조회 날짜 입력 예) 20210214"
                         value={date}
                         onChange={dateHandler}
-                        onKeyUp={enterKey}>
+                        onKeyPress={enterKey}>
                     </DateInput>
                     <SearchButton 
                         onClick={SearchExcute}
-                        onKeyUp={SearchExcute} 
+                        onKeyPress={enterKey} 
                     >
                         검색
                     </SearchButton>

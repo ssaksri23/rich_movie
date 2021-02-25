@@ -86,7 +86,8 @@ const App = () => {
 
   
   const NationHandler = useCallback(e => {
-    let Nation = e.target.value === 'K'? setNation('K') : setNation('F');
+    const {target: {attributes: {value: {value}}}} = e;
+    let Nation = value === 'K'? setNation('K') : setNation('F');
     return Nation;
   }, []);
 
