@@ -18,7 +18,7 @@ const App = () => {
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState(null);
   const [date, setDate] = useState('');
-  const [nation, setNation] = useState('');
+  const [nation, setNation] = useState(null);
   const [posters, setPosters] = useState([]);
   const [names, setNames] = useState(null);
 
@@ -54,7 +54,6 @@ const App = () => {
   useEffect(()=> {
     // if(date)
     //   getMovies();
- 
   }, []);
 
 
@@ -76,9 +75,14 @@ const App = () => {
         setDate(e.target.value):alert('숫자 형식으로 입력해주세요!') && setDate('')
   }, []);
 
-  const SubmitDate = useCallback(e => {
-    (date.length === 8 ? getMovies(date) : alert('입력하신 날짜를 확인해주세요.'));
-  }, [date])
+  const SearchExcute = useCallback((e) => {
+    if (date.length === 8 && nation !== null) 
+      getMovies(date)
+    else if (date.length !== 8 && nation !== null) 
+      alert('입력하신 날짜를 확인해주세요.')
+    else
+      alert('국내/국외를 선택해주세요.')
+  }, [date,nation])
 
   
   const NationHandler = useCallback(e => {
@@ -90,7 +94,7 @@ const App = () => {
   return (
     <section className='container'>
       <GlobalStyles/>
-      <Conditions date={date} dateHandler={DateHandler} nationHandler={NationHandler} submitDate={SubmitDate} />
+      <Conditions date={date} dateHandler={DateHandler} nationHandler={NationHandler} SearchExcute={SearchExcute} />
 
       {movies?
           (<div className="movies">

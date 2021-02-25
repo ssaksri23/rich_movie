@@ -12,19 +12,16 @@ const Container = styled.div`
     background: #3d3c3c;
     border-bottom: 1rem solid ${palette['fontStrongColor']};
 `
-
 const ConditionWrapper = styled.div`
     display: inherit;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-between;
 `
-
 const ButtonBlock = styled.div`
     display: flex;
     justify-content: space-around;
 `
-
 const SearchForm = styled.div`
     display: flex;
     justify-content: center;
@@ -32,7 +29,6 @@ const SearchForm = styled.div`
     margin-top: 1rem;
     margin-bottom: 1rem;
 `
-
 const NationButton = styled.button`
     outline: none;
     border: none;
@@ -60,7 +56,6 @@ const NationButton = styled.button`
         margin-left: 0.5em;
     }
 `
-
 const DateInput = styled.input`
     width: 13rem;
     font-size: 1.2rem;
@@ -95,10 +90,10 @@ const SearchButton = styled.button`
 
 
 
-const Conditions = ({date, dateHandler, nationHandler, submitDate}) => {
+const Conditions = ({date, dateHandler, nationHandler, SearchExcute}) => {
 
     const enterKey = () => {
-        return window.event.keyCode === 13? submitDate() : false;
+        return window.event.keyCode === 13? SearchExcute() : false;
     }
     return (
         <Container>
@@ -116,8 +111,8 @@ const Conditions = ({date, dateHandler, nationHandler, submitDate}) => {
                         onKeyUp={enterKey}>
                     </DateInput>
                     <SearchButton 
-                        onClick={submitDate}
-                        onKeyUp={submitDate} 
+                        onClick={SearchExcute}
+                        onKeyUp={SearchExcute} 
                     >
                         검색
                     </SearchButton>
