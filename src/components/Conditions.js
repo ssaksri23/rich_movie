@@ -92,13 +92,11 @@ const SearchButton = styled.button`
 
 
 
-const Conditions = ({date, dateHandler, nationHandler, SearchExcute}) => {
+const Conditions = ({date, nation, dateHandler, nationHandler, SearchExcute}) => {
 
     const enterKey = () => {
         return window.event.keyCode === 13? SearchExcute() : false;
     }
-
-   
 
     return (
         <Container>
@@ -107,7 +105,7 @@ const Conditions = ({date, dateHandler, nationHandler, SearchExcute}) => {
                     <NationButton value="K" onClick={nationHandler}>국내영화</NationButton>
                     <NationButton value="F" onClick={nationHandler}>해외영화</NationButton>
                 </ButtonBlock>
-                <DropdownComponent item1="국내영화" item2="해외영화" nationHandler={nationHandler}/>
+                <DropdownComponent item1="국내영화" item2="해외영화" nation={nation} nationHandler={nationHandler}/>
                 <SearchForm>
                     <DateInput
                         type="text" 

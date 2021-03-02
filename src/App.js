@@ -81,7 +81,7 @@ const App = () => {
     else if (date.length !== 8 && nation !== null) 
       alert('입력하신 날짜를 확인해주세요.')
     else
-      alert('국내/국외를 선택해주세요.')
+      alert('검색할 국가를 선택해주세요.')
   }, [date,nation])
 
   
@@ -95,7 +95,7 @@ const App = () => {
   return (
     <section className='container'>
       <GlobalStyles/>
-      <Conditions date={date} dateHandler={DateHandler} nationHandler={NationHandler} SearchExcute={SearchExcute} />
+      <Conditions date={date} nation={nation} dateHandler={DateHandler} nationHandler={NationHandler} SearchExcute={SearchExcute} />
 
       {movies?
           (<div className="movies">
