@@ -1,16 +1,15 @@
 import React,{useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
+import Header from './common/Header';
 import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
-
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 3rem;
 `
-
 
 const App = () => {
 
@@ -95,7 +94,14 @@ const App = () => {
   return (
     <section className='container'>
       <GlobalStyles/>
-      <Conditions date={date} nation={nation} dateHandler={DateHandler} nationHandler={NationHandler} SearchExcute={SearchExcute} />
+      <Header/>
+      <Conditions 
+          date={date} 
+          nation={nation} 
+          dateHandler={DateHandler} 
+          nationHandler={NationHandler} 
+          SearchExcute={SearchExcute} 
+      />
 
       {movies?
           (<div className="movies">

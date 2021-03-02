@@ -81,7 +81,9 @@ const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
                 <h2 className="movie__title">{title}</h2>
             </div>
             <div className="side__right">
-                <h3 className="movie__openDate">개봉일 : {openDt}</h3>
+                <h3 className="movie__openDate">
+                    {(openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`)}
+                </h3>
                 <h5 className="audiAcc">관객 수(누적) : {audiAcc}명</h5>
             </div>
         </MovieBlock>

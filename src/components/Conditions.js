@@ -10,7 +10,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     padding: 1.5rem 5rem;
-    background: #3d3c3c;
+    background: ${palette["backgroundColor"]};
     border-bottom: 1rem solid ${palette['fontStrongColor']};
 `
 const ConditionWrapper = styled.div`
