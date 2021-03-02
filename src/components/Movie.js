@@ -10,7 +10,6 @@ const MovieBlock = styled.div`
     justify-content: space-between;
     padding: 3rem 3rem;
     background: ${palette['wrapperColor']};
-
     & + & {
         margin-top: 0.5rem;
     }
@@ -23,7 +22,9 @@ const MovieBlock = styled.div`
         .movie__title {
             flex: 1;
             width: 5rem;
-            font-size: 2.2rem;
+            font-size: 2.6rem;
+            font-family: 'Yeon Sung', cursive;
+            font-weight: 500;
             color: ${palette['strongColor']};
         }
 

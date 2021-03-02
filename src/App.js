@@ -1,14 +1,25 @@
 import React,{useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import Header from './common/Header';
+import Footer from './common/Footer';
 import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
+import palette from './lib/palette';
+
+
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin: 3rem auto;
+  height: 10rem;
+`
+
+const MainWrapper = styled.section`
+    border-top: 1px solid ${palette['fontStrongColor']};
+    border-bottom: 1px solid ${palette['fontStrongColor']};
+    height: auto;
 `
 
 const App = () => {
@@ -92,7 +103,7 @@ const App = () => {
 
 
   return (
-    <section className='container'>
+    <div className='container'>
       <GlobalStyles/>
       <Header/>
       <Conditions 
@@ -102,32 +113,37 @@ const App = () => {
           nationHandler={NationHandler} 
           SearchExcute={SearchExcute} 
       />
+      <MainWrapper>
+        {movies?
+            (<div className="movies">
+              {movies.map(movie=> (
+                <Movie title={movie.movieNm} 
+                      id={movie.movieCd}
+                      key={movie.movieCd} 
+                      openDt={movie.openDt}  
+                      rank={movie.rank}  
+                      rankOldAndNew={movie.rankOldAndNew}  
+                      audiAcc={movie.audiAcc}
+                />
+              ))}
+            </div>):
+            loading? 
+              (
+                <LoaderWrapper>
+                  데이터를 불러오는 중..
+                </LoaderWrapper>) :
+              (
+                <LoaderWrapper>
+                  검색 조건을 설정해주세요.
+                </LoaderWrapper>
+              )
+        }
+        
+      </MainWrapper>
 
-      {movies?
-          (<div className="movies">
-            {movies.map(movie=> (
-              <Movie title={movie.movieNm} 
-                    id={movie.movieCd}
-                    key={movie.movieCd} 
-                    openDt={movie.openDt}  
-                    rank={movie.rank}  
-                    rankOldAndNew={movie.rankOldAndNew}  
-                    audiAcc={movie.audiAcc}
-              />
-            ))}
-          </div>):
-          loading? 
-            (
-              <LoaderWrapper>
-                데이터를 불러오는 중..
-              </LoaderWrapper>) :
-            (
-              <LoaderWrapper>
-                검색 조건을 설정해주세요.
-              </LoaderWrapper>
-            )
-      }
-    </section>
+
+      <Footer/>
+    </div>
   );
 };
 

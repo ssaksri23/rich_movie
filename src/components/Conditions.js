@@ -11,7 +11,7 @@ const Container = styled.div`
     align-items: center;
     padding: 1.5rem 5rem;
     background: ${palette["backgroundColor"]};
-    border-bottom: 1rem solid ${palette['fontStrongColor']};
+
 `
 const ConditionWrapper = styled.div`
     display: inherit;
