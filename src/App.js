@@ -66,18 +66,7 @@ const App = () => {
     //   getMovies();
   }, []);
 
-
-  // const GetPosterImg = async() => {
-
-  //   // 개봉일 날짜를 8자리 수로 변환하는 코드 필요
-  //   // 검색 조건 : 제목, 개봉일
-
-  //   const USER_KEY = '9J3U3PF6Q9127H323N04';
-  //     const image = await axios.get(`http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=N&title=7광구&ServiceKey=${USER_KEY}`)
-  //     // console.log('image.data.Data[0].Result[1].rating:',image.data.Data[0].Result[1].posterUrl);
-  //     console.log(image);
-  // }
-
+  
   const DateHandler = useCallback(e => {
       let inputDate ='';
       inputDate = e.target.value;

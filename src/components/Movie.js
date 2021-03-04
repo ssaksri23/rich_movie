@@ -1,9 +1,8 @@
 //노마드코더 rendering Movies 영상
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import palette from '../lib/palette';
-import cn from 'classnames';
 
 const MovieBlock = styled.div`
     display: flex;
@@ -65,7 +64,7 @@ const MovieBlock = styled.div`
 
 
 
-const Movie = ({id,title,openDt, rank, rankOldAndNew, audiAcc}) => {
+const Movie = ({title,openDt, rank, rankOldAndNew, audiAcc}) => {
 
     
     // console.log(rankOldAndNew === 'NEW');

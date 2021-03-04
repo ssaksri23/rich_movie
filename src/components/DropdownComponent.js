@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button} from 'styled-button-component';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownDivider} from 'styled-dropdown-component';
 import styled from 'styled-components';
-import palette from '../lib/palette';
 
 //목록 감추기용 div
 const HideItemsBlock = styled.div`
