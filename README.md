@@ -6,9 +6,10 @@
 ## **Preview**
 
 <div align="center" display="flex" flex-direction="column" align-items="center">
- <img src="https://user-images.githubusercontent.com/53039583/113383074-0d3b6e00-93be-11eb-99a0-a460b53a34fa.png" alt="capture" width="700" height="420">
+ <img src="https://user-images.githubusercontent.com/53039583/113820218-5a03b800-97b5-11eb-9436-90ab833571b7.gif" alt="wide">
 
- <img src="https://user-images.githubusercontent.com/53039583/113383085-175d6c80-93be-11eb-908f-8dca01053af5.png" alt="capture2" width="700" height="420">
+
+ <img src="https://user-images.githubusercontent.com/53039583/113820258-6ab42e00-97b5-11eb-9ba5-223c6cdf0f87.gif" alt="mobile">
 </div>
 
 <hr>
@@ -16,7 +17,8 @@
 ## **Features**
  **1.React**
   - **axios** 라이브러리를 통해 영화 컨텐츠 정보 오픈소스 API을 사용
-  - **styled-component** 이용하여 페이지 스타일링
+  - **styled-component** 을 이용한 스타일 적용
+  - 반응형 레이아웃 적용(모바일/테블릿/노트북)
   - props 값의 정확도 향상을 위해 각 prop에 **propType** 지정
   
   
