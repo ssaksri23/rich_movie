@@ -7,29 +7,22 @@ import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
 import palette from './lib/palette';
-import {ThemeProvider} from 'styled-components';
-import theme from './lib/deviceTheme';
 
 
 const Container = styled.div`
-  height: 100%;
 `
 
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 26vh 0;
-
-  @media ${(props)=> props.theme.mobileL} {
-        padding: 19vh 0;
-    }
+  margin: 3rem auto;
+  height: 10rem;
 `
 
 const MainWrapper = styled.section`
-    height: 100%;
-    border-top: 2px solid ${palette['fontStrongColor']};
-    border-bottom: 2px solid ${palette['fontStrongColor']};
+    border-top: 1px solid ${palette['fontStrongColor']};
+    border-bottom: 1px solid ${palette['fontStrongColor']};
+    height: auto;
 `
 
 const App = () => {
@@ -39,7 +32,8 @@ const App = () => {
   const [movies, setMovies] = useState(null);
   const [date, setDate] = useState('');
   const [nation, setNation] = useState(null);
-
+  const [posters, setPosters] = useState([]);
+  const [names, setNames] = useState(null);
 
 
 
@@ -71,6 +65,7 @@ const App = () => {
   };
   
   
+  
   const DateHandler = useCallback(e => {
       let inputDate ='';
       inputDate = e.target.value;
@@ -96,47 +91,47 @@ const App = () => {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <GlobalStyles/>
-        <Header/>
-        <Conditions 
-            date={date} 
-            nation={nation} 
-            dateHandler={DateHandler} 
-            nationHandler={NationHandler} 
-            SearchExcute={SearchExcute} 
-        />
-        <MainWrapper>
-          {movies?
-              (<div className="movies">
-                {movies.map(movie=> (
-                  <Movie title={movie.movieNm} 
-                        id={movie.movieCd}
-                        key={movie.movieCd} 
-                        openDt={movie.openDt}  
-                        rank={movie.rank}  
-                        rankOldAndNew={movie.rankOldAndNew}  
-                        audiAcc={movie.audiAcc}
-                  />
-                ))}
-              </div>):
-              loading? 
-                (
-                  <LoaderWrapper>
-                    데이터를 불러오는 중..
-                  </LoaderWrapper>) :
-                (
-                  <LoaderWrapper>
-                    검색 조건을 설정해주세요.
-                  </LoaderWrapper>
-                )
-          }
-          
-        </MainWrapper>
-        <Footer/>
-      </Container>
-    </ThemeProvider>
+    <Container>
+      <GlobalStyles/>
+      <Header/>
+      <Conditions 
+          date={date} 
+          nation={nation} 
+          dateHandler={DateHandler} 
+          nationHandler={NationHandler} 
+          SearchExcute={SearchExcute} 
+      />
+      <MainWrapper>
+        {movies?
+            (<div className="movies">
+              {movies.map(movie=> (
+                <Movie title={movie.movieNm} 
+                      id={movie.movieCd}
+                      key={movie.movieCd} 
+                      openDt={movie.openDt}  
+                      rank={movie.rank}  
+                      rankOldAndNew={movie.rankOldAndNew}  
+                      audiAcc={movie.audiAcc}
+                />
+              ))}
+            </div>):
+            loading? 
+              (
+                <LoaderWrapper>
+                  데이터를 불러오는 중..
+                </LoaderWrapper>) :
+              (
+                <LoaderWrapper>
+                  검색 조건을 설정해주세요.
+                </LoaderWrapper>
+              )
+        }
+        
+      </MainWrapper>
+
+
+      <Footer/>
+    </Container>
   );
 };
 

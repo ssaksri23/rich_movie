@@ -157,12 +157,6 @@ const MovieBlock = styled.div`
     };
 `
 
-
-
-
-
-
-
 const Movie = ({title,openDt, rank, rankOldAndNew, audiAcc}) => {
 
     
