@@ -15,13 +15,12 @@
  <br>
 
  <img src="https://user-images.githubusercontent.com/53039583/113820258-6ab42e00-97b5-11eb-9ba5-223c6cdf0f87.gif" alt="mobile" width="425" height="560" align="center>
-</div>
 
 <h4 align="center">
   [모바일 레이아웃]
  </h4>
-
-<hr>
+ <hr>
+</div>
 
 ## **Features**
  **1.React**
