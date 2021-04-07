@@ -8,7 +8,7 @@ html, body {
     padding: 0;
     background: ${palette['backgroundColor']};
     color: ${palette['basicColor']};
-    
+    overflow-x: hidden;
     ::-webkit-scrollbar { display: none};
 }
 
