@@ -1,4 +1,5 @@
 const size = {
+    mobileS: "325px",
     mobileM: "376px",
     mobileL: "426px",
     tabletS: "768px",
@@ -9,8 +10,10 @@ const size = {
 };
 
 const theme = {
+    mobileS: `(max-width: ${size.mobileS})`,
+    mobileSL: `(min-width: ${size.mobileS}) and (max-width: ${size.mobileL})`,
     mobileM: `(max-width: ${size.mobileM})`,
-    mobileL: `(min-width: ${size.mobileM}) and (max-width: ${size.mobileL})`,
+    mobileML: `(min-width: ${size.mobileM}) and (max-width: ${size.mobileL})`,
     tabletS: `(max-width: ${size.tabletS})`,
     tabletM: `(max-width: ${size.tabletM})`,
     tabletL: `(max-width: ${size.tabletL})`,
