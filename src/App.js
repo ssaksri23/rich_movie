@@ -16,7 +16,7 @@ const Container = styled.div`
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 19vh auto;
+  margin: 25vh auto;
 `
 
 const MainWrapper = styled.section`
