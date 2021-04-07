@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useCallback} from 'react';
+import React,{useState, useCallback} from 'react';
 import axios from 'axios';
 import Header from './common/Header';
 import Footer from './common/Footer';
@@ -9,17 +9,20 @@ import styled from 'styled-components';
 import palette from './lib/palette';
 
 
+const Container = styled.div`
+  height: 100%;
+`
+
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 3rem auto;
-  height: 10rem;
+  margin: 19vh auto;
 `
 
 const MainWrapper = styled.section`
-    border-top: 1px solid ${palette['fontStrongColor']};
-    border-bottom: 1px solid ${palette['fontStrongColor']};
-    height: auto;
+    height: 100%;
+    border-top: 2px solid ${palette['fontStrongColor']};
+    border-bottom: 2px solid ${palette['fontStrongColor']};
 `
 
 const App = () => {
@@ -29,8 +32,7 @@ const App = () => {
   const [movies, setMovies] = useState(null);
   const [date, setDate] = useState('');
   const [nation, setNation] = useState(null);
-  const [posters, setPosters] = useState([]);
-  const [names, setNames] = useState(null);
+
 
 
 
@@ -61,11 +63,6 @@ const App = () => {
     setLoading(false);
   };
   
-  useEffect(()=> {
-    // if(date)
-    //   getMovies();
-  }, []);
-
   
   const DateHandler = useCallback(e => {
       let inputDate ='';
@@ -92,7 +89,7 @@ const App = () => {
 
 
   return (
-    <div className='container'>
+    <Container>
       <GlobalStyles/>
       <Header/>
       <Conditions 
@@ -129,10 +126,8 @@ const App = () => {
         }
         
       </MainWrapper>
-
-
       <Footer/>
-    </div>
+    </Container>
   );
 };
 

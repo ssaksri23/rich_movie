@@ -70,11 +70,12 @@ const DateInput = styled.input`
     }
 `
 const SearchButton = styled.button`
-    border-radius: 0;
+    border-radius: 2px;
     font-size: 0.96rem;
     width: 4rem;
     padding: 0.25rem 0;
     cursor: pointer;
+    background: ${palette['basicColor']};
 
     &:hover { 
         background: ${palette['strongColor']};
@@ -109,7 +110,7 @@ const Conditions = ({date, nation, dateHandler, nationHandler, SearchExcute}) =>
                 <SearchForm>
                     <DateInput
                         type="text" 
-                        placeholder="조회 날짜 입력 예) 20210214"
+                        placeholder="조회 날짜 ex) 20210214"
                         value={date}
                         onChange={dateHandler}
                         onKeyPress={enterKey}>
@@ -121,7 +122,9 @@ const Conditions = ({date, nation, dateHandler, nationHandler, SearchExcute}) =>
                         검색
                     </SearchButton>
                 </SearchForm>
-                <h5 style={{textAlign:"left", width: "100%"}}>검색 가능 연도: 2004년 ~ 2021년</h5>
+                    <h5 style={{textAlign:"center", width: "100%"}}>
+                        검색 가능 연도: 2004년 ~ 2021년
+                    </h5>
             </ConditionWrapper>
         </Container>
     );

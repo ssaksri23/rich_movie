@@ -1,4 +1,4 @@
-import styled, {createGlobalStyle} from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import palette from './lib/palette';
 
 const GlobalStyles = createGlobalStyle`
@@ -9,6 +9,7 @@ html, body {
     background: ${palette['backgroundColor']};
     color: ${palette['basicColor']};
     overflow-x: hidden;
+    height: 100vh;
     ::-webkit-scrollbar { display: none};
 }
 
@@ -17,6 +18,7 @@ button {
     outline: 0;
     border: 0;
 }
+
 
 
 h1,h2,h3,h4,h5,h6,ul {
