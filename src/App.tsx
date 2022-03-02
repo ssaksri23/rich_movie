@@ -6,7 +6,7 @@ import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
-import palette from './lib/palette';
+import palette from '../../dist/lib/palette';
 
 const Container = styled.div``;
 
@@ -67,7 +67,8 @@ const App = () => {
     inputDate = e.target.value;
     inputDate.length === 8 || parseInt(inputDate) || inputDate === ''
       ? setDate(e.target.value)
-      : alert('숫자 형식으로 입력해주세요!') && setDate('');
+      : alert('숫자 형식으로 입력해주세요!'),
+      setDate('');
   }, []);
 
   const SearchExcute = useCallback(
@@ -92,6 +93,15 @@ const App = () => {
     return Nation;
   }, []);
 
+  interface movieObj {
+    movieNm: string;
+    movieCd: string;
+    openDt: string;
+    rank: string;
+    rankOldAndNew: string;
+    audiAcc: string;
+  }
+
   return (
     <Container>
       <GlobalStyles />
@@ -106,7 +116,7 @@ const App = () => {
       <MainWrapper>
         {movies ? (
           <div className="movies">
-            {movies.map((movie) => (
+            {movies.map((movie: movieObj) => (
               <Movie
                 title={movie?.movieNm}
                 id={movie?.movieCd}
