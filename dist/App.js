@@ -62,7 +62,8 @@ const App = () => {
         inputDate = e.target.value;
         inputDate.length === 8 || parseInt(inputDate) || inputDate === ''
             ? setDate(e.target.value)
-            : alert('숫자 형식으로 입력해주세요!') && setDate('');
+            : alert('숫자 형식으로 입력해주세요!'),
+            setDate('');
     }, []);
     const SearchExcute = useCallback((e) => {
         if (date.length === 8 && nation !== null)

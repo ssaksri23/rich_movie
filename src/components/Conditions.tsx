@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from '../lib/palette';
+import palette from '../../dist/lib/palette';
 import DropdownComponent from './DropdownComponent';
 
 const Container = styled.div`

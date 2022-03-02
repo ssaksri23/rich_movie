@@ -1,4 +1,3 @@
-/// <reference types="react" />
 declare const Conditions: ({ date, nation, dateHandler, nationHandler, SearchExcute }: {
     date: any;
     nation: any;

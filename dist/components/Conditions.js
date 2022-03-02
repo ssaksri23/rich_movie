@@ -89,8 +89,8 @@ const SearchButton = styled.button `
 `;
 const Conditions = ({ date, nation, dateHandler, nationHandler, SearchExcute }) => {
     const enterKey = () => {
-        var _a;
-        if (((_a = window === null || window === void 0 ? void 0 : window.event) === null || _a === void 0 ? void 0 : _a.keyCode) === 13) {
+        const windowEvent = window.event;
+        if (windowEvent.key === 'Enter') {
             SearchExcute();
         }
     };

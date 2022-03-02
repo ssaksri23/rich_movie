@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import palette from '../lib/palette';
+import palette from '../../dist/lib/palette';
 import { ThemeProvider } from 'styled-components';
-import theme from '../lib/deviceTheme';
+import theme from '../../dist/lib/deviceTheme';
 
 interface Props {
   rankOldAndNew: string;
