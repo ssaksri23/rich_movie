@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from '../../dist/lib/palette';
+import palette from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
-import theme from '../../dist/lib/deviceTheme';
+import theme from '../lib/deviceTheme';
 
 const HeaderWrapper = styled.div`
   width: 100%;

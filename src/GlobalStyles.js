@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import palette from '../../dist/lib/palette';
+import palette from './lib/palette';
 
 const GlobalStyles = createGlobalStyle`
 

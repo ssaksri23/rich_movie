@@ -6,7 +6,7 @@ import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
-import palette from '../../dist/lib/palette';
+import palette from './lib/palette';
 
 const Container = styled.div``;
 
