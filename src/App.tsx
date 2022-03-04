@@ -78,12 +78,42 @@ const App = () => {
     }
   }, []);
 
+  const validateDate = (inputDate: string): boolean => {
+    let result: boolean = false;
+    try {
+      const [Year, Month, Day] = [
+        Number(inputDate.slice(0, 4)),
+        Number(inputDate.slice(4, 6)),
+        Number(inputDate.slice(6))
+      ];
+
+      if (0 < Month && Month < 13 && 0 < Day && Day < 32) {
+        const date = dayjs(`${Year}-${Month}-${Day}`).format('YYYY-MM-DD');
+        const monthRange = dayjs(date).daysInMonth();
+
+        if (Day <= monthRange) {
+          result = true;
+        } else {
+          alert('유효하지 않은 일자입니다.');
+          throw Error('유효하지 않은 일자입니다.');
+        }
+      } else {
+        alert('유효하지 않은 날짜입니다.');
+        throw Error('유효하지 않은 날짜입니다.');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+
+    return result;
+  };
+
   const SearchExcute = useCallback(
     (e): void => {
-      if (date.length === 8 && nation !== null) getMovies(date);
-      else if (date.length !== 8 && nation !== null)
-        alert('입력하신 날짜를 확인해주세요.');
-      else alert('검색할 국가를 선택해주세요.');
+      if (date.length === 8 && validateDate(date) && nation !== null)
+        getMovies(date);
+      else if (date.length !== 8) alert('입력하신 날짜를 확인해주세요.');
+      else if (nation === null) alert('검색할 국가를 선택해주세요.');
     },
     [date, nation]
   );
