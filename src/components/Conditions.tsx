@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import palette from '../../dist/lib/palette';
+import palette from '../lib/palette';
 import DropdownComponent from './DropdownComponent';
 
 const Container = styled.div`
@@ -88,11 +88,6 @@ const SearchButton = styled.button`
     outline: auto;
   }
 `;
-interface Window {
-  event: {
-    keyCode: number;
-  };
-}
 
 const Conditions = ({
   date,
@@ -138,7 +133,7 @@ const Conditions = ({
           </SearchButton>
         </SearchForm>
         <h5 style={{ textAlign: 'center', width: '100%' }}>
-          검색 가능 연도: 2004년 ~ 2021년
+          검색 가능 연도: 2004년 ~ 전일
         </h5>
       </ConditionWrapper>
     </Container>

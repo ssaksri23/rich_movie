@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import Header from './common/Header';
 import Footer from './common/Footer';
@@ -6,7 +6,8 @@ import Movie from './components/Movie';
 import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
-import palette from '../../dist/lib/palette';
+import palette from './lib/palette';
+import dayjs from 'dayjs';
 
 const Container = styled.div``;
 
@@ -32,7 +33,12 @@ const App = () => {
   const [posters, setPosters] = useState([]);
   const [names, setNames] = useState(null);
 
-  const getMovies = async (DATE) => {
+  interface movie {
+    movieNm: string;
+    openDt: string;
+  }
+
+  const getMovies = async (DATE: string) => {
     try {
       setMovies(null);
       setLoading(true);
@@ -47,7 +53,7 @@ const App = () => {
 
       // dailyBoxOfficeList = [{rnum:'', rank:'', rankOldAndNew:'', movieNm: '원더우먼'}]
       // titles = ['원더우먼', '화양연화','조제','소울','도굴', ...]
-      const TitleAndDates = dailyBoxOfficeList.map((movie) => ({
+      const TitleAndDates = dailyBoxOfficeList.map((movie: movie) => ({
         name: movie.movieNm,
         date: movie.openDt
       }));
@@ -58,30 +64,61 @@ const App = () => {
       setError(true);
       console.log('에러 원인:', e);
     }
-
     setLoading(false);
   };
 
-  const DateHandler = useCallback((e) => {
+  const DateHandler = useCallback((e): void => {
     let inputDate = '';
     inputDate = e.target.value;
-    inputDate.length === 8 || parseInt(inputDate) || inputDate === ''
-      ? setDate(e.target.value)
-      : alert('숫자 형식으로 입력해주세요!'),
+    if (inputDate.length === 8 || parseInt(inputDate) || inputDate === '') {
+      setDate(e.target.value);
+    } else {
+      alert('숫자 형식으로 입력해주세요!');
       setDate('');
+    }
   }, []);
 
+  const validateDate = (inputDate: string): boolean => {
+    let result: boolean = false;
+    try {
+      const [Year, Month, Day] = [
+        Number(inputDate.slice(0, 4)),
+        Number(inputDate.slice(4, 6)),
+        Number(inputDate.slice(6))
+      ];
+
+      if (0 < Month && Month < 13 && 0 < Day && Day < 32) {
+        const date = dayjs(`${Year}-${Month}-${Day}`).format('YYYY-MM-DD');
+        const monthRange = dayjs(date).daysInMonth();
+
+        if (Day <= monthRange) {
+          result = true;
+        } else {
+          alert('유효하지 않은 일자입니다.');
+          throw Error('유효하지 않은 일자입니다.');
+        }
+      } else {
+        alert('유효하지 않은 날짜입니다.');
+        throw Error('유효하지 않은 날짜입니다.');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+
+    return result;
+  };
+
   const SearchExcute = useCallback(
-    (e) => {
-      if (date.length === 8 && nation !== null) getMovies(date);
-      else if (date.length !== 8 && nation !== null)
-        alert('입력하신 날짜를 확인해주세요.');
-      else alert('검색할 국가를 선택해주세요.');
+    (e): void => {
+      if (date.length === 8 && validateDate(date) && nation !== null)
+        getMovies(date);
+      else if (date.length !== 8) alert('입력하신 날짜를 확인해주세요.');
+      else if (nation === null) alert('검색할 국가를 선택해주세요.');
     },
     [date, nation]
   );
 
-  const NationHandler = useCallback((e) => {
+  const NationHandler = useCallback((e): void => {
     const {
       target: {
         attributes: {
@@ -91,6 +128,15 @@ const App = () => {
     } = e;
     let Nation = value === 'K' ? setNation('K') : setNation('F');
     return Nation;
+  }, []);
+
+  const setInitDate = (): void => {
+    const yesterday: string = dayjs().subtract(1, 'day').format('YYYYMMDD');
+    setDate(yesterday);
+  };
+
+  useEffect(() => {
+    setInitDate();
   }, []);
 
   interface movieObj {
