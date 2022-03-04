@@ -88,11 +88,6 @@ const SearchButton = styled.button`
     outline: auto;
   }
 `;
-interface Window {
-  event: {
-    keyCode: number;
-  };
-}
 
 const Conditions = ({
   date,

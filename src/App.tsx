@@ -32,6 +32,11 @@ const App = () => {
   const [posters, setPosters] = useState([]);
   const [names, setNames] = useState(null);
 
+  interface movie {
+    movieNm: string;
+    openDt: string;
+  }
+
   const getMovies = async (DATE) => {
     try {
       setMovies(null);
@@ -47,7 +52,7 @@ const App = () => {
 
       // dailyBoxOfficeList = [{rnum:'', rank:'', rankOldAndNew:'', movieNm: '원더우먼'}]
       // titles = ['원더우먼', '화양연화','조제','소울','도굴', ...]
-      const TitleAndDates = dailyBoxOfficeList.map((movie) => ({
+      const TitleAndDates = dailyBoxOfficeList.map((movie: movie) => ({
         name: movie.movieNm,
         date: movie.openDt
       }));
@@ -58,21 +63,22 @@ const App = () => {
       setError(true);
       console.log('에러 원인:', e);
     }
-
     setLoading(false);
   };
 
-  const DateHandler = useCallback((e) => {
+  const DateHandler = useCallback((e): void => {
     let inputDate = '';
     inputDate = e.target.value;
-    inputDate.length === 8 || parseInt(inputDate) || inputDate === ''
-      ? setDate(e.target.value)
-      : alert('숫자 형식으로 입력해주세요!'),
+    if (inputDate.length === 8 || parseInt(inputDate) || inputDate === '') {
+      setDate(e.target.value);
+    } else {
+      alert('숫자 형식으로 입력해주세요!');
       setDate('');
+    }
   }, []);
 
   const SearchExcute = useCallback(
-    (e) => {
+    (e): void => {
       if (date.length === 8 && nation !== null) getMovies(date);
       else if (date.length !== 8 && nation !== null)
         alert('입력하신 날짜를 확인해주세요.');
@@ -81,7 +87,7 @@ const App = () => {
     [date, nation]
   );
 
-  const NationHandler = useCallback((e) => {
+  const NationHandler = useCallback((e): void => {
     const {
       target: {
         attributes: {
