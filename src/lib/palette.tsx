@@ -1,9 +1,18 @@
-const palette = {
-    basicColor: '#eee6e3',
-    strongColor: '#f5b151',
-    wrapperColor: '#3c3f44',
-    backgroundColor: '#1F2124',
-    NewRankColor: '#F68657',
-    OldRankColor: '#c1c4bd'
+interface Palette {
+  basicColor: string;
+  strongColor: string;
+  wrapperColor: string;
+  backgroundColor: string;
+  NewRankColor: string;
+  OldRankColor: string;
+}
+
+const palette: Palette = {
+  basicColor: '#eee6e3',
+  strongColor: '#F1E0AC',
+  wrapperColor: '#495371',
+  backgroundColor: '#495371',
+  NewRankColor: '#F68657',
+  OldRankColor: '#c1c4bd'
 };
 export default palette;
