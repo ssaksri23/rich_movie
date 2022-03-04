@@ -101,8 +101,8 @@ const App = () => {
   }, []);
 
   const setInitDate = (): void => {
-    const today: string = dayjs().subtract(1, 'day').format('YYYYMMDD');
-    setDate(today);
+    const yesterday: string = dayjs().subtract(1, 'day').format('YYYYMMDD');
+    setDate(yesterday);
   };
 
   useEffect(() => {
