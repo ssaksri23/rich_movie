@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import Header from './common/Header';
 import Footer from './common/Footer';
@@ -7,6 +7,7 @@ import Conditions from './components/Conditions';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
 import palette from './lib/palette';
+import dayjs from 'dayjs';
 
 const Container = styled.div``;
 
@@ -37,7 +38,7 @@ const App = () => {
     openDt: string;
   }
 
-  const getMovies = async (DATE) => {
+  const getMovies = async (DATE: string) => {
     try {
       setMovies(null);
       setLoading(true);
@@ -97,6 +98,15 @@ const App = () => {
     } = e;
     let Nation = value === 'K' ? setNation('K') : setNation('F');
     return Nation;
+  }, []);
+
+  const setInitDate = (): void => {
+    const today: string = dayjs().subtract(1, 'day').format('YYYYMMDD');
+    setDate(today);
+  };
+
+  useEffect(() => {
+    setInitDate();
   }, []);
 
   interface movieObj {
