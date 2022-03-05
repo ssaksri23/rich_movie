@@ -100,7 +100,7 @@ const MovieBlock = styled.div<Props>`
 
       .movie__title {
         font-size: 1.6rem;
-        flex: 0.6;
+        flex: 0.8;
       }
 
       .movie__rank-block {
@@ -158,7 +158,7 @@ const MovieBlock = styled.div<Props>`
   } ;
 `;
 
-const Movie = ({ title, openDt, rank, rankOldAndNew, audiAcc }) => {
+const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
   audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
     <ThemeProvider theme={theme}>
@@ -185,13 +185,13 @@ const Movie = ({ title, openDt, rank, rankOldAndNew, audiAcc }) => {
   );
 };
 
-Movie.propTypes = {
-  id: PropTypes.string.isRequired, // id = movieCd
-  title: PropTypes.string.isRequired, //title = movieNm
-  openDt: PropTypes.string.isRequired,
-  rank: PropTypes.string.isRequired,
-  rankOldAndNew: PropTypes.string.isRequired,
-  audiAcc: PropTypes.string.isRequired
-};
+// Movie.propTypes = {
+//   id: PropTypes.string.isRequired, // id = movieCd
+//   title: PropTypes.string.isRequired, //title = movieNm
+//   openDt: PropTypes.string.isRequired,
+//   rank: PropTypes.string.isRequired,
+//   rankOldAndNew: PropTypes.string.isRequired,
+//   audiAcc: PropTypes.string.isRequired
+// };
 
 export default Movie;
