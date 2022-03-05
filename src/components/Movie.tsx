@@ -100,7 +100,7 @@ const MovieBlock = styled.div<Props>`
 
       .movie__title {
         font-size: 1.6rem;
-        flex: 0.6;
+        flex: 0.8;
       }
 
       .movie__rank-block {
