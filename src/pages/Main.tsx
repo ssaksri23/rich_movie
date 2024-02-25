@@ -10,20 +10,28 @@ import palette from '../lib/palette';
 import dayjs from 'dayjs';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { IMainStore, mainStore } from '../zustand/main';
+import { ScaleLoader } from 'react-spinners';
 
-const Container = styled.div``;
+const Container = styled.div`
+  height: 100%;
+  width: 100%;
+`;
 
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 3rem auto;
-  height: 10rem;
+  /* height: 100%; */
 `;
 
 const MainWrapper = styled.section`
   border-top: 1px solid ${palette['fontStrongColor']};
   border-bottom: 1px solid ${palette['fontStrongColor']};
-  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 65vh;
+  height: 70%;
 `;
 
 const fetchData = async ({ date, nation }) => {
@@ -175,27 +183,30 @@ const Main = () => {
         searchExcute={searchExcute}
       />
       <MainWrapper>
-        {movies ? (
+        {isLoading ? (
+          <LoaderWrapper>
+            <ScaleLoader color="#36d7b7" />
+          </LoaderWrapper>
+        ) : movies ? (
           <div className="movies">
-            {movies.map((movie: movieObj) => (
-              <Movie
-                title={movie?.movieNm}
-                id={movie?.movieCd}
-                key={movie?.movieCd}
-                openDt={movie?.openDt}
-                rank={movie?.rank}
-                rankOldAndNew={movie?.rankOldAndNew}
-                audiAcc={movie?.audiAcc}
-              />
-            ))}
+            <ul>
+              {movies.map((movie: movieObj) => (
+                <Movie
+                  title={movie?.movieNm}
+                  id={movie?.movieCd}
+                  key={movie?.movieCd}
+                  openDt={movie?.openDt}
+                  rank={movie?.rank}
+                  rankOldAndNew={movie?.rankOldAndNew}
+                  audiAcc={movie?.audiAcc}
+                />
+              ))}
+            </ul>
           </div>
-        ) : loading ? (
-          <LoaderWrapper>데이터를 불러오는 중..</LoaderWrapper>
         ) : (
           <LoaderWrapper>검색 조건을 설정해주세요.</LoaderWrapper>
         )}
       </MainWrapper>
-
       <Footer />
     </Container>
   );

@@ -5,7 +5,9 @@ import DropdownComponent from './DropdownComponent';
 
 const Container = styled.div`
   width: 100%;
+  height: 15%;
   display: flex;
+  min-height: 15vh;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;

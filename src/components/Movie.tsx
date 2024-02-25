@@ -9,11 +9,11 @@ interface Props {
   rankOldAndNew: string;
 }
 
-const MovieBlock = styled.div<Props>`
+const MovieBlock = styled.li<Props>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
   background: ${palette['wrapperColor']};
   & + & {
     margin-top: 0.1rem;
@@ -51,9 +51,7 @@ const MovieBlock = styled.div<Props>`
         margin: 0;
         font-weight: 500;
         ${(props) =>
-          props.rankOldAndNew === 'NEW'
-            ? { color: palette['NewRankColor'] }
-            : { color: palette['OldRankColor'] }}
+          props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
       }
     }
   }
@@ -113,9 +111,7 @@ const MovieBlock = styled.div<Props>`
         .movie__rankOldAndNew {
           font-size: 0.6rem;
           ${(props) =>
-            props.rankOldAndNew === 'NEW'
-              ? { color: palette['NewRankColor'] }
-              : { color: palette['OldRankColor'] }}
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -145,9 +141,7 @@ const MovieBlock = styled.div<Props>`
           font-size: 0.3rem;
           margin-right: 0.2rem;
           ${(props) =>
-            props.rankOldAndNew === 'NEW'
-              ? { color: palette['NewRankColor'] }
-              : { color: palette['OldRankColor'] }}
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -155,7 +149,7 @@ const MovieBlock = styled.div<Props>`
       flex: 0.6;
       font-size: 0.5rem;
     }
-  } ;
+  }
 `;
 
 const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {

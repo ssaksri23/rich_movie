@@ -6,18 +6,19 @@ import theme from '../lib/deviceTheme';
 
 const FooterWrapper = styled.div`
   width: 100vw;
+  height: 10%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   background: ${palette['backgroundColor']};
 
   @media ${(props) => props.theme.tabletM} {
     margin: 0 auto;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
   }
 `;
 

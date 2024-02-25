@@ -26,6 +26,21 @@ h1,h2,h3,h4,h5,h6,ul {
     padding: 0;
 }
 
+.movies {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+ul {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
 li {list-style: none;}
 `;
 export default GlobalStyles;

@@ -10,7 +10,8 @@ const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
+  height: 5%;
   background: ${palette['wrapperColor']};
 `;
 
