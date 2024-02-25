@@ -89,17 +89,11 @@ const SearchButton = styled.button`
   }
 `;
 
-const Conditions = ({
-  date,
-  nation,
-  dateHandler,
-  nationHandler,
-  SearchExcute
-}) => {
+const Conditions = ({ date, nation, updateDate, nationHandler, searchExcute }) => {
   const enterKey = (): void => {
     const windowEvent = window.event as KeyboardEvent;
     if (windowEvent.key === 'Enter') {
-      SearchExcute();
+      searchExcute();
     }
   };
 
@@ -114,27 +108,20 @@ const Conditions = ({
             해외영화
           </NationButton>
         </ButtonBlock>
-        <DropdownComponent
-          item1="국내영화"
-          item2="해외영화"
-          nation={nation}
-          nationHandler={nationHandler}
-        />
+        <DropdownComponent item1="국내영화" item2="해외영화" nation={nation} nationHandler={nationHandler} />
         <SearchForm>
           <DateInput
             type="text"
             placeholder="조회 날짜 ex) 20210214"
             value={date}
-            onChange={dateHandler}
-            onKeyPress={enterKey}
+            onChange={updateDate}
+            onKeyDown={enterKey}
           ></DateInput>
-          <SearchButton onClick={SearchExcute} onKeyPress={enterKey}>
+          <SearchButton onClick={searchExcute} onKeyDown={enterKey}>
             검색
           </SearchButton>
         </SearchForm>
-        <h5 style={{ textAlign: 'center', width: '100%' }}>
-          검색 가능 연도: 2004년 ~ 전일
-        </h5>
+        <h5 style={{ textAlign: 'center', width: '100%' }}>검색 가능 연도: 2004년 ~ 전일</h5>
       </ConditionWrapper>
     </Container>
   );
