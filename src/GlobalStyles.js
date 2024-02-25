@@ -37,10 +37,13 @@ h1,h2,h3,h4,h5,h6,ul {
 
 ul {
   height: 100%;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
 }
-li {list-style: none;}
+li {list-style: none;
+height: 100%;}
 `;
 export default GlobalStyles;

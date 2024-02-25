@@ -7,8 +7,8 @@
 ## **Preview**
 
 > ### 노트북, 데스크탑 스크린
->
-> <img src="https://user-images.githubusercontent.com/53039583/156868523-3c37b869-95ad-4f62-9f6d-b81cbbf6df63.gif" alt="wide" width="680" height="400" align="center"/>
+
+![alt text](<Desktop .gif>)
 
 > ### 모바일 스크린
 >

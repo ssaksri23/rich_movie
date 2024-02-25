@@ -30,7 +30,7 @@ const MainWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 65vh;
+  /* min-height: 65vh; */
   height: 70%;
 `;
 

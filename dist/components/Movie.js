@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import palette from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
 import theme from '../lib/deviceTheme';
-const MovieBlock = styled.div `
+const MovieBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,9 +46,8 @@ const MovieBlock = styled.div `
         align-self: flex-start;
         margin: 0;
         font-weight: 500;
-        ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+        ${(props) =>
+          props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
       }
     }
   }
@@ -107,9 +106,8 @@ const MovieBlock = styled.div `
 
         .movie__rankOldAndNew {
           font-size: 0.6rem;
-          ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+          ${(props) =>
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -120,7 +118,7 @@ const MovieBlock = styled.div `
     }
   }
 
-  @media ${(props) => props.theme.mobileM} {
+  @media ${(props) => props.theme.mobileL} {
     padding: 1rem 0.5rem;
     .side__left {
       .movie__title {
@@ -138,9 +136,8 @@ const MovieBlock = styled.div `
         .movie__rankOldAndNew {
           font-size: 0.3rem;
           margin-right: 0.2rem;
-          ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+          ${(props) =>
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -148,7 +145,7 @@ const MovieBlock = styled.div `
       flex: 0.6;
       font-size: 0.5rem;
     }
-  } ;
+  }
 `;
 const Movie = ({ title, openDt, rank, rankOldAndNew, audiAcc }) => {
     // console.log(rankOldAndNew === 'NEW');
