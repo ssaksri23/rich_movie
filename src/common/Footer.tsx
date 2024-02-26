@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../lib/deviceTheme';
 
 const FooterWrapper = styled.div`
+  position: relative;
   width: 100vw;
   height: 10%;
   display: flex;
@@ -15,6 +16,7 @@ const FooterWrapper = styled.div`
   margin: 0 auto;
   /* padding: 1rem 0; */
   background: ${palette['backgroundColor']};
+  border-top: 1px solid ${palette['fontStrongColor']};
 
   @media ${(props) => props.theme.tabletM} {
     margin: 0 auto;

@@ -4,6 +4,7 @@ import palette from '../lib/palette';
 import DropdownComponent from './DropdownComponent';
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 15%;
   display: flex;
@@ -13,6 +14,7 @@ const Container = styled.div`
   align-items: center;
   padding: 1.5rem 5rem;
   background: ${palette['backgroundColor']};
+  border-bottom: 1px solid ${palette['fontStrongColor']};
 `;
 const ConditionWrapper = styled.div`
   display: inherit;

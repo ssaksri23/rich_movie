@@ -15,6 +15,9 @@ import { ScaleLoader } from 'react-spinners';
 const Container = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
 `;
 
 const LoaderWrapper = styled.div`
@@ -25,13 +28,12 @@ const LoaderWrapper = styled.div`
 `;
 
 const MainWrapper = styled.section`
-  border-top: 1px solid ${palette['fontStrongColor']};
-  border-bottom: 1px solid ${palette['fontStrongColor']};
   display: flex;
   justify-content: center;
   align-items: center;
   /* min-height: 65vh; */
   height: 70%;
+  overflow-y: scroll;
 `;
 
 const fetchData = async ({ date, nation }) => {
