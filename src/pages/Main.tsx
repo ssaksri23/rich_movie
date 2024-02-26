@@ -32,8 +32,8 @@ const MainWrapper = styled.section`
   justify-content: center;
   align-items: center;
   /* min-height: 65vh; */
-  height: 70%;
-  overflow-y: scroll;
+  /* height: 70%; */
+  /* overflow-y: scroll; */
 `;
 
 const fetchData = async ({ date, nation }) => {

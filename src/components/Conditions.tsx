@@ -21,6 +21,7 @@ const ConditionWrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 `;
 const ButtonBlock = styled.div`
   display: flex;
@@ -31,8 +32,6 @@ const SearchForm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 `;
 const NationButton = styled.button`
   outline: none;
