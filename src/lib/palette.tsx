@@ -1,17 +1,25 @@
 interface Palette {
-  basicColor: string;
-  strongColor: string;
+  text: {
+    basicColor: string;
+    strongColor1: string;
+    strongColor2: string;
+    strongColor3: string;
+  };
   wrapperColor: string;
-  backgroundColor: string;
   NewRankColor: string;
   OldRankColor: string;
+  backgroundColor: string;
 }
 
 const palette: Palette = {
-  basicColor: '#eee6e3',
-  strongColor: '#F1E0AC',
+  text: {
+    basicColor: '#000',
+    strongColor1: '#2563EB',
+    strongColor2: '#65bc9f',
+    strongColor3: '#973beb',
+  },
   wrapperColor: '#222326',
-  backgroundColor: '#000000',
+  backgroundColor: '#F3F4F6',
   NewRankColor: '#F68657',
   OldRankColor: '#c1c4bd',
 };
