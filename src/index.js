@@ -5,13 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/root';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import RootLayout from './common/Layout';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <RootLayout>
+        <RouterProvider router={router} />
+      </RootLayout>
       {/* <ReactQueryDevtools initialIsOpen=s{false} /> */}
     </QueryClientProvider>
   </React.StrictMode>,

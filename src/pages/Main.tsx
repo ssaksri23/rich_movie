@@ -6,7 +6,6 @@ import Movie from '../components/Movie';
 import Conditions from '../components/Conditions';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
-import palette from '../lib/palette';
 import dayjs from 'dayjs';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { IMainStore, mainStore } from '../zustand/main';
