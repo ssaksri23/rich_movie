@@ -49,7 +49,7 @@ const ContentsWrapper = styled.div`
 
   @media ${(props) => props.theme.mobileM} {
     width: 20rem;
-  } ;
+  }
 `;
 
 const ContentsTop = styled(FooterContents)`
@@ -86,10 +86,7 @@ const Footer = () => {
         <ContentsWrapper>
           <ContentsTop>
             <ContentsBlock>
-              <TextBlock>e-mail: dlwlsdn201@naver.com</TextBlock>
-            </ContentsBlock>
-            <ContentsBlock>
-              <TextBlock>Tel. 010-5159-7230</TextBlock>
+              <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
             </ContentsBlock>
           </ContentsTop>
           <ContentsBottom>
