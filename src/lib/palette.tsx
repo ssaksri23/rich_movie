@@ -9,6 +9,7 @@ interface Palette {
   NewRankColor: string;
   OldRankColor: string;
   backgroundColor: string;
+  sectionColor: string;
 }
 
 const palette: Palette = {
@@ -20,6 +21,7 @@ const palette: Palette = {
   },
   wrapperColor: '#222326',
   backgroundColor: '#F3F4F6',
+  sectionColor: '#e6e6e6',
   NewRankColor: '#F68657',
   OldRankColor: '#c1c4bd',
 };

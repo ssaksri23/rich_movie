@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import palette from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
 import theme from '../lib/deviceTheme';
+import { DEFAULT_BORDER_RADIUS_REM } from '../config/style';
+import { FONT_SIZE } from '../config/font';
 interface Props {
   rankOldAndNew: string;
 }
@@ -14,7 +16,9 @@ const MovieBlock = styled.li<Props>`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: ${palette['wrapperColor']};
+  background: ${palette.sectionColor};
+  color: ${palette.text.basicColor};
+  border-radius: ${DEFAULT_BORDER_RADIUS_REM};
   & + & {
     margin-top: 0.1rem;
   }
@@ -27,10 +31,10 @@ const MovieBlock = styled.li<Props>`
     .movie__title {
       flex: 1;
       width: 5rem;
-      font-size: 1.2rem;
+      font-size: ${FONT_SIZE.SEMI_LARGE};
       font-family: 'Yeon Sung', cursive;
       font-weight: 500;
-      color: ${palette['strongColor']};
+      color: ${palette.text.basicColor};
     }
 
     .movie__rank-block {
@@ -160,17 +164,13 @@ const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
         <div className="side__left">
           <div className="movie__rank-block">
             <h5 className="movie__rank">{rank}</h5>
-            <h4 className="movie__rankOldAndNew">
-              {rankOldAndNew === 'NEW' ? 'new' : 'old'}
-            </h4>
+            <h4 className="movie__rankOldAndNew">{rankOldAndNew === 'NEW' ? 'new' : 'old'}</h4>
           </div>
           <h2 className="movie__title">{title}</h2>
         </div>
         <div className="side__right">
           <h4 className="movie__openDate">
-            {openDt !== 'null' && openDt !== ' '
-              ? `개봉일 : ${openDt}`
-              : `개봉일 : no data`}
+            {openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`}
           </h4>
           <h5 className="audiAcc">관객 수(누적) : {audiAcc}명</h5>
         </div>
@@ -178,14 +178,5 @@ const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
     </ThemeProvider>
   );
 };
-
-// Movie.propTypes = {
-//   id: PropTypes.string.isRequired, // id = movieCd
-//   title: PropTypes.string.isRequired, //title = movieNm
-//   openDt: PropTypes.string.isRequired,
-//   rank: PropTypes.string.isRequired,
-//   rankOldAndNew: PropTypes.string.isRequired,
-//   audiAcc: PropTypes.string.isRequired
-// };
 
 export default Movie;
