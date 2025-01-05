@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import Movie from '../components/Movie';
 import Conditions from '../components/Conditions';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
@@ -14,6 +13,7 @@ import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
 import { CardLayoutContainer } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { BoxOfficeApiReturnData } from '../model/api';
+import MovieList from '../components/Movie/MovieList';
 
 const Container = styled.div`
   height: 100%;
@@ -57,11 +57,6 @@ const Main = () => {
   const { loading, reject, movies, date, nation, posters, names, updateState } = mainStore<IMainStore>(
     (state) => state,
   );
-
-  interface movie {
-    movieNm: string;
-    openDt: string;
-  }
 
   // ========= [ react-query ] ==========
 
@@ -168,15 +163,6 @@ const Main = () => {
     setInitDate();
   }, []);
 
-  interface movieObj {
-    movieNm: string;
-    movieCd: string;
-    openDt: string;
-    rank: string;
-    rankOldAndNew: string;
-    audiAcc: string;
-  }
-
   return (
     <Container>
       <GlobalStyles />
@@ -198,21 +184,7 @@ const Main = () => {
             <ScaleLoader color="#36d7b7" />
           </LoaderWrapper>
         ) : movies ? (
-          <div className="movies">
-            <ul>
-              {movies.map((movie: movieObj) => (
-                <Movie
-                  title={movie?.movieNm}
-                  id={movie?.movieCd}
-                  key={movie?.movieCd}
-                  openDt={movie?.openDt}
-                  rank={movie?.rank}
-                  rankOldAndNew={movie?.rankOldAndNew}
-                  audiAcc={movie?.audiAcc}
-                />
-              ))}
-            </ul>
-          </div>
+          <MovieList />
         ) : (
           <LoaderWrapper>검색 조건을 설정해주세요.</LoaderWrapper>
         )}

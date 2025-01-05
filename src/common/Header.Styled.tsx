@@ -12,7 +12,6 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderContents = styled.span`
   font-size: ${FONT_SIZE.EXTRA};
-  font-family: 'Yeon Sung', cursive;
   color: ${palette.text.basicColor};
   text-align: center;
 

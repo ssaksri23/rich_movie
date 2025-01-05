@@ -2,11 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import palette from '../lib/palette';
+import palette from '../../lib/palette';
 import { ThemeProvider } from 'styled-components';
-import theme from '../lib/deviceTheme';
-import { DEFAULT_BORDER_RADIUS_REM } from '../config/style';
-import { FONT_SIZE } from '../config/font';
+import theme from '../../lib/deviceTheme';
+import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
+import { FONT_SIZE } from '../../config/font';
 interface Props {
   rankOldAndNew: string;
 }
@@ -32,7 +32,6 @@ const MovieBlock = styled.li<Props>`
       flex: 1;
       width: 5rem;
       font-size: ${FONT_SIZE.SEMI_LARGE};
-      font-family: 'Yeon Sung', cursive;
       font-weight: 500;
       color: ${palette.text.basicColor};
     }
@@ -42,11 +41,10 @@ const MovieBlock = styled.li<Props>`
       flex: 0.2;
 
       .movie__rank {
-        font-size: 1rem;
-        border: 1px solid #8b98bf;
-        border-radius: 50%;
+        font-size: ${FONT_SIZE.SEMI_LARGE};
+        border-radius: 0.5rem;
         padding: 0.5rem;
-        width: 1.5em;
+        width: 1.25em;
         text-align: center;
       }
 
