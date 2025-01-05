@@ -92,11 +92,11 @@ const SearchButton = styled.button`
   }
 `;
 
-const Conditions = ({ date, nation, updateDate, nationHandler, searchExcute }) => {
+const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) => {
   const enterKey = (): void => {
     const windowEvent = window.event as KeyboardEvent;
     if (windowEvent.key === 'Enter') {
-      searchExcute();
+      searchExecute();
     }
   };
 
@@ -120,7 +120,7 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExcute }) =
             onChange={updateDate}
             onKeyDown={enterKey}
           ></DateInput>
-          <SearchButton onClick={searchExcute} onKeyDown={enterKey}>
+          <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
             검색
           </SearchButton>
         </SearchForm>
