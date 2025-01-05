@@ -1,10 +1,6 @@
 //노마드코더 rendering Movies 영상
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import palette from '../../lib/palette';
-import { ThemeProvider } from 'styled-components';
-import theme from '../../lib/deviceTheme';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
 import { FONT_SIZE } from '../../config/font';
 interface Props {
@@ -31,7 +27,6 @@ const MovieBlock = styled.li<Props>`
     .movie__title {
       flex: 1;
       width: 5rem;
-      font-size: ${FONT_SIZE.SEMI_LARGE};
       font-weight: 500;
       color: ${palette.text.basicColor};
     }
@@ -62,7 +57,8 @@ const MovieBlock = styled.li<Props>`
     flex: 0.5;
     display: inherit;
     flex-flow: column wrap;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 0.25rem;
     align-items: flex-end;
     height: 3rem;
   }
@@ -70,24 +66,24 @@ const MovieBlock = styled.li<Props>`
   @media ${(props) => props.theme.tabletS} {
     .side__left {
       .movie__title {
-        font-size: 1.6rem;
+        font-size: ${FONT_SIZE.SEMI_LARGE};
       }
 
       .movie__rank-block {
         margin-right: 0.5rem;
         .movie__rank {
-          font-size: 2.2rem;
+          font-size: ${FONT_SIZE.LARGE};
           padding: 0.1rem;
         }
 
         .movie__rankOldAndNew {
-          font-size: 0.7rem;
+          font-size: ${FONT_SIZE.SEMI_SMALL};
         }
       }
     }
 
     .side__right {
-      font-size: 0.8rem;
+      font-size: ${FONT_SIZE.SEMI_SMALL};
     }
   }
 
@@ -99,28 +95,28 @@ const MovieBlock = styled.li<Props>`
       align-items: center;
 
       .movie__title {
-        font-size: 1.6rem;
+        font-size: ${FONT_SIZE.SEMI_SMALL};
         flex: 0.8;
       }
 
       .movie__rank-block {
         margin-right: 0.3rem;
         .movie__rank {
-          font-size: 2rem;
+          font-size: ${FONT_SIZE.SEMI_LARGE};
           padding: 0.1rem;
         }
 
         .movie__rankOldAndNew {
-          font-size: 0.6rem;
+          font-size: ${FONT_SIZE.SEMI_SMALL};
           ${(props) =>
-            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }};
         }
       }
     }
 
     .side__right {
       flex: 0.6;
-      font-size: 0.7rem;
+      font-size: ${FONT_SIZE.SMALL};
     }
   }
 
@@ -128,19 +124,19 @@ const MovieBlock = styled.li<Props>`
     padding: 1rem 0.5rem;
     .side__left {
       .movie__title {
-        font-size: 1.2rem;
+        font-size: ${FONT_SIZE.SEMI_SMALL};
         flex: 0.6;
       }
 
       .movie__rank-block {
         margin-right: 0.2rem;
         .movie__rank {
-          font-size: 1.5rem;
+          font-size: ${FONT_SIZE.MEDIUM};
           padding: 0.1rem;
         }
 
         .movie__rankOldAndNew {
-          font-size: 0.3rem;
+          font-size: ${FONT_SIZE.SMALL};
           margin-right: 0.2rem;
           ${(props) =>
             props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
@@ -149,7 +145,7 @@ const MovieBlock = styled.li<Props>`
     }
     .side__right {
       flex: 0.6;
-      font-size: 0.5rem;
+      font-size: ${FONT_SIZE.SMALL};
     }
   }
 `;
@@ -157,23 +153,21 @@ const MovieBlock = styled.li<Props>`
 const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
   audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
-    <ThemeProvider theme={theme}>
-      <MovieBlock className="movie-block" rankOldAndNew={rankOldAndNew}>
-        <div className="side__left">
-          <div className="movie__rank-block">
-            <h5 className="movie__rank">{rank}</h5>
-            <h4 className="movie__rankOldAndNew">{rankOldAndNew === 'NEW' ? 'new' : 'old'}</h4>
-          </div>
-          <h2 className="movie__title">{title}</h2>
+    <MovieBlock className="movie-block" rankOldAndNew={rankOldAndNew}>
+      <div className="side__left">
+        <div className="movie__rank-block">
+          <h5 className="movie__rank">{rank}</h5>
+          {rankOldAndNew === 'NEW' && <h4 className="movie__rankOldAndNew">{'new'}</h4>}
         </div>
-        <div className="side__right">
-          <h4 className="movie__openDate">
-            {openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`}
-          </h4>
-          <h5 className="audiAcc">관객 수(누적) : {audiAcc}명</h5>
-        </div>
-      </MovieBlock>
-    </ThemeProvider>
+        <h2 className="movie__title">{title}</h2>
+      </div>
+      <div className="side__right">
+        <h5 className="movie__openDate">
+          {openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`}
+        </h5>
+        <h5 className="audiAcc">누적 관객 수 : {audiAcc}명</h5>
+      </div>
+    </MovieBlock>
   );
 };
 

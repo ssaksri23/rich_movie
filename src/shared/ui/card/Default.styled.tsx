@@ -11,7 +11,7 @@ export const DefaultCardContainer = styled.div`
 
 export const DefaultCardWrapper = styled.div`
   width: 100%;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5rem;
@@ -21,10 +21,26 @@ export const Title = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? palette.text.basicColor};
   font-size: ${FONT_SIZE.SEMI_SMALL};
   font-weight: ${FONT_WEIGHT.SEMI_BOLD};
+
+  @media ${(props) => props.theme.mobileL} {
+    font-size: ${FONT_SIZE.SMALL};
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    font-size: ${FONT_SIZE.SMALL};
+  }
 `;
 
 export const Content = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? palette.text.basicColor};
   font-size: ${FONT_SIZE.LARGE};
   font-weight: ${FONT_WEIGHT.BOLD};
+
+  @media ${(props) => props.theme.mobileL} {
+    font-size: ${FONT_SIZE.MEDIUM};
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    font-size: ${FONT_SIZE.SEMI_SMALL};
+  }
 `;

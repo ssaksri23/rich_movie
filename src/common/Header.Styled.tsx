@@ -15,9 +15,10 @@ export const HeaderContents = styled.span`
   color: ${palette.text.basicColor};
   font-weight: ${FONT_WEIGHT.SEMI_BOLD};
   text-align: center;
+  word-break: keep-all;
 
   @media ${(props) => props.theme.mobileM} {
     padding: 0 1rem;
-    font-size: 1.5rem;
+    font-size: ${FONT_SIZE.SEMI_LARGE};
   }
 `;

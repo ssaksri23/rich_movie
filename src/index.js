@@ -6,15 +6,19 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/root';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import RootLayout from './common/Layout';
+import { ThemeProvider } from 'styled-components';
+import theme from './lib/deviceTheme';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RootLayout>
-        <RouterProvider router={router} />
-      </RootLayout>
+      <ThemeProvider theme={theme}>
+        <RootLayout>
+          <RouterProvider router={router} />
+        </RootLayout>
+      </ThemeProvider>
       {/* <ReactQueryDevtools initialIsOpen=s{false} /> */}
     </QueryClientProvider>
   </React.StrictMode>,
