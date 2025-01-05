@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import palette from '../lib/palette';
-import { FONT_SIZE } from '../config/font';
+import { FONT_SIZE, FONT_WEIGHT } from '../config/font';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -13,6 +13,7 @@ export const HeaderWrapper = styled.div`
 export const HeaderContents = styled.span`
   font-size: ${FONT_SIZE.EXTRA};
   color: ${palette.text.basicColor};
+  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
   text-align: center;
 
   @media ${(props) => props.theme.mobileM} {
