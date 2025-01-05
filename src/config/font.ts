@@ -6,3 +6,10 @@ export const enum FONT_SIZE {
   LARGE = '1.75rem',
   EXTRA = '2.25rem',
 }
+
+export const enum FONT_WEIGHT {
+  THIN = '400',
+  REGULAR = '500',
+  SEMI_BOLD = '600',
+  BOLD = '700',
+}
