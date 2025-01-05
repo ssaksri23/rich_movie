@@ -9,7 +9,7 @@ html, body {
     background: ${palette['backgroundColor']};
     color: ${palette['basicColor']};
     overflow-x: hidden;
-    height: 100vh;
+    height: 100%;
     ::-webkit-scrollbar { display: none};
 }
 

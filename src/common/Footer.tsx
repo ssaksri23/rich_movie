@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import palette from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
@@ -6,7 +5,7 @@ import theme from '../lib/deviceTheme';
 
 const FooterWrapper = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 10%;
   display: flex;
   flex-flow: column nowrap;
@@ -14,7 +13,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   box-sizing: border-box;
   margin: 0 auto;
-  /* padding: 1rem 0; */
+  padding: 1rem 0;
   background: ${palette['backgroundColor']};
   border-top: 1px solid ${palette['fontStrongColor']};
 

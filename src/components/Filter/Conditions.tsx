@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import palette from '../lib/palette';
-import DropdownComponent from './DropdownComponent';
+import palette from '../../lib/palette';
+import DropdownComponent from '../DropdownComponent';
+import dayjs from 'dayjs';
+import { FONT_SIZE } from '../../config/font';
 
 const Container = styled.div`
   position: relative;
@@ -61,11 +62,12 @@ const NationButton = styled.button`
   }
 `;
 const DateInput = styled.input`
-  width: 13rem;
-  font-size: 1.2rem;
+  width: 10rem;
+  font-size: ${FONT_SIZE.SEMI_SMALL};
   margin: 0;
   margin-right: 0.3rem;
-  padding: 0.11rem 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 
   &::placeholder {
     font-size: 1rem;
@@ -100,6 +102,8 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) 
     }
   };
 
+  console.log({ date });
+
   return (
     <Container>
       <ConditionWrapper>
@@ -113,18 +117,14 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) 
         </ButtonBlock>
         <DropdownComponent item1="국내영화" item2="해외영화" nation={nation} nationHandler={nationHandler} />
         <SearchForm>
-          <DateInput
-            type="text"
-            placeholder="조회 날짜 ex) 20210214"
-            value={date}
-            onChange={updateDate}
-            onKeyDown={enterKey}
-          ></DateInput>
+          <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} />
           <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
             검색
           </SearchButton>
         </SearchForm>
-        <h5 style={{ textAlign: 'center', width: '100%' }}>검색 가능 연도: 2004년 ~ 전일</h5>
+        <h5 style={{ textAlign: 'center', width: '100%' }}>
+          조회 날짜 범위: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}
+        </h5>
       </ConditionWrapper>
     </Container>
   );

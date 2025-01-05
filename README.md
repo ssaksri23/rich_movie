@@ -6,14 +6,16 @@
 
 ## **Preview**
 
-> ### 노트북, 데스크탑 스크린
+> ### Renewal (2025)
+
+- 🛠️ 작업 중 (2025.01.01 ~ ing)
+
+![alt text](<Jan-05-2025 17-39-48.gif>)
+
+> ### Legacy (~2024)
 
 ![alt text](<Desktop .gif>)
 
-> ### 모바일 스크린
->
-> <img src="https://user-images.githubusercontent.com/53039583/156868600-4f1b68de-0744-4d3e-a3ba-d279666722f3.gif" alt="mobile" width="425" height="560" align="center"/>
->
 > <hr>
 
 ## **Features**

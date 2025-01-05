@@ -2,11 +2,11 @@ import { useCallback, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import Conditions from '../components/Conditions';
+import Conditions from '../components/Filter/Conditions';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { IMainStore, mainStore } from '../zustand/main';
 import { ScaleLoader } from 'react-spinners';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
@@ -14,6 +14,7 @@ import { CardLayoutContainer } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { BoxOfficeApiReturnData } from '../model/api';
 import MovieList from '../components/Movie/MovieList';
+import { formatCalcInputValueToInline } from '../shared/lib/format';
 
 const Container = styled.div`
   height: 100%;
@@ -42,8 +43,9 @@ const MainWrapper = styled.section`
 `;
 
 const fetchData = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
+  const formattedDateForApi = date.split('-').join(''); // YYYY-MM-DD -> YYYYMMDD
   const response = await axios.get(
-    `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${date}&repNationCd=${nation}`,
+    `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${formattedDateForApi}&repNationCd=${nation}`,
   );
   if (response.status < 200 || response.status > 300) {
     throw new Error('Failed to fetch data');
@@ -71,17 +73,17 @@ const Main = () => {
   });
 
   // Mutations
-  const mutation = useMutation('', {
-    onSuccess: () => {
-      queryClient.invalidateQueries('');
-    },
-  });
+  // const mutation = useMutation('', {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries('');
+  //   },
+  // });
 
   useEffect(() => {
     if (!initRender.current && isFetched && data) {
       const {
         boxOfficeResult: { dailyBoxOfficeList },
-      } = data;
+      } = data || {};
       updateState({ key: 'movies', payload: dailyBoxOfficeList });
     } else {
       initRender.current = false;
@@ -89,10 +91,9 @@ const Main = () => {
   }, [isFetched, data, updateState, initRender]);
 
   const updateDate = useCallback((e): void => {
-    let inputDate = '';
-    inputDate = e.target.value;
-    if (inputDate.length === 8 || parseInt(inputDate) || inputDate === '') {
-      updateState({ key: 'date', payload: e.target.value });
+    const inputDate: `${number}-${number}-${number}` | '' = e.target.value ?? '';
+    if (formatCalcInputValueToInline(inputDate).length === 8 || parseInt(inputDate) || inputDate === '') {
+      updateState({ key: 'date', payload: inputDate });
     } else {
       alert('숫자 형식으로 입력해주세요!');
       updateState({ key: 'date', payload: '' });
@@ -131,8 +132,10 @@ const Main = () => {
 
   const searchExecute = useCallback(
     async (e) => {
-      if (date.length === 8 && validateDate(date) && nation !== null) refetch();
-      else if (date.length !== 8) alert('입력하신 날짜를 확인해주세요.');
+      const formattedDateString = formatCalcInputValueToInline(date);
+
+      if (formattedDateString.length === 8 && validateDate(formattedDateString) && nation !== null) refetch();
+      else if (formattedDateString.length !== 8) alert('입력하신 날짜를 확인해주세요.');
       else if (nation === null) alert('검색할 국가를 선택해주세요.');
     },
     [date, nation],
