@@ -10,6 +10,8 @@ import dayjs from 'dayjs';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { IMainStore, mainStore } from '../zustand/main';
 import { ScaleLoader } from 'react-spinners';
+import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
+import { CardLayoutContainer } from './Main.styled';
 
 const Container = styled.div`
   height: 100%;
@@ -30,6 +32,7 @@ const MainWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   /* min-height: 65vh; */
   /* height: 70%; */
   /* overflow-y: scroll; */
@@ -129,7 +132,7 @@ const Main = () => {
     return result;
   };
 
-  const searchExcute = useCallback(
+  const searchExecute = useCallback(
     async (e) => {
       if (date.length === 8 && validateDate(date) && nation !== null) refetch();
       else if (date.length !== 8) alert('입력하신 날짜를 확인해주세요.');
@@ -181,9 +184,13 @@ const Main = () => {
         nation={nation}
         updateDate={updateDate}
         nationHandler={NationHandler}
-        searchExcute={searchExcute}
+        searchExecute={searchExecute}
       />
       <MainWrapper>
+        <CardLayoutContainer>
+          <TotalAudiCnt />
+          <TotalAudiCnt />
+        </CardLayoutContainer>
         {isLoading ? (
           <LoaderWrapper>
             <ScaleLoader color="#36d7b7" />
