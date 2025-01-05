@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import palette from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
 import theme from '../lib/deviceTheme';
-const MovieBlock = styled.div `
+const MovieBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +24,6 @@ const MovieBlock = styled.div `
       flex: 1;
       width: 5rem;
       font-size: 2.6rem;
-      font-family: 'Yeon Sung', cursive;
       font-weight: 500;
       color: ${palette['strongColor']};
     }
@@ -46,9 +45,8 @@ const MovieBlock = styled.div `
         align-self: flex-start;
         margin: 0;
         font-weight: 500;
-        ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+        ${(props) =>
+          props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
       }
     }
   }
@@ -107,9 +105,8 @@ const MovieBlock = styled.div `
 
         .movie__rankOldAndNew {
           font-size: 0.6rem;
-          ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+          ${(props) =>
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -138,9 +135,8 @@ const MovieBlock = styled.div `
         .movie__rankOldAndNew {
           font-size: 0.3rem;
           margin-right: 0.2rem;
-          ${(props) => props.rankOldAndNew === 'NEW'
-    ? { color: palette['NewRankColor'] }
-    : { color: palette['OldRankColor'] }}
+          ${(props) =>
+            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
         }
       }
     }
@@ -148,33 +144,47 @@ const MovieBlock = styled.div `
       flex: 0.6;
       font-size: 0.5rem;
     }
-  } ;
+  }
 `;
 const Movie = ({ title, openDt, rank, rankOldAndNew, audiAcc }) => {
-    // console.log(rankOldAndNew === 'NEW');
-    audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
-    return (React.createElement(ThemeProvider, { theme: theme },
-        React.createElement(MovieBlock, { rankOldAndNew: rankOldAndNew },
-            React.createElement("div", { className: "side__left" },
-                React.createElement("div", { className: "movie__rank-block" },
-                    React.createElement("h5", { className: "movie__rank" }, rank),
-                    React.createElement("h4", { className: "movie__rankOldAndNew" }, rankOldAndNew === 'NEW' ? 'new' : 'old')),
-                React.createElement("h2", { className: "movie__title" }, title)),
-            React.createElement("div", { className: "side__right" },
-                React.createElement("h3", { className: "movie__openDate" }, openDt !== 'null' && openDt !== ' '
-                    ? `개봉일 : ${openDt}`
-                    : `개봉일 : no data`),
-                React.createElement("h5", { className: "audiAcc" },
-                    "\uAD00\uAC1D \uC218(\uB204\uC801) : ",
-                    audiAcc,
-                    "\uBA85")))));
+  // console.log(rankOldAndNew === 'NEW');
+  audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
+  return React.createElement(
+    ThemeProvider,
+    { theme: theme },
+    React.createElement(
+      MovieBlock,
+      { rankOldAndNew: rankOldAndNew },
+      React.createElement(
+        'div',
+        { className: 'side__left' },
+        React.createElement(
+          'div',
+          { className: 'movie__rank-block' },
+          React.createElement('h5', { className: 'movie__rank' }, rank),
+          React.createElement('h4', { className: 'movie__rankOldAndNew' }, rankOldAndNew === 'NEW' ? 'new' : 'old'),
+        ),
+        React.createElement('h2', { className: 'movie__title' }, title),
+      ),
+      React.createElement(
+        'div',
+        { className: 'side__right' },
+        React.createElement(
+          'h3',
+          { className: 'movie__openDate' },
+          openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`,
+        ),
+        React.createElement('h5', { className: 'audiAcc' }, '\uAD00\uAC1D \uC218(\uB204\uC801) : ', audiAcc, '\uBA85'),
+      ),
+    ),
+  );
 };
 Movie.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    openDt: PropTypes.string.isRequired,
-    rank: PropTypes.string.isRequired,
-    rankOldAndNew: PropTypes.string.isRequired,
-    audiAcc: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  openDt: PropTypes.string.isRequired,
+  rank: PropTypes.string.isRequired,
+  rankOldAndNew: PropTypes.string.isRequired,
+  audiAcc: PropTypes.string.isRequired,
 };
 export default Movie;
