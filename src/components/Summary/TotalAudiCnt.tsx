@@ -15,8 +15,8 @@ const TotalAudiCnt = () => {
 
   const { boxOfficeResult } = data || {};
 
-  const value = getTotalData({ dataArray: boxOfficeResult?.dailyBoxOfficeList, targetKey: 'audiCnt' });
-  const formattedValue = value?.toLocaleString();
+  const value: number = getTotalData({ dataArray: boxOfficeResult?.dailyBoxOfficeList, targetKey: 'audiCnt' });
+  const formattedValue = value ? value.toLocaleString() : '-';
   const content = `${formattedValue} ${UNITS.audi}`;
 
   return <SharedDefaultCard title="Top 10 총 관객 수" titleColor="#069668" content={content} />;

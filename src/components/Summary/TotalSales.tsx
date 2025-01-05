@@ -16,8 +16,8 @@ const TotalSales = () => {
 
   const { boxOfficeResult } = data || {};
 
-  const valueNumber = getTotalData({ dataArray: boxOfficeResult.dailyBoxOfficeList, targetKey: 'salesAmt' });
-  const formattedValue = formatWonToMillionWon(valueNumber).toLocaleString();
+  const value: number = getTotalData({ dataArray: boxOfficeResult?.dailyBoxOfficeList, targetKey: 'salesAmt' });
+  const formattedValue = value ? formatWonToMillionWon(value).toLocaleString() : '-';
   const content = `${formattedValue} ${UNITS.sales}`;
   return <SharedDefaultCard title="Top 10 총 매출액" titleColor="#2663eb" content={content} />;
 };
