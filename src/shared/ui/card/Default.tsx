@@ -2,14 +2,15 @@ import { Content, DefaultCardContainer, DefaultCardWrapper, Title } from './Defa
 
 interface Props {
   title: string | React.ReactElement;
+  titleColor?: string;
   content: string | React.ReactElement;
 }
 
-export const SharedDefaultCard = ({ title, content }: Props) => {
+export const SharedDefaultCard = ({ title, titleColor, content }: Props) => {
   return (
     <DefaultCardContainer>
       <DefaultCardWrapper>
-        <Title>{title}</Title>
+        <Title color={titleColor}>{title}</Title>
         <Content>{content}</Content>
       </DefaultCardWrapper>
     </DefaultCardContainer>

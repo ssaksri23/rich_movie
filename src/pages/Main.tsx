@@ -12,6 +12,8 @@ import { IMainStore, mainStore } from '../zustand/main';
 import { ScaleLoader } from 'react-spinners';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
 import { CardLayoutContainer } from './Main.styled';
+import TotalSales from '../components/Summary/TotalSales';
+import { BoxOfficeApiReturnData } from '../model/api';
 
 const Container = styled.div`
   height: 100%;
@@ -33,16 +35,16 @@ const MainWrapper = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1rem;
   /* min-height: 65vh; */
   /* height: 70%; */
   /* overflow-y: scroll; */
 `;
 
-const fetchData = async ({ date, nation }) => {
+const fetchData = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
   const response = await axios.get(
     `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${date}&repNationCd=${nation}`,
   );
-  console.log({ response });
   if (response.status < 200 || response.status > 300) {
     throw new Error('Failed to fetch data');
   }
@@ -189,7 +191,7 @@ const Main = () => {
       <MainWrapper>
         <CardLayoutContainer>
           <TotalAudiCnt />
-          <TotalAudiCnt />
+          <TotalSales />
         </CardLayoutContainer>
         {isLoading ? (
           <LoaderWrapper>

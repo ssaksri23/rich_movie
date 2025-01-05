@@ -20,6 +20,7 @@ export const DefaultCardWrapper = styled.div`
 export const Title = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? palette.text.basicColor};
   font-size: ${FONT_SIZE.SEMI_SMALL};
+  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
 `;
 
 export const Content = styled.div<{ color?: string }>`
