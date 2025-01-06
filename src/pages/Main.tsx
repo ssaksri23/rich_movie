@@ -63,7 +63,6 @@ const Main = () => {
   // ========= [ react-query ] ==========
 
   // Access the client
-  const queryClient = useQueryClient();
 
   // Qeuries
   const { isLoading, isError, data, error, isFetched, isSuccess, refetch } = useQuery({
@@ -90,8 +89,9 @@ const Main = () => {
     }
   }, [isFetched, data, updateState, initRender]);
 
-  const updateDate = useCallback((e): void => {
-    const inputDate: `${number}-${number}-${number}` | '' = e.target.value ?? '';
+  const updateDate = useCallback((date: Date): void => {
+    const inputDate: `${number}-${number}-${number}` | '' =
+      (dayjs(date).format('YYYY-MM-DD') as `${number}-${number}-${number}`) ?? '';
     if (formatCalcInputValueToInline(inputDate).length === 8 || parseInt(inputDate) || inputDate === '') {
       updateState({ key: 'date', payload: inputDate });
     } else {

@@ -3,6 +3,7 @@ import { COLOR } from '../../lib/palette';
 import DropdownComponent from './DropdownComponent';
 import dayjs from 'dayjs';
 import { FONT_SIZE } from '../../config/font';
+import DatePicker from './DatePicker';
 
 const Container = styled.div`
   position: relative;
@@ -92,7 +93,8 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) 
         <SearchForm>
           <DropdownComponent nation={nation} nationHandler={nationHandler} />
           <DateInputWrapper>
-            <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} />
+            <DatePicker onChange={updateDate} onKeyDown={enterKey} />
+            {/* <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} /> */}
             <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
               검색
             </SearchButton>

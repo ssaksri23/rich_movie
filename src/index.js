@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import '@mantine/core/styles.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/root';
@@ -8,15 +9,22 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import RootLayout from './common/Layout';
 import { ThemeProvider } from 'styled-components';
 import theme from './lib/deviceTheme';
+import { createTheme, MantineProvider } from '@mantine/core';
 
 const queryClient = new QueryClient();
+
+const mantineTheme = createTheme({
+  /** Your theme override here */
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <RootLayout>
-          <RouterProvider router={router} />
+          <MantineProvider theme={mantineTheme}>
+            <RouterProvider router={router} />
+          </MantineProvider>
         </RootLayout>
       </ThemeProvider>
       {/* <ReactQueryDevtools initialIsOpen=s{false} /> */}
