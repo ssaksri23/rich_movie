@@ -1,3 +1,4 @@
+import '@mantine/dates/styles.css';
 import { createGlobalStyle } from 'styled-components';
 import { COLOR } from './lib/palette';
 
