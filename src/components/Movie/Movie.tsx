@@ -1,6 +1,6 @@
 //노마드코더 rendering Movies 영상
 import styled from 'styled-components';
-import palette from '../../lib/palette';
+import { COLOR } from '../../lib/palette';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
 import { FONT_SIZE } from '../../config/font';
 interface Props {
@@ -12,8 +12,8 @@ const MovieBlock = styled.li<Props>`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: ${palette.sectionColor};
-  color: ${palette.text.basicColor};
+  background: ${COLOR.sectionColor};
+  color: ${COLOR.text.basicColor};
   border-radius: ${DEFAULT_BORDER_RADIUS_REM};
   & + & {
     margin-top: 0.1rem;
@@ -28,7 +28,7 @@ const MovieBlock = styled.li<Props>`
       flex: 1;
       width: 5rem;
       font-weight: 500;
-      color: ${palette.text.basicColor};
+      color: ${COLOR.text.basicColor};
     }
 
     .movie__rank-block {
@@ -48,7 +48,7 @@ const MovieBlock = styled.li<Props>`
         margin: 0;
         font-weight: 500;
         ${(props) =>
-          props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
+          props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
       }
     }
   }
@@ -109,7 +109,7 @@ const MovieBlock = styled.li<Props>`
         .movie__rankOldAndNew {
           font-size: ${FONT_SIZE.SEMI_SMALL};
           ${(props) =>
-            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }};
+            props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }};
         }
       }
     }
@@ -139,7 +139,7 @@ const MovieBlock = styled.li<Props>`
           font-size: ${FONT_SIZE.SMALL};
           margin-right: 0.2rem;
           ${(props) =>
-            props.rankOldAndNew === 'NEW' ? { color: palette['NewRankColor'] } : { color: palette['OldRankColor'] }}
+            props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
         }
       }
     }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import palette from '../lib/palette';
+import { COLOR } from '../lib/palette';
 import { ThemeProvider } from 'styled-components';
 import theme from '../lib/deviceTheme';
 
@@ -14,8 +14,8 @@ const FooterWrapper = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
   padding: 1rem 0;
-  background: ${palette['backgroundColor']};
-  border-top: 1px solid ${palette['fontStrongColor']};
+  background: ${COLOR['backgroundColor']};
+  border-top: 1px solid ${COLOR['fontStrongColor']};
 
   @media ${(props) => props.theme.tabletM} {
     margin: 0 auto;
@@ -28,7 +28,7 @@ const FooterContents = styled.div`
   justify-content: space-between;
   width: 100%;
   font-size: 1rem;
-  color: ${palette['basicColor']};
+  color: ${COLOR['basicColor']};
   text-align: center;
 
   & + & {

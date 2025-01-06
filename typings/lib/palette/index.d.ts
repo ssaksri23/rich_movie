@@ -1,4 +1,4 @@
-declare module 'palette';
+declare module 'COLOR';
 //  {
 //   basicColor: string;
 //   strongColor: string;
@@ -7,4 +7,4 @@ declare module 'palette';
 //   NewRankColor: string;
 //   OldRankColor: string;
 // };
-// export default palette;
+// export default COLOR;

@@ -1,6 +1,7 @@
 interface Palette {
   text: {
     basicColor: string;
+    whiteColor: string;
     strongColor1: string;
     strongColor2: string;
     strongColor3: string;
@@ -9,12 +10,15 @@ interface Palette {
   NewRankColor: string;
   OldRankColor: string;
   backgroundColor: string;
+  defaultButtonColor: string;
+  primaryButtonColor: string;
   sectionColor: string;
 }
 
-const palette: Palette = {
+export const COLOR: Palette = {
   text: {
     basicColor: '#000',
+    whiteColor: '#fff',
     strongColor1: '#2563EB',
     strongColor2: '#65bc9f',
     strongColor3: '#973beb',
@@ -22,7 +26,8 @@ const palette: Palette = {
   wrapperColor: '#222326',
   sectionColor: '#F3F4F6',
   backgroundColor: '#e6e6e6',
+  defaultButtonColor: '#FFFFFF',
+  primaryButtonColor: '#2563EB',
   NewRankColor: '#F68657',
   OldRankColor: '#c1c4bd',
 };
-export default palette;

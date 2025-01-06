@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import palette from '../../lib/palette';
-import DropdownComponent from '../DropdownComponent';
+import { COLOR } from '../../lib/palette';
+import DropdownComponent from './DropdownComponent';
 import dayjs from 'dayjs';
 import { FONT_SIZE } from '../../config/font';
 
@@ -14,8 +14,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1.5rem 5rem;
-  background: ${palette['backgroundColor']};
-  border-bottom: 1px solid ${palette['fontStrongColor']};
+  background: ${COLOR['backgroundColor']};
+  border-bottom: 1px solid ${COLOR['fontStrongColor']};
 `;
 const ConditionWrapper = styled.div`
   display: inherit;
@@ -24,48 +24,26 @@ const ConditionWrapper = styled.div`
   justify-content: space-between;
   gap: 1rem;
 `;
-const ButtonBlock = styled.div`
-  display: flex;
-  display: none;
-  justify-content: space-around;
-`;
+
 const SearchForm = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
 `;
-const NationButton = styled.button`
-  outline: none;
-  border: none;
-  width: 6em;
-  flex: 0.7;
-  margin-right: 0.5em;
-  padding: 0.5rem 0;
-  border-radius: 20px;
 
-  &:hover {
-    background: #adacac;
-    cursor: pointer;
-  }
-
-  &:active {
-    background: #7e7d7d;
-    color: white;
-  }
-
-  &:focus {
-    background: #adacac;
-  }
-
-  & + & {
-    margin-left: 0.5em;
-  }
+const DateInputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
 `;
+
 const DateInput = styled.input`
-  width: 10rem;
+  width: 100%;
   font-size: ${FONT_SIZE.SEMI_SMALL};
   margin: 0;
-  margin-right: 0.3rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 
@@ -73,20 +51,26 @@ const DateInput = styled.input`
     font-size: 1rem;
   }
 `;
+
 const SearchButton = styled.button`
-  border-radius: 2px;
-  font-size: 0.96rem;
-  width: 4rem;
-  padding: 0.25rem 0;
+  border-radius: 0.25rem;
+  font-size: ${FONT_SIZE.SEMI_SMALL};
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5rem;
+  padding: 0.25rem;
   cursor: pointer;
-  background: ${palette['basicColor']};
+  color: ${COLOR.text.whiteColor};
+  background: ${COLOR.primaryButtonColor};
 
   &:hover {
-    background: ${palette['strongColor']};
+    background: ${COLOR['strongColor']};
   }
 
   &:active {
-    background: ${palette['basicColor']};
+    background: ${COLOR['basicColor']};
   }
 
   &:focus {
@@ -102,25 +86,17 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) 
     }
   };
 
-  console.log({ date });
-
   return (
     <Container>
       <ConditionWrapper>
-        <ButtonBlock>
-          <NationButton value="K" onClick={nationHandler}>
-            국내영화
-          </NationButton>
-          <NationButton value="F" onClick={nationHandler}>
-            해외영화
-          </NationButton>
-        </ButtonBlock>
-        <DropdownComponent item1="국내영화" item2="해외영화" nation={nation} nationHandler={nationHandler} />
         <SearchForm>
-          <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} />
-          <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
-            검색
-          </SearchButton>
+          <DropdownComponent nation={nation} nationHandler={nationHandler} />
+          <DateInputWrapper>
+            <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} />
+            <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
+              검색
+            </SearchButton>
+          </DateInputWrapper>
         </SearchForm>
         <h5 style={{ textAlign: 'center', width: '100%' }}>
           조회 날짜 범위: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import palette from '../lib/palette';
+import { COLOR } from '../lib/palette';
 import { FONT_SIZE, FONT_WEIGHT } from '../config/font';
 
 export const HeaderWrapper = styled.div`
@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderContents = styled.span`
   font-size: ${FONT_SIZE.EXTRA};
-  color: ${palette.text.basicColor};
+  color: ${COLOR.text.basicColor};
   font-weight: ${FONT_WEIGHT.SEMI_BOLD};
   text-align: center;
   word-break: keep-all;

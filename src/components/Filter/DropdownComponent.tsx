@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'styled-button-component';
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownDivider
-} from 'styled-dropdown-component';
+import { Dropdown, DropdownItem, DropdownMenu } from 'styled-dropdown-component';
 import styled from 'styled-components';
 
 //목록 감추기용 div
@@ -13,11 +8,21 @@ const HideItemsBlock = styled.div`
   cursor: pointer;
 `;
 
+const StyledDropdownMenu = styled(DropdownMenu)`
+  padding: 0;
+`;
+
+const StyledDropdownItem = styled(DropdownItem)`
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  align-items: center;
+`;
+
 const StyledButton = styled(Button)`
   width: 17.5rem;
 `;
 
-const DropdownComponent = ({ item1, item2, nation, nationHandler }) => {
+const DropdownComponent = ({ nation, nationHandler }) => {
   const [chooseText, setChooseText] = useState('검색하실 국가를 선택해주세요.');
   const [hidden, setHidden] = useState(true);
 
@@ -26,8 +31,8 @@ const DropdownComponent = ({ item1, item2, nation, nationHandler }) => {
   };
 
   useEffect(() => {
-    if (nation === 'K') setChooseText(item1);
-    else if (nation === 'F') setChooseText(item2);
+    if (nation === 'K') setChooseText('국내');
+    else if (nation === 'F') setChooseText('해외');
     else setChooseText(chooseText);
   }, [nation]);
 
@@ -36,19 +41,18 @@ const DropdownComponent = ({ item1, item2, nation, nationHandler }) => {
       <StyledButton dropdownToggle onClick={() => setHidden(!hidden)}>
         {chooseText}
       </StyledButton>
-      <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)} fullWidth>
+      <StyledDropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)} fullWidth>
         <HideItemsBlock onClick={HideItems}>
-          <DropdownItem value="K" onClick={nationHandler}>
-            {item1}
-          </DropdownItem>
+          <StyledDropdownItem value="K" onClick={nationHandler}>
+            국내
+          </StyledDropdownItem>
         </HideItemsBlock>
-        <DropdownDivider />
         <HideItemsBlock onClick={HideItems}>
-          <DropdownItem value="F" onClick={nationHandler}>
-            {item2}
-          </DropdownItem>
+          <StyledDropdownItem value="F" onClick={nationHandler}>
+            해외
+          </StyledDropdownItem>
         </HideItemsBlock>
-      </DropdownMenu>
+      </StyledDropdownMenu>
     </Dropdown>
   );
 };

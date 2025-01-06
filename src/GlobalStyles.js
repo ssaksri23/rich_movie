@@ -1,13 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
-import palette from './lib/palette';
+import { COLOR } from './lib/palette';
 
 const GlobalStyles = createGlobalStyle`
 
 html, body {
     margin: 0;
     padding: 0;
-    background: ${palette['backgroundColor']};
-    color: ${palette['basicColor']};
+    background: ${COLOR['backgroundColor']};
+    color: ${COLOR['basicColor']};
     overflow-x: hidden;
     height: 100%;
     ::-webkit-scrollbar { display: none};
