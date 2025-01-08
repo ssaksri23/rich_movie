@@ -1,18 +1,20 @@
 import styled from 'styled-components';
+import { DatePickerInput } from '@mantine/dates';
 import { FONT_SIZE } from '../../config/font';
 import { COLOR } from '../../lib/palette';
 import { CalendarIcon } from '../../shared/assets/icons';
-import { Calendar } from '@mantine/dates';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
+import { useDatePicker } from './hooks/useDatePicker';
 
 const DatePickerContainer = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 const DatePickerButton = styled.button`
   border-radius: 0.25rem;
   font-size: ${FONT_SIZE.SEMI_SMALL};
-  width: max-content;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,39 +26,22 @@ const DatePickerButton = styled.button`
   background: ${COLOR.defaultButtonColor};
 `;
 
-const StyledCalendar = styled(Calendar)`
-  position: absolute;
-  top: 3rem;
-  left: -5rem;
+const StyledDatePicker = styled(DatePickerInput)`
   background-color: ${COLOR.sectionColor};
-  padding: 0.5rem 0.75rem;
-  border-radius: ${DEFAULT_BORDER_RADIUS_REM};
 `;
 
-const Icon = styled(CalendarIcon)``;
-
-const Label = styled.span``;
-
 interface Props {
-  onChange: (e) => void;
+  useDatePicker: ReturnType<typeof useDatePicker>;
 }
 
-const DatePicker = ({ onChange }: Props) => {
+const DateFilter = ({ useDatePicker }: Props) => {
+  const { date, updateDate } = useDatePicker;
+
   return (
     <DatePickerContainer>
-      <DatePickerButton>
-        <Icon />
-        <Label>날짜 선택</Label>
-      </DatePickerButton>
-      <StyledCalendar
-        getDayProps={(date) => ({
-          onClick: () => onChange(date),
-        })}
-        onChange={onChange}
-      />
-      {/* <Bytt type="date" value={date} onChange={updateDate} onKeyDown={enterKey} /> */}
+      <StyledDatePicker value={date} valueFormat="YYYY.MM.DD" onChange={updateDate} />
     </DatePickerContainer>
   );
 };
 
-export default DatePicker;
+export default DateFilter;

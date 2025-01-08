@@ -3,7 +3,10 @@ import { COLOR } from '../../lib/palette';
 import DropdownComponent from './DropdownComponent';
 import dayjs from 'dayjs';
 import { FONT_SIZE } from '../../config/font';
-import DatePicker from './DatePicker';
+import DateFilter from './DateFilter';
+import { useDatePicker } from './hooks/useDatePicker';
+import { mainStore } from '../../zustand/main';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   position: relative;
@@ -41,18 +44,6 @@ const DateInputWrapper = styled.div`
   gap: 0.25rem;
 `;
 
-const DateInput = styled.input`
-  width: 100%;
-  font-size: ${FONT_SIZE.SEMI_SMALL};
-  margin: 0;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-
-  &::placeholder {
-    font-size: 1rem;
-  }
-`;
-
 const SearchButton = styled.button`
   border-radius: 0.25rem;
   font-size: ${FONT_SIZE.SEMI_SMALL};
@@ -79,7 +70,9 @@ const SearchButton = styled.button`
   }
 `;
 
-const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) => {
+const Conditions = ({ nation, nationHandler, searchExecute }) => {
+  const { updateState } = mainStore();
+
   const enterKey = (): void => {
     const windowEvent = window.event as KeyboardEvent;
     if (windowEvent.key === 'Enter') {
@@ -87,13 +80,21 @@ const Conditions = ({ date, nation, updateDate, nationHandler, searchExecute }) 
     }
   };
 
+  const customDatePicker = useDatePicker({
+    initialValue: new Date(),
+  });
+
+  useEffect(() => {
+    updateState({ key: 'date', payload: dayjs(customDatePicker.date as Date).format('YYYYMMDD') });
+  }, [customDatePicker.date, updateState]);
+
   return (
     <Container>
       <ConditionWrapper>
         <SearchForm>
           <DropdownComponent nation={nation} nationHandler={nationHandler} />
           <DateInputWrapper>
-            <DatePicker onChange={updateDate} onKeyDown={enterKey} />
+            <DateFilter useDatePicker={customDatePicker} />
             {/* <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} /> */}
             <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
               검색
