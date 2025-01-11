@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { UNITS } from '../../config/unit';
 import { BoxOfficeApiReturnData } from '../../model/api';
 import { SharedDefaultCard } from '../../shared/ui';

@@ -6,7 +6,7 @@ import Conditions from '../components/Filter/Conditions';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { IFilterStore, FilterStore } from '../zustand/filter';
 import { ScaleLoader } from 'react-spinners';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
@@ -67,8 +67,6 @@ const Main = () => {
     queryKey: ['movieData'],
     queryFn: async () => fetchRankTop10Data({ date, nation }),
     refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    keepPreviousData: true,
     // enabled: false, // 특정한 트리거 없이 자동으로 호출되지 않도록 설정
   });
 

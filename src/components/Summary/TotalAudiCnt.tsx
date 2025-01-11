@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { UNITS } from '../../config/unit';
 import { SharedDefaultCard } from '../../shared/ui';
 import { getTotalData } from '../../shared/lib/data';
