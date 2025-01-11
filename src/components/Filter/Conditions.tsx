@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
 import DropdownComponent from './DropdownComponent';
 import dayjs from 'dayjs';
-import { FONT_SIZE } from '../../config/font';
 import DateFilter from './DateFilter';
 import { useDatePicker } from './hooks/useDatePicker';
 import { FilterStore } from '../../zustand/filter';
@@ -44,48 +43,20 @@ const DateInputWrapper = styled.div`
   gap: 0.25rem;
 `;
 
-const SearchButton = styled.button`
-  border-radius: 0.25rem;
-  font-size: ${FONT_SIZE.SEMI_SMALL};
-  width: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.5rem;
-  padding: 0.25rem;
-  cursor: pointer;
-  color: ${COLOR.text.whiteColor};
-  background: ${COLOR.primaryButtonColor};
-
-  &:hover {
-    background: ${COLOR['strongColor']};
-  }
-
-  &:active {
-    background: ${COLOR['basicColor']};
-  }
-
-  &:focus {
-    outline: auto;
-  }
-`;
-
-const Conditions = ({ nation, nationHandler, searchExecute }) => {
+const Conditions = ({ nation, nationHandler }) => {
   const { updateState } = FilterStore();
 
-  const enterKey = (): void => {
-    const windowEvent = window.event as KeyboardEvent;
-    if (windowEvent.key === 'Enter') {
-      searchExecute();
-    }
-  };
-
   const customDatePicker = useDatePicker({
-    initialValue: new Date(),
+    initialValue: dayjs().subtract(1, 'day'),
   });
 
   useEffect(() => {
-    updateState({ key: 'date', payload: dayjs(customDatePicker.date as Date).format('YYYYMMDD') });
+    updateState({
+      key: 'date',
+      payload: dayjs(customDatePicker.date as Date)
+        .subtract(1, 'day')
+        .format('YYYYMMDD'),
+    });
   }, [customDatePicker.date, updateState]);
 
   return (
@@ -95,10 +66,6 @@ const Conditions = ({ nation, nationHandler, searchExecute }) => {
           <DropdownComponent nation={nation} nationHandler={nationHandler} />
           <DateInputWrapper>
             <DateFilter useDatePicker={customDatePicker} />
-            {/* <DateInput type="date" value={date} onChange={updateDate} onKeyDown={enterKey} /> */}
-            <SearchButton onClick={searchExecute} onKeyDown={enterKey}>
-              검색
-            </SearchButton>
           </DateInputWrapper>
         </SearchForm>
         <h5 style={{ textAlign: 'center', width: '100%' }}>

@@ -36,10 +36,10 @@ interface Props {
 
 const DateFilter = ({ useDatePicker }: Props) => {
   const { date, updateDate } = useDatePicker;
-
+  console.log({ date });
   return (
     <DatePickerContainer>
-      <StyledDatePicker value={date} valueFormat="YYYY.MM.DD" onChange={updateDate} />
+      <StyledDatePicker value={date as Date} valueFormat="YYYY.MM.DD" onChange={updateDate} />
     </DatePickerContainer>
   );
 };

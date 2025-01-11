@@ -63,7 +63,7 @@ const Main = () => {
   // Access the client
 
   // Qeuries
-  const { isLoading, isError, data, error, isFetched, refetch } = useQuery({
+  const { isLoading, isError, data, isFetching, isFetched, refetch } = useQuery({
     queryKey: ['movieData'],
     queryFn: async () => fetchRankTop10Data({ date, nation }),
     // enabled: false, // 특정한 트리거 없이 자동으로 호출되지 않도록 설정
@@ -146,24 +146,28 @@ const Main = () => {
     setInitDate();
   }, []);
 
-  if (isError) {
-    return <div>데이터 요청에 문제가 발생하였습니다.</div>;
-  }
+  useEffect(() => {
+    searchExecute();
+  }, [date, nation]);
+
+  console.log({ isLoading, isFetching });
 
   return (
     <Container>
       <GlobalStyles />
       <Header />
-      <Conditions nation={nation} nationHandler={NationHandler} searchExecute={searchExecute} />
+      <Conditions nation={nation} nationHandler={NationHandler} />
       <MainWrapper>
         <CardLayoutContainer>
           <TotalAudiCnt />
           <TotalSales />
         </CardLayoutContainer>
-        {isLoading ? (
+        {isLoading || isFetching ? (
           <LoaderWrapper>
             <ScaleLoader color="#36d7b7" />
           </LoaderWrapper>
+        ) : isError ? (
+          <div>데이터 요청에 문제가 발생하였습니다.</div>
         ) : (
           <MovieList data={data} />
         )}

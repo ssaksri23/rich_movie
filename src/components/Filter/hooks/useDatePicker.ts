@@ -1,12 +1,13 @@
+import { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
 
 interface Props {
-  initialValue: Date;
+  initialValue: Date | Dayjs;
   onChange?: () => void;
 }
 
 export const useDatePicker = ({ initialValue, onChange }: Props) => {
-  const [date, setDate] = useState<Date | Date[]>(initialValue);
+  const [date, setDate] = useState<Date | Date[] | Dayjs | Dayjs[]>(initialValue);
 
   const updateDate = (value: Date | Date[]) => {
     console.log({ value });

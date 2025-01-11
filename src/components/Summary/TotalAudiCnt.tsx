@@ -1,16 +1,12 @@
 import { useQuery } from 'react-query';
 import { UNITS } from '../../config/unit';
 import { SharedDefaultCard } from '../../shared/ui';
-import { IFilterStore, FilterStore } from '../../zustand/filter';
 import { getTotalData } from '../../shared/lib/data';
 import { BoxOfficeApiReturnData } from '../../model/api';
 
 const TotalAudiCnt = () => {
-  const { date, nation } = FilterStore<IFilterStore>((state) => state);
-
   const { data } = useQuery<BoxOfficeApiReturnData>({
-    queryKey: ['movieData', date, nation],
-    enabled: false,
+    queryKey: ['movieData'],
   });
 
   const { boxOfficeResult } = data || {};
