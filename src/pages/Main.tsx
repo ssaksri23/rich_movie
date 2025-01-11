@@ -66,19 +66,11 @@ const Main = () => {
   const { isLoading, isError, data, isFetching, isFetched, refetch } = useQuery({
     queryKey: ['movieData'],
     queryFn: async () => fetchRankTop10Data({ date, nation }),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    keepPreviousData: true,
     // enabled: false, // 특정한 트리거 없이 자동으로 호출되지 않도록 설정
   });
-
-  useEffect(() => {
-    if (!initRender.current && isFetched && data) {
-      const {
-        boxOfficeResult: { dailyBoxOfficeList },
-      } = data || {};
-      updateState({ key: 'movies', payload: dailyBoxOfficeList });
-    } else {
-      initRender.current = false;
-    }
-  }, [isFetched, data, updateState, initRender]);
 
   const validateDate = (inputDate: string): boolean => {
     let result: boolean = false;
@@ -110,16 +102,13 @@ const Main = () => {
     return result;
   };
 
-  const searchExecute = useCallback(
-    async (e) => {
-      const formattedDateString = formatCalcInputValueToInline(date);
-
-      if (formattedDateString.length === 8 && validateDate(formattedDateString) && nation !== null) refetch();
-      else if (formattedDateString.length !== 8) alert('입력하신 날짜를 확인해주세요.');
-      else if (nation === null) alert('검색할 국가를 선택해주세요.');
-    },
-    [date, nation],
-  );
+  const searchExecute = useCallback(async () => {
+    const formattedDateString = formatCalcInputValueToInline(date);
+    // 필터 변경 시, refetch Trigger 구문
+    if (formattedDateString.length === 8 && validateDate(formattedDateString) && nation !== null) refetch();
+    else if (formattedDateString.length !== 8) alert('입력하신 날짜를 확인해주세요.');
+    else if (nation === null) alert('검색할 국가를 선택해주세요.');
+  }, [date, nation, refetch]);
 
   const NationHandler = useCallback(
     (e): void => {
@@ -143,14 +132,23 @@ const Main = () => {
   };
 
   useEffect(() => {
+    if (!initRender.current && isFetched && data) {
+      const {
+        boxOfficeResult: { dailyBoxOfficeList },
+      } = data || {};
+      updateState({ key: 'movies', payload: dailyBoxOfficeList });
+    } else {
+      initRender.current = false;
+    }
+  }, [isFetched, data, updateState, initRender]);
+
+  useEffect(() => {
     setInitDate();
   }, []);
 
   useEffect(() => {
     searchExecute();
-  }, [date, nation]);
-
-  console.log({ isLoading, isFetching });
+  }, [date, nation, searchExecute]);
 
   return (
     <Container>
@@ -167,7 +165,7 @@ const Main = () => {
             <ScaleLoader color="#36d7b7" />
           </LoaderWrapper>
         ) : isError ? (
-          <div>데이터 요청에 문제가 발생하였습니다.</div>
+          <div>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</div>
         ) : (
           <MovieList data={data} />
         )}
