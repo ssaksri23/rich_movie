@@ -6,8 +6,8 @@ import Conditions from '../components/Filter/Conditions';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { useQuery, useQueryClient } from 'react-query';
-import { IMainStore, mainStore } from '../zustand/main';
+import { useQuery } from 'react-query';
+import { IFilterStore, FilterStore } from '../zustand/filter';
 import { ScaleLoader } from 'react-spinners';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
 import { CardLayoutContainer } from './Main.styled';
@@ -42,7 +42,7 @@ const MainWrapper = styled.section`
   /* overflow-y: scroll; */
 `;
 
-const fetchData = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
+const fetchRankTop10Data = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
   const formattedDateForApi = date.split('-').join(''); // YYYY-MM-DD -> YYYYMMDD
   const response = await axios.get(
     `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${formattedDateForApi}&repNationCd=${nation}`,
@@ -56,27 +56,18 @@ const fetchData = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
 const Main = () => {
   const initRender = useRef(true);
   // ======== [ zustand state management] ==========
-  const { loading, reject, movies, date, nation, posters, names, updateState } = mainStore<IMainStore>(
-    (state) => state,
-  );
+  const { date, nation, updateState } = FilterStore<IFilterStore>((state) => state);
 
   // ========= [ react-query ] ==========
 
   // Access the client
 
   // Qeuries
-  const { isLoading, isError, data, error, isFetched, isSuccess, refetch } = useQuery({
-    queryKey: ['movieData', date, nation],
-    queryFn: async () => fetchData({ date, nation }),
-    enabled: false,
+  const { isLoading, isError, data, error, isFetched, refetch } = useQuery({
+    queryKey: ['movieData'],
+    queryFn: async () => fetchRankTop10Data({ date, nation }),
+    // enabled: false, // 특정한 트리거 없이 자동으로 호출되지 않도록 설정
   });
-
-  // Mutations
-  // const mutation = useMutation('', {
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries('');
-  //   },
-  // });
 
   useEffect(() => {
     if (!initRender.current && isFetched && data) {
@@ -88,17 +79,6 @@ const Main = () => {
       initRender.current = false;
     }
   }, [isFetched, data, updateState, initRender]);
-
-  const updateDate = useCallback((date: Date): void => {
-    const inputDate: `${number}-${number}-${number}` | '' =
-      (dayjs(date).format('YYYY-MM-DD') as `${number}-${number}-${number}`) ?? '';
-    if (formatCalcInputValueToInline(inputDate).length === 8 || parseInt(inputDate) || inputDate === '') {
-      updateState({ key: 'date', payload: inputDate });
-    } else {
-      alert('숫자 형식으로 입력해주세요!');
-      updateState({ key: 'date', payload: '' });
-    }
-  }, []);
 
   const validateDate = (inputDate: string): boolean => {
     let result: boolean = false;
@@ -158,7 +138,7 @@ const Main = () => {
   );
 
   const setInitDate = (): void => {
-    const yesterday: string = dayjs().subtract(1, 'day').format('YYYYMMDD');
+    const yesterday: string = dayjs().subtract(1, 'day').format('YYYYMMDD'); // 어제 날짜
     updateState({ key: 'date', payload: yesterday });
   };
 
@@ -166,17 +146,15 @@ const Main = () => {
     setInitDate();
   }, []);
 
+  if (isError) {
+    return <div>데이터 요청에 문제가 발생하였습니다.</div>;
+  }
+
   return (
     <Container>
       <GlobalStyles />
       <Header />
-      <Conditions
-        date={date}
-        nation={nation}
-        updateDate={updateDate}
-        nationHandler={NationHandler}
-        searchExecute={searchExecute}
-      />
+      <Conditions nation={nation} nationHandler={NationHandler} searchExecute={searchExecute} />
       <MainWrapper>
         <CardLayoutContainer>
           <TotalAudiCnt />
@@ -186,10 +164,8 @@ const Main = () => {
           <LoaderWrapper>
             <ScaleLoader color="#36d7b7" />
           </LoaderWrapper>
-        ) : movies ? (
-          <MovieList />
         ) : (
-          <LoaderWrapper>검색 조건을 설정해주세요.</LoaderWrapper>
+          <MovieList data={data} />
         )}
       </MainWrapper>
       <Footer />

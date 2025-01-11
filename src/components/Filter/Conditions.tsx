@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { FONT_SIZE } from '../../config/font';
 import DateFilter from './DateFilter';
 import { useDatePicker } from './hooks/useDatePicker';
-import { mainStore } from '../../zustand/main';
+import { FilterStore } from '../../zustand/filter';
 import { useEffect } from 'react';
 
 const Container = styled.div`
@@ -71,7 +71,7 @@ const SearchButton = styled.button`
 `;
 
 const Conditions = ({ nation, nationHandler, searchExecute }) => {
-  const { updateState } = mainStore();
+  const { updateState } = FilterStore();
 
   const enterKey = (): void => {
     const windowEvent = window.event as KeyboardEvent;

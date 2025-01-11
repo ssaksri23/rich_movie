@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { mainStore, IMainStore } from '../../zustand/main';
 import Movie from './Movie';
 
 const StyledUl = styled.ul`
@@ -16,12 +15,12 @@ interface movieObj {
   rankOldAndNew: string;
   audiAcc: string;
 }
-const MovieList = () => {
-  const { movies } = mainStore<IMainStore>((state) => state);
+const MovieList = ({ data }) => {
+  const movies = data?.boxOfficeResult?.dailyBoxOfficeList;
   return (
     <div className="movies">
       <StyledUl>
-        {movies.map((movie: movieObj) => (
+        {movies?.map((movie: movieObj) => (
           <Movie
             title={movie?.movieNm}
             id={movie?.movieCd}
