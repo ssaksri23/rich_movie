@@ -2,19 +2,19 @@ import { useCallback, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import Conditions from '../components/Filter/Conditions';
+import Filters from '../components/Filter';
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { IFilterStore, FilterStore } from '../zustand/filter';
-import { ScaleLoader } from 'react-spinners';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
 import { CardLayoutContainer } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { BoxOfficeApiReturnData } from '../model/api';
 import MovieList from '../components/Movie/MovieList';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
+import { DefaultSpinner } from '../shared/ui/spin/Default';
 
 const Container = styled.div`
   height: 100%;
@@ -22,13 +22,6 @@ const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
-`;
-
-const LoaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 3rem auto;
-  /* height: 100%; */
 `;
 
 const MainWrapper = styled.section`
@@ -152,20 +145,18 @@ const Main = () => {
     <Container>
       <GlobalStyles />
       <Header />
-      <Conditions nation={nation} nationHandler={NationHandler} />
+      <Filters nation={nation} nationHandler={NationHandler} />
       <MainWrapper>
-        <CardLayoutContainer>
-          <TotalAudiCnt />
-          <TotalSales />
-        </CardLayoutContainer>
-        {isLoading || isFetching ? (
-          <LoaderWrapper>
-            <ScaleLoader color="#36d7b7" />
-          </LoaderWrapper>
-        ) : isError ? (
+        {isError ? (
           <div>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</div>
         ) : (
-          <MovieList data={data} />
+          <DefaultSpinner loading={isLoading || isFetching}>
+            <CardLayoutContainer>
+              <TotalAudiCnt />
+              <TotalSales />
+            </CardLayoutContainer>
+            <MovieList data={data} />
+          </DefaultSpinner>
         )}
       </MainWrapper>
       <Footer />
