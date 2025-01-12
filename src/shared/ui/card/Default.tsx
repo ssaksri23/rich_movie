@@ -4,11 +4,12 @@ interface Props {
   title: string | React.ReactElement;
   titleColor?: string;
   content: string | React.ReactElement;
+  ref?: React.ForwardedRef<HTMLDivElement>;
 }
 
-export const SharedDefaultCard = ({ title, titleColor, content }: Props) => {
+export const SharedDefaultCard = ({ title, titleColor, content, ref }: Props) => {
   return (
-    <DefaultCardContainer>
+    <DefaultCardContainer ref={ref}>
       <DefaultCardWrapper>
         <Title color={titleColor}>{title}</Title>
         <Content>{content}</Content>

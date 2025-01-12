@@ -8,7 +8,6 @@ const TotalAudiCnt = () => {
   const { data } = useQuery<BoxOfficeApiReturnData>({
     queryKey: ['movieData'],
   });
-
   const { boxOfficeResult } = data || {};
 
   const value: number = getTotalData({ dataArray: boxOfficeResult?.dailyBoxOfficeList, targetKey: 'audiCnt' });

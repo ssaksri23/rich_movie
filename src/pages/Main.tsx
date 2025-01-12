@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -12,9 +12,10 @@ import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
 import { CardLayoutContainer } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { BoxOfficeApiReturnData } from '../model/api';
-import MovieList from '../components/Movie/MovieList';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
-import { DefaultSpinner } from '../shared/ui/spin/Default';
+import { SharedDefaultSpinner } from '../shared/ui';
+import { MovieListWidget } from '../widgets';
+import MovieDetailCard from '../widgets/component/MovieDetailCard';
 
 const Container = styled.div`
   height: 100%;
@@ -150,13 +151,13 @@ const Main = () => {
         {isError ? (
           <div>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</div>
         ) : (
-          <DefaultSpinner loading={isLoading || isFetching}>
+          <SharedDefaultSpinner loading={isLoading || isFetching}>
             <CardLayoutContainer>
               <TotalAudiCnt />
               <TotalSales />
             </CardLayoutContainer>
-            <MovieList data={data} />
-          </DefaultSpinner>
+            <MovieListWidget data={data} />
+          </SharedDefaultSpinner>
         )}
       </MainWrapper>
       <Footer />

@@ -17,7 +17,7 @@ const LoaderContainer = styled.div`
 
 const LoaderMask = styled.div<{ loading: boolean }>`
   position: absolute;
-  display: flex;
+  display: ${(props) => (props.loading ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   top: 0;
@@ -45,7 +45,7 @@ const StyledLoader = styled(ScaleLoader)<{ loading: boolean }>`
   z-index: 2;
 `;
 
-export const DefaultSpinner = ({ loading, children }) => {
+export const SharedDefaultSpinner = ({ loading, children }) => {
   return (
     <LoaderContainer>
       <LoaderMask loading={loading}>

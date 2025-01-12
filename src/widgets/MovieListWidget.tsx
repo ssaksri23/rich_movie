@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import Movie from './Movie';
+import MovieItem, { MovieItemProps } from './component/MovieItem';
+import MovieDetailCard from './component/MovieDetailCard';
+import { forwardRef } from 'react';
 
 const StyledUl = styled.ul`
   display: flex;
@@ -15,13 +17,16 @@ interface movieObj {
   rankOldAndNew: string;
   audiAcc: string;
 }
-const MovieList = ({ data }) => {
+export const MovieListWidget = ({ data }) => {
   const movies = data?.boxOfficeResult?.dailyBoxOfficeList;
+
+  const RefMovieItem = forwardRef<HTMLLIElement, MovieItemProps>((props, ref) => <MovieItem {...props} ref={ref} />);
+
   return (
-    <div className="movies">
-      <StyledUl>
-        {movies?.map((movie: movieObj) => (
-          <Movie
+    <StyledUl>
+      {movies?.map((movie: movieObj) => (
+        <MovieDetailCard key={movie.movieCd}>
+          <RefMovieItem
             title={movie?.movieNm}
             id={movie?.movieCd}
             key={movie?.movieCd}
@@ -30,10 +35,8 @@ const MovieList = ({ data }) => {
             rankOldAndNew={movie?.rankOldAndNew}
             audiAcc={movie?.audiAcc}
           />
-        ))}
-      </StyledUl>
-    </div>
+        </MovieDetailCard>
+      ))}
+    </StyledUl>
   );
 };
-
-export default MovieList;

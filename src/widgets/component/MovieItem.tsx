@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
 import { FONT_SIZE } from '../../config/font';
-interface Props {
-  rankOldAndNew: string;
-}
+import { forwardRef } from 'react';
+import { HoverCard } from '@mantine/core';
 
-const MovieBlock = styled.li<Props>`
+const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -149,11 +148,20 @@ const MovieBlock = styled.li<Props>`
     }
   }
 `;
+export interface MovieItemProps {
+  title: string;
+  openDt: string;
+  id: string;
+  rank: string;
+  rankOldAndNew: string;
+  audiAcc: string;
+  ref: React.ForwardedRef<HTMLLIElement>;
+}
 
-const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
-  audiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
+const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => {
+  const formattedAudiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
-    <MovieBlock className="movie-block" rankOldAndNew={rankOldAndNew}>
+    <MovieBlock ref={ref} className="movie-block" rankOldAndNew={rankOldAndNew}>
       <div className="side__left">
         <div className="movie__rank-block">
           <h5 className="movie__rank">{rank}</h5>
@@ -165,10 +173,10 @@ const Movie = ({ title, openDt, id, rank, rankOldAndNew, audiAcc }) => {
         <h5 className="movie__openDate">
           {openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`}
         </h5>
-        <h5 className="audiAcc">누적 관객 수 : {audiAcc}명</h5>
+        <h5 className="audiAcc">누적 관객 수 : {formattedAudiAcc}명</h5>
       </div>
     </MovieBlock>
   );
 };
 
-export default Movie;
+export default MovieItem;
