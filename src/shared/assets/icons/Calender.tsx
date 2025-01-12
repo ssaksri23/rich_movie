@@ -1,8 +1,8 @@
-import { IconCalendar } from '@tabler/icons-react';
+import { IconCalendarWeek } from '@tabler/icons-react';
 
 export const CalendarIcon = () => {
   return (
-    <IconCalendar
+    <IconCalendarWeek
       size={22}
       color="black" // set `stroke` color
       stroke={1} // set `stroke-width`

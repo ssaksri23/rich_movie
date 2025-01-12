@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import { DatePickerInput } from '@mantine/dates';
 import { COLOR } from '../../lib/palette';
 import { useDatePicker } from './hooks/useDatePicker';
+import { CalendarIcon } from '../../shared/assets/icons';
 
 const DatePickerContainer = styled.div`
   position: relative;
   width: 100%;
+  min-width: 10rem;
 `;
 
 const StyledDatePicker = styled(DatePickerInput)`
@@ -22,7 +24,13 @@ const DateFilter = ({ useDatePicker }: Props) => {
   maximumDate.setDate(maximumDate.getDate() - 1); // 어제 날짜로 설정
   return (
     <DatePickerContainer>
+      <StyledDatePicker
+        rightSection={<CalendarIcon />}
+        value={date as Date}
         maxDate={maximumDate}
+        valueFormat="YYYY.MM.DD"
+        onChange={updateDate}
+      />
     </DatePickerContainer>
   );
 };
