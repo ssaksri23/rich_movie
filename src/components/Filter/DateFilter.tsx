@@ -18,9 +18,11 @@ interface Props {
 
 const DateFilter = ({ useDatePicker }: Props) => {
   const { date, updateDate } = useDatePicker;
+  const maximumDate = new Date();
+  maximumDate.setDate(maximumDate.getDate() - 1); // 어제 날짜로 설정
   return (
     <DatePickerContainer>
-      <StyledDatePicker value={date as Date} valueFormat="YYYY.MM.DD" onChange={updateDate} />
+        maxDate={maximumDate}
     </DatePickerContainer>
   );
 };

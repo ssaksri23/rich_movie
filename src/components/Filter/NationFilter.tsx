@@ -19,7 +19,14 @@ const StyledDropdownItem = styled(DropdownItem)`
 `;
 
 const StyledButton = styled(Button)`
-  min-width: 8rem;
+  min-width: 6rem;
+  background: #6e68de;
+
+  &:hover,
+  &:focus {
+    transition: background 0.2s;
+    background: #4f47e5 !important;
+  }
 `;
 
 const NationFilter = ({ nation, nationHandler }) => {
