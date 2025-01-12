@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import MovieItem, { MovieItemProps } from './component/MovieItem';
-import MovieDetailCard from './component/MovieDetailCard';
+import MovieDetailCardTrigger from './component/MovieDetailCardTrigger';
 import { forwardRef } from 'react';
 
 const StyledUl = styled.ul`
@@ -9,7 +9,7 @@ const StyledUl = styled.ul`
   gap: 0.5rem;
 `;
 
-interface movieObj {
+interface Movie {
   movieNm: string;
   movieCd: string;
   openDt: string;
@@ -17,6 +17,7 @@ interface movieObj {
   rankOldAndNew: string;
   audiAcc: string;
 }
+
 export const MovieListWidget = ({ data }) => {
   const movies = data?.boxOfficeResult?.dailyBoxOfficeList;
 
@@ -24,8 +25,8 @@ export const MovieListWidget = ({ data }) => {
 
   return (
     <StyledUl>
-      {movies?.map((movie: movieObj) => (
-        <MovieDetailCard key={movie.movieCd}>
+      {movies?.map((movie: Movie) => (
+        <MovieDetailCardTrigger data={movie} key={movie.movieCd}>
           <RefMovieItem
             title={movie?.movieNm}
             id={movie?.movieCd}
@@ -35,7 +36,7 @@ export const MovieListWidget = ({ data }) => {
             rankOldAndNew={movie?.rankOldAndNew}
             audiAcc={movie?.audiAcc}
           />
-        </MovieDetailCard>
+        </MovieDetailCardTrigger>
       ))}
     </StyledUl>
   );

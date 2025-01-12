@@ -36,6 +36,10 @@ h1,h2,h3,h4,h5,h6,ul {
   height: 100%;
 }
 
+p, div {
+  margin: 0;
+}
+
 ul {
   height: 100%;
   padding: 0;

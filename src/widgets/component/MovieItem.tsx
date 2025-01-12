@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
 import { FONT_SIZE } from '../../config/font';
-import { forwardRef } from 'react';
-import { HoverCard } from '@mantine/core';
 
 const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   display: flex;
@@ -14,6 +12,12 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   background: ${COLOR.sectionColor};
   color: ${COLOR.text.basicColor};
   border-radius: ${DEFAULT_BORDER_RADIUS_REM};
+
+  &:hover {
+    background: ${COLOR.hoverBackgroundColor};
+    transition: background 0.3s;
+  }
+
   & + & {
     margin-top: 0.1rem;
   }

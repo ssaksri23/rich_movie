@@ -12,6 +12,7 @@ interface Palette {
   backgroundColor: string;
   defaultButtonColor: string;
   primaryButtonColor: string;
+  hoverBackgroundColor: string;
   sectionColor: string;
 }
 
@@ -28,6 +29,7 @@ export const COLOR: Palette = {
   backgroundColor: '#e6e6e6',
   defaultButtonColor: '#FFFFFF',
   primaryButtonColor: '#2563EB',
+  hoverBackgroundColor: '#c2cce1d1',
   NewRankColor: '#F68657',
   OldRankColor: '#c1c4bd',
 };

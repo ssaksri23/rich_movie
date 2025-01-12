@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -15,7 +15,6 @@ import { BoxOfficeApiReturnData } from '../model/api';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
 import { SharedDefaultSpinner } from '../shared/ui';
 import { MovieListWidget } from '../widgets';
-import MovieDetailCard from '../widgets/component/MovieDetailCard';
 
 const Container = styled.div`
   height: 100%;
