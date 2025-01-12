@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
-import DropdownComponent from './DropdownComponent';
+import NationFilter from './NationFilter';
 import dayjs from 'dayjs';
 import DateFilter from './DateFilter';
 import { useDatePicker } from './hooks/useDatePicker';
@@ -12,11 +12,10 @@ const Container = styled.div`
   width: 100%;
   height: 15%;
   display: flex;
-  min-height: 15vh;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 5rem;
+  padding: 1rem 5rem;
   background: ${COLOR['backgroundColor']};
   border-bottom: 1px solid ${COLOR['fontStrongColor']};
 `;
@@ -31,19 +30,18 @@ const ConditionWrapper = styled.div`
 const SearchForm = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const DateInputWrapper = styled.div`
-  width: 100%;
+  min-width: 8rem;
   display: flex;
   justify-content: space-between;
   gap: 0.25rem;
 `;
 
-const Conditions = ({ nation, nationHandler }) => {
+const Filters = ({ nation, nationHandler }) => {
   const { updateState } = FilterStore();
 
   const customDatePicker = useDatePicker({
@@ -63,8 +61,10 @@ const Conditions = ({ nation, nationHandler }) => {
     <Container>
       <ConditionWrapper>
         <SearchForm>
-          <DropdownComponent nation={nation} nationHandler={nationHandler} />
+          {/* 국가 필터 */}
+          <NationFilter nation={nation} nationHandler={nationHandler} />
           <DateInputWrapper>
+            {/* 날짜 필터 */}
             <DateFilter useDatePicker={customDatePicker} />
           </DateInputWrapper>
         </SearchForm>
@@ -76,4 +76,4 @@ const Conditions = ({ nation, nationHandler }) => {
   );
 };
 
-export default Conditions;
+export default Filters;

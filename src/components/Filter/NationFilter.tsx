@@ -19,10 +19,10 @@ const StyledDropdownItem = styled(DropdownItem)`
 `;
 
 const StyledButton = styled(Button)`
-  width: 17.5rem;
+  min-width: 8rem;
 `;
 
-const DropdownComponent = ({ nation, nationHandler }) => {
+const NationFilter = ({ nation, nationHandler }) => {
   const [chooseText, setChooseText] = useState('검색하실 국가를 선택해주세요.');
   const [hidden, setHidden] = useState(true);
 
@@ -57,4 +57,4 @@ const DropdownComponent = ({ nation, nationHandler }) => {
   );
 };
 
-export default DropdownComponent;
+export default NationFilter;
