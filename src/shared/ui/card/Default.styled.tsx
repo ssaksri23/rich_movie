@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
+import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '../../../config/style';
 import { COLOR } from '../../../lib/palette';
 import { FONT_SIZE, FONT_WEIGHT } from '../../../config/font';
 
@@ -7,6 +7,7 @@ export const DefaultCardContainer = styled.div`
   width: 100%;
   border-radius: ${DEFAULT_BORDER_RADIUS_REM};
   background: ${COLOR.sectionColor};
+  box-shadow: ${DEFAULT_BOX_SHADOW};
 `;
 
 export const DefaultCardWrapper = styled.div`

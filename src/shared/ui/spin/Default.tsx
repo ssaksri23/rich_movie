@@ -12,7 +12,7 @@ const LoaderContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 `;
 
 const LoaderMask = styled.div<{ loading: boolean }>`
@@ -37,7 +37,7 @@ const BlurMask = styled.div<{ loading: boolean }>`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
 const StyledLoader = styled(ScaleLoader)<{ loading: boolean }>`

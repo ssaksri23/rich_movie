@@ -1,6 +1,6 @@
 import { HoverCard } from '@mantine/core';
 import styled from 'styled-components';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
+import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '../../../config/style';
 
 interface SharedDefaultTooltipProps {
   contents: React.ReactNode;
@@ -10,9 +10,12 @@ interface SharedDefaultTooltipProps {
 const TargetContainer = styled.button`
   width: 100%;
   height: 100%;
+  padding: 0;
   background: none;
   text-align: left;
   cursor: pointer;
+  border-radius: ${DEFAULT_BORDER_RADIUS_REM};
+  box-shadow: ${DEFAULT_BOX_SHADOW};
 `;
 
 export const SharedDefaultTooltip: React.FC<SharedDefaultTooltipProps> = ({ contents, children }) => {

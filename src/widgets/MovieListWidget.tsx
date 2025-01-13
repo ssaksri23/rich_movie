@@ -6,7 +6,7 @@ import { forwardRef } from 'react';
 const StyledUl = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
 interface Movie {

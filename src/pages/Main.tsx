@@ -30,9 +30,6 @@ const MainWrapper = styled.section`
   align-items: center;
   flex-direction: column;
   gap: 1rem;
-  /* min-height: 65vh; */
-  /* height: 70%; */
-  /* overflow-y: scroll; */
 `;
 
 const fetchRankTop10Data = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
