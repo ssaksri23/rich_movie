@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 0;
+  margin-bottom: 1rem;
   height: 5%;
 `;
 

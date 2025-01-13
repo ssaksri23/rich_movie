@@ -18,7 +18,6 @@ const Container = styled.div`
   align-items: center;
   padding: 1rem;
   background: ${COLOR['backgroundColor']};
-  border-bottom: 1px solid ${COLOR['fontStrongColor']};
 `;
 
 const SearchFormWrapper = styled.div`

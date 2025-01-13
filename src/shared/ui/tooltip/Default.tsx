@@ -24,8 +24,8 @@ export const SharedDefaultTooltip: React.FC<SharedDefaultTooltipProps> = ({ cont
       floatingStrategy="fixed"
       closeDelay={100}
       offset={{
-        crossAxis: 150,
-        mainAxis: 5,
+        crossAxis: 400,
+        mainAxis: 3,
       }}
       styles={{ dropdown: { padding: 0, borderRadius: DEFAULT_BORDER_RADIUS_REM } }}
       position="top"

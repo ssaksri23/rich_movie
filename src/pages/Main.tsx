@@ -21,7 +21,6 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  gap: 1rem;
 `;
 
 const MainWrapper = styled.section`

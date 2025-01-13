@@ -15,7 +15,6 @@ const FooterWrapper = styled.div`
   margin: 0 auto;
   padding: 1rem 0;
   background: ${COLOR['backgroundColor']};
-  border-top: 1px solid ${COLOR['fontStrongColor']};
 
   @media ${(props) => props.theme.tabletM} {
     margin: 0 auto;
