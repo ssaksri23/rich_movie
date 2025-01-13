@@ -22,21 +22,12 @@ const FooterWrapper = styled.div`
   }
 `;
 
-const FooterContents = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 1rem;
-  color: ${COLOR['basicColor']};
-  text-align: center;
-
-  & + & {
-    margin-top: 0.5rem;
-  }
-`;
-
 const ContentsWrapper = styled.div`
-  width: 30rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 0.5rem;
 
   @media ${(props) => props.theme.tabletM} {
   }
@@ -50,28 +41,6 @@ const ContentsWrapper = styled.div`
   }
 `;
 
-const ContentsTop = styled(FooterContents)`
-  width: 100%;
-  justify-content: space-around;
-
-  @media ${(props) => props.theme.mobileM} {
-    font-size: 0.8rem;
-  }
-`;
-
-const ContentsBottom = styled(FooterContents)`
-  width: 100%;
-  justify-content: center;
-
-  @media ${(props) => props.theme.mobileM} {
-    font-size: 0.8rem;
-  }
-`;
-
-const ContentsBlock = styled.div`
-  width: auto;
-`;
-
 const TextBlock = styled.p`
   text-align: center;
   margin: 0;
@@ -82,16 +51,11 @@ const Footer = () => {
     <ThemeProvider theme={theme}>
       <FooterWrapper>
         <ContentsWrapper>
-          <ContentsTop>
-            <ContentsBlock>
-              <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
-            </ContentsBlock>
-          </ContentsTop>
-          <ContentsBottom>
-            <TextBlock>
-              Data Resource by <strong>http://www.kobis.or.kr</strong>
-            </TextBlock>
-          </ContentsBottom>
+          <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
+          <TextBlock>/</TextBlock>
+          <TextBlock>
+            Data Resource by <a href="http://www.kobis.or.kr">http://www.kobis.or.kr</a>
+          </TextBlock>
         </ContentsWrapper>
       </FooterWrapper>
     </ThemeProvider>
