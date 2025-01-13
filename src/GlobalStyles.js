@@ -12,6 +12,7 @@ html, body {
     overflow-x: hidden;
     height: 100%;
     ::-webkit-scrollbar { display: none};
+    font-family: 'Do Hyeon', 'Roboto';
 }
 
 

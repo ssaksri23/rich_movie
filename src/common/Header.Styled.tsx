@@ -13,7 +13,7 @@ export const HeaderWrapper = styled.div`
 export const HeaderContents = styled.span`
   font-size: ${FONT_SIZE.EXTRA};
   color: ${COLOR.text.basicColor};
-  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
+  font-weight: ${FONT_WEIGHT.REGULAR};
   text-align: center;
   word-break: keep-all;
 

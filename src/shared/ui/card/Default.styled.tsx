@@ -21,7 +21,7 @@ export const DefaultCardWrapper = styled.div`
 export const Title = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? COLOR.text.basicColor};
   font-size: ${FONT_SIZE.SEMI_SMALL};
-  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
+  font-weight: ${FONT_WEIGHT.REGULAR};
 
   @media ${(props) => props.theme.mobileL} {
     font-size: ${FONT_SIZE.SMALL};
@@ -35,7 +35,7 @@ export const Title = styled.div<{ color?: string }>`
 export const Content = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? COLOR.text.basicColor};
   font-size: ${FONT_SIZE.LARGE};
-  font-weight: ${FONT_WEIGHT.BOLD};
+  font-weight: ${FONT_WEIGHT.REGULAR};
 
   @media ${(props) => props.theme.mobileL} {
     font-size: ${FONT_SIZE.MEDIUM};

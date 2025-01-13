@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
-import { FONT_SIZE } from '../../config/font';
+import { FONT_SIZE, FONT_WEIGHT } from '../../config/font';
 
 const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   display: flex;
@@ -30,7 +30,7 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
     .movie__title {
       flex: 1;
       width: 5rem;
-      font-weight: 500;
+      font-weight: ${FONT_WEIGHT.REGULAR};
       color: ${COLOR.text.basicColor};
     }
 
@@ -49,7 +49,7 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
       .movie__rankOldAndNew {
         align-self: flex-start;
         margin: 0;
-        font-weight: 500;
+        font-weight: ${FONT_WEIGHT.THIN};
         ${(props) =>
           props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
       }
@@ -63,7 +63,7 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
     justify-content: center;
     gap: 0.25rem;
     align-items: flex-end;
-    height: 3rem;
+    font-weight: ${FONT_WEIGHT.REGULAR};
   }
 
   @media ${(props) => props.theme.tabletS} {
@@ -168,16 +168,14 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
     <MovieBlock ref={ref} className="movie-block" rankOldAndNew={rankOldAndNew}>
       <div className="side__left">
         <div className="movie__rank-block">
-          <h5 className="movie__rank">{rank}</h5>
+          <p className="movie__rank">{rank}</p>
           {rankOldAndNew === 'NEW' && <h4 className="movie__rankOldAndNew">{'new'}</h4>}
         </div>
         <h2 className="movie__title">{title}</h2>
       </div>
       <div className="side__right">
-        <h5 className="movie__openDate">
-          {openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : no data`}
-        </h5>
-        <h5 className="audiAcc">누적 관객 수 : {formattedAudiAcc}명</h5>
+        <p className="movie__openDate">{openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : -`}</p>
+        <p className="audiAcc">누적 관객 수 : {formattedAudiAcc}명</p>
       </div>
     </MovieBlock>
   );

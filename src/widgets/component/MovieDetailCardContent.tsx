@@ -112,7 +112,7 @@ const StatLabel = styled.span<{ wasIncreased?: boolean }>`
 `;
 
 const StatValue = styled.p`
-  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
+  font-weight: ${FONT_WEIGHT.REGULAR};
   font-size: ${FONT_SIZE.MEDIUM};
   color: #111827;
 
