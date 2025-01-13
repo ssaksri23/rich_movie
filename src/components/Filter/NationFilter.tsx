@@ -20,6 +20,7 @@ const StyledDropdownItem = styled(DropdownItem)`
 
 const StyledButton = styled(Button)`
   min-width: 6rem;
+  height: 2.25rem;
   background: #6e68de;
 
   &:hover,

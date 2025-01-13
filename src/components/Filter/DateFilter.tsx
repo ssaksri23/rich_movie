@@ -12,6 +12,7 @@ const DatePickerContainer = styled.div`
 
 const StyledDatePicker = styled(DatePickerInput)`
   background-color: ${COLOR.sectionColor};
+  border-radius: 0.25rem;
 `;
 
 interface Props {

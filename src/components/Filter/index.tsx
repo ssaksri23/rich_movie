@@ -25,7 +25,7 @@ const SearchFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 `;
 
 const Filters = ({ nation, nationHandler }) => {
