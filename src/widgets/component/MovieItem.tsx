@@ -163,7 +163,7 @@ export interface MovieItemProps {
 }
 
 const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => {
-  const formattedAudiAcc = audiAcc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
+  const formattedAudiAcc = audiAcc?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
     <MovieBlock ref={ref} className="movie-block" rankOldAndNew={rankOldAndNew}>
       <div className="side__left">
@@ -175,7 +175,7 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
       </div>
       <div className="side__right">
         <p className="movie__openDate">{openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : -`}</p>
-        <p className="audiAcc">누적 관객 수 : {formattedAudiAcc}명</p>
+        <p className="audiAcc">누적 관객 수 : {formattedAudiAcc ?? '-'}명</p>
       </div>
     </MovieBlock>
   );

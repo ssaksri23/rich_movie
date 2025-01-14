@@ -19,14 +19,14 @@ interface Movie {
 }
 
 export const MovieListWidget = ({ data }) => {
-  const movies = data?.boxOfficeResult?.dailyBoxOfficeList;
+  const movies = data?.boxOfficeResult?.dailyBoxOfficeList ?? new Array(10).fill(undefined);
 
   const RefMovieItem = forwardRef<HTMLLIElement, MovieItemProps>((props, ref) => <MovieItem {...props} ref={ref} />);
 
   return (
     <StyledUl>
       {movies?.map((movie: Movie) => (
-        <MovieDetailCardTrigger data={movie} key={movie.movieCd}>
+        <MovieDetailCardTrigger data={movie} key={movie?.movieCd}>
           <RefMovieItem
             title={movie?.movieNm}
             id={movie?.movieCd}
