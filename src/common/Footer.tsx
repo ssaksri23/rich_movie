@@ -1,23 +1,20 @@
 import styled from 'styled-components';
 import { COLOR } from '../lib/palette';
-import { ThemeProvider } from 'styled-components';
-import theme from '../lib/deviceTheme';
 
-const FooterWrapper = styled.div`
+const FooterContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 10%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin: 0 auto;
-  padding: 1rem 0;
+  margin-top: auto; // API 를 불러오지 못해서 영화 목록 컨텐츠 wrapper 높이가 변경되었을 때도 Footer 요소는 맨 하단 쪽에 유지시키기 위함.
+  padding: 0;
   background: ${COLOR['backgroundColor']};
 
   @media ${(props) => props.theme.tabletM} {
-    margin: 0 auto;
+    /* margin-top: auto; */
     /* padding: 1rem 0; */
   }
 `;
@@ -48,17 +45,15 @@ const TextBlock = styled.p`
 
 const Footer = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <FooterWrapper>
-        <ContentsWrapper>
-          <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
-          <TextBlock>/</TextBlock>
-          <TextBlock>
-            Data Resource by <a href="http://www.kobis.or.kr">http://www.kobis.or.kr</a>
-          </TextBlock>
-        </ContentsWrapper>
-      </FooterWrapper>
-    </ThemeProvider>
+    <FooterContainer>
+      <ContentsWrapper>
+        <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
+        <TextBlock>/</TextBlock>
+        <TextBlock>
+          Data Resource by <a href="http://www.kobis.or.kr">http://www.kobis.or.kr</a>
+        </TextBlock>
+      </ContentsWrapper>
+    </FooterContainer>
   );
 };
 

@@ -6,8 +6,6 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  height: 5%;
 `;
 
 export const HeaderContents = styled.span`

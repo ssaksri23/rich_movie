@@ -7,7 +7,7 @@ import { SharedDefaultSkeleton } from '../../shared/ui';
 import { useQuery } from '@tanstack/react-query';
 import { FilterStore, IFilterStore } from '../../zustand/filter';
 
-const MovieBlock = styled.li<{ rankOldAndNew: string }>`
+const MovieBlock = styled.li`
   display: flex;
   gap: 2rem;
   justify-content: space-between;
@@ -38,24 +38,12 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
       color: ${COLOR.text.basicColor};
     }
 
-    .movie__rank-block {
-      display: flex;
-
-      .movie__rank {
-        font-size: ${FONT_SIZE.SEMI_LARGE};
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        width: 1.25em;
-        text-align: center;
-      }
-
-      .movie__rankOldAndNew {
-        align-self: flex-start;
-        margin: 0;
-        font-weight: ${FONT_WEIGHT.THIN};
-        ${(props) =>
-          props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
-      }
+    .movie__rank {
+      font-size: ${FONT_SIZE.SEMI_LARGE};
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      width: 1.25em;
+      text-align: center;
     }
   }
 
@@ -111,12 +99,6 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
           font-size: ${FONT_SIZE.SEMI_LARGE};
           padding: 0.1rem;
         }
-
-        .movie__rankOldAndNew {
-          font-size: ${FONT_SIZE.SEMI_SMALL};
-          ${(props) =>
-            props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }};
-        }
       }
     }
 
@@ -140,18 +122,40 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
           font-size: ${FONT_SIZE.MEDIUM};
           padding: 0.1rem;
         }
-
-        .movie__rankOldAndNew {
-          font-size: ${FONT_SIZE.SMALL};
-          margin-right: 0.2rem;
-          ${(props) =>
-            props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
-        }
       }
     }
     .side__right {
       flex: 0.6;
       font-size: ${FONT_SIZE.SMALL};
+    }
+  }
+`;
+
+const RankWrapper = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const RankLatest = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
+  position: absolute;
+  top: -0.5rem;
+  left: -50%;
+  align-self: flex-start;
+  margin: 0;
+  font-weight: ${FONT_WEIGHT.THIN};
+  ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })}
+
+  @media ${(props) => props.theme.mobileL} {
+    font-size: ${FONT_SIZE.SEMI_SMALL};
+    ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })};
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    .movie__rankOldAndNew {
+      font-size: ${FONT_SIZE.SMALL};
+      margin-right: 0.2rem;
+      ${(props) =>
+        props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
     }
   }
 `;
@@ -192,12 +196,12 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
   });
   const formattedAudiAcc = audiAcc?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
-    <MovieBlock ref={ref} className="movie-block" rankOldAndNew={rankOldAndNew}>
+    <MovieBlock ref={ref} className="movie-block">
       <div className="side__left">
-        <div className="movie__rank-block">
+        <RankWrapper>
           <p className="movie__rank">{rank}</p>
-          {rankOldAndNew === 'NEW' && <h4 className="movie__rankOldAndNew">{'new'}</h4>}
-        </div>
+          {rankOldAndNew === 'NEW' && <RankLatest rankOldAndNew={rankOldAndNew}>{'new'}</RankLatest>}
+        </RankWrapper>
         <h2 className="movie__title">
           <SharedDefaultSkeleton isLoading={isLoading}>{title}</SharedDefaultSkeleton>
         </h2>

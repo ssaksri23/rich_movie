@@ -9,9 +9,8 @@ import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { IFilterStore, FilterStore } from '../zustand/filter';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
-import { TotalValueCardLayoutWrapper, ContentWrapper } from './Main.styled';
+import { TotalValueCardLayoutWrapper, ContentWrapper, ErrorContent } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
-import { BoxOfficeApiReturnData } from '../model/api';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
 import { MovieListWidget } from '../widgets';
 import { fetchRankTop10Data } from '../shared/api/movie';
@@ -21,6 +20,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  gap: 1rem;
 `;
 
 const MainWrapper = styled.section`
@@ -133,7 +133,7 @@ const Main = () => {
       <Filters nation={nation} nationHandler={NationHandler} />
       <MainWrapper>
         {isError ? (
-          <div>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</div>
+          <ErrorContent>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</ErrorContent>
         ) : (
           <ContentWrapper>
             <TotalValueCardLayoutWrapper>
