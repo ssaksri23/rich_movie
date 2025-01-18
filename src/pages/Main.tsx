@@ -9,12 +9,12 @@ import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { IFilterStore, FilterStore } from '../zustand/filter';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
-import { CardLayoutContainer } from './Main.styled';
+import { TotalValueCardLayoutWrapper, ContentWrapper } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { BoxOfficeApiReturnData } from '../model/api';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
-import { SharedDefaultSpinner } from '../shared/ui';
 import { MovieListWidget } from '../widgets';
+import { fetchRankTop10Data } from '../shared/api/movie';
 
 const Container = styled.div`
   height: 100%;
@@ -31,17 +31,6 @@ const MainWrapper = styled.section`
   gap: 1rem;
 `;
 
-const fetchRankTop10Data = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
-  const formattedDateForApi = date.split('-').join(''); // YYYY-MM-DD -> YYYYMMDD
-  const response = await axios.get(
-    `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4010de0e4173634fe5b671b20aea7c21&targetDt=${formattedDateForApi}&repNationCd=${nation}`,
-  );
-  if (response.status < 200 || response.status > 300) {
-    throw new Error('Failed to fetch data');
-  }
-  return response.data;
-};
-
 const Main = () => {
   const initRender = useRef(true);
   // ======== [ zustand state management] ==========
@@ -52,8 +41,8 @@ const Main = () => {
   // Access the client
 
   // Qeuries
-  const { isLoading, isError, data, isFetching, isFetched, refetch } = useQuery({
-    queryKey: ['movieData'],
+  const { isError, data, isFetched, refetch } = useQuery({
+    queryKey: ['movieData', date, nation],
     queryFn: async () => fetchRankTop10Data({ date, nation }),
     refetchOnWindowFocus: false,
     // enabled: false, // 특정한 트리거 없이 자동으로 호출되지 않도록 설정
@@ -146,13 +135,15 @@ const Main = () => {
         {isError ? (
           <div>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</div>
         ) : (
-          <SharedDefaultSpinner loading={isLoading || isFetching}>
-            <CardLayoutContainer>
+          <ContentWrapper>
+            <TotalValueCardLayoutWrapper>
               <TotalAudiCnt />
               <TotalSales />
-            </CardLayoutContainer>
+            </TotalValueCardLayoutWrapper>
             <MovieListWidget data={data} />
-          </SharedDefaultSpinner>
+          </ContentWrapper>
+          // <SharedDefaultSpinner loading={isLoading || isFetching}>
+          // </SharedDefaultSpinner>
         )}
       </MainWrapper>
       <Footer />

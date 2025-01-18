@@ -3,9 +3,13 @@ import styled from 'styled-components';
 import { COLOR } from '../../lib/palette';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
 import { FONT_SIZE, FONT_WEIGHT } from '../../config/font';
+import { SharedDefaultSkeleton } from '../../shared/ui';
+import { useQuery } from '@tanstack/react-query';
+import { FilterStore, IFilterStore } from '../../zustand/filter';
 
 const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
@@ -23,10 +27,10 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   }
 
   .side__left {
-    flex: 1;
-    display: inherit;
+    display: flex;
     align-items: center;
-
+    gap: 1.5rem;
+    width: 100%;
     .movie__title {
       flex: 1;
       width: 5rem;
@@ -36,7 +40,6 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
 
     .movie__rank-block {
       display: flex;
-      flex: 0.2;
 
       .movie__rank {
         font-size: ${FONT_SIZE.SEMI_LARGE};
@@ -57,11 +60,11 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
   }
 
   .side__right {
-    flex: 0.5;
     display: inherit;
     flex-flow: column wrap;
     justify-content: center;
     gap: 0.25rem;
+    min-width: 12rem;
     align-items: flex-end;
     font-weight: ${FONT_WEIGHT.REGULAR};
   }
@@ -152,6 +155,25 @@ const MovieBlock = styled.li<{ rankOldAndNew: string }>`
     }
   }
 `;
+
+const InlineWrapper = styled.div`
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+`;
+
+const Label = styled.div`
+  display: inline-block;
+`;
+
+const Value = styled.div`
+  text-align: right;
+  width: 100%;
+  gap: 0.5rem;
+`;
+
 export interface MovieItemProps {
   title: string;
   openDt: string;
@@ -163,6 +185,11 @@ export interface MovieItemProps {
 }
 
 const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => {
+  const { date, nation } = FilterStore<IFilterStore>((state) => state);
+  const { isLoading } = useQuery({
+    queryKey: ['movieData', date, nation],
+    staleTime: 10 * 60 * 1000,
+  });
   const formattedAudiAcc = audiAcc?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
     <MovieBlock ref={ref} className="movie-block" rankOldAndNew={rankOldAndNew}>
@@ -171,11 +198,26 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
           <p className="movie__rank">{rank}</p>
           {rankOldAndNew === 'NEW' && <h4 className="movie__rankOldAndNew">{'new'}</h4>}
         </div>
-        <h2 className="movie__title">{title}</h2>
+        <h2 className="movie__title">
+          <SharedDefaultSkeleton isLoading={isLoading}>{title}</SharedDefaultSkeleton>
+        </h2>
       </div>
       <div className="side__right">
-        <p className="movie__openDate">{openDt !== 'null' && openDt !== ' ' ? `개봉일 : ${openDt}` : `개봉일 : -`}</p>
-        <p className="audiAcc">누적 관객 수 : {formattedAudiAcc ?? '-'}명</p>
+        <InlineWrapper>
+          <Label>개봉일 :</Label>
+          <Value>
+            <SharedDefaultSkeleton isLoading={isLoading}>
+              {openDt !== 'null' && openDt !== ' ' ? openDt : '-'}
+            </SharedDefaultSkeleton>
+          </Value>
+        </InlineWrapper>
+        <InlineWrapper>
+          <Label>누적 관객 수 :</Label>
+          <Value>
+            <SharedDefaultSkeleton isLoading={isLoading}>{formattedAudiAcc ?? '-'}</SharedDefaultSkeleton>
+          </Value>
+          명
+        </InlineWrapper>
       </div>
     </MovieBlock>
   );

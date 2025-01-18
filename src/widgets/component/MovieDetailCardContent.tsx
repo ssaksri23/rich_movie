@@ -128,11 +128,11 @@ const MovieTooltip: React.FC<{ data: Partial<DailyBoxOffice> }> = ({ data }) => 
     <TooltipContainer>
       <Header>
         <HeaderTop>
-          <Badge>#{data.rank}</Badge>
-          <Badge>{data.rankOldAndNew}</Badge>
+          <Badge>#{data?.rank}</Badge>
+          <Badge>{data?.rankOldAndNew}</Badge>
         </HeaderTop>
-        <MovieTitle>{data.movieNm}</MovieTitle>
-        <OpenDate>개봉일: {data.openDt}</OpenDate>
+        <MovieTitle>{data?.movieNm}</MovieTitle>
+        <OpenDate>개봉일: {data?.openDt}</OpenDate>
       </Header>
       <ContentWrapper>
         <StatItem>
@@ -141,7 +141,7 @@ const MovieTooltip: React.FC<{ data: Partial<DailyBoxOffice> }> = ({ data }) => 
             <StatLabel wasIncreased={checkIsIncreasedCompareYesterday(data?.salesChange)}>일일 매출</StatLabel>
           </StatLabelWrapper>
           <StatContent>
-            <StatValue>{Number(data.salesAmt).toLocaleString()}원</StatValue>
+            <StatValue>{Number(data?.salesAmt).toLocaleString()}원</StatValue>
           </StatContent>
         </StatItem>
         <StatItem>
@@ -150,7 +150,7 @@ const MovieTooltip: React.FC<{ data: Partial<DailyBoxOffice> }> = ({ data }) => 
             <StatLabel>당일 관객 수</StatLabel>
           </StatLabelWrapper>
           <StatContent>
-            <StatValue>{Number(data.audiCnt).toLocaleString()}명</StatValue>
+            <StatValue>{Number(data?.audiCnt).toLocaleString()}명</StatValue>
           </StatContent>
         </StatItem>
         <StatItem>
@@ -159,7 +159,7 @@ const MovieTooltip: React.FC<{ data: Partial<DailyBoxOffice> }> = ({ data }) => 
             <StatLabel>상영관</StatLabel>
           </StatLabelWrapper>
           <StatContent>
-            <StatValue>{Number(data.scrnCnt).toLocaleString()}개</StatValue>
+            <StatValue>{Number(data?.scrnCnt).toLocaleString()}개</StatValue>
           </StatContent>
         </StatItem>
 
@@ -169,7 +169,7 @@ const MovieTooltip: React.FC<{ data: Partial<DailyBoxOffice> }> = ({ data }) => 
             <StatLabel>점유율</StatLabel>
           </StatLabelWrapper>
           <StatContent>
-            <StatValue>{data.salesShare}%</StatValue>
+            <StatValue>{data?.salesShare}%</StatValue>
           </StatContent>
         </StatItem>
       </ContentWrapper>

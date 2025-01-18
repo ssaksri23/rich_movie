@@ -19,10 +19,14 @@ interface Movie {
 }
 
 export const MovieListWidget = ({ data }) => {
-  const movies = data?.boxOfficeResult?.dailyBoxOfficeList ?? new Array(10).fill(undefined);
+  const movies =
+    data?.boxOfficeResult?.dailyBoxOfficeList ??
+    new Array(10).fill({ movieNm: 'empty', openDt: 'empty', audiAcc: 'empty' }).map((initial, idx) => ({
+      ...initial,
+      rank: idx + 1,
+    }));
 
   const RefMovieItem = forwardRef<HTMLLIElement, MovieItemProps>((props, ref) => <MovieItem {...props} ref={ref} />);
-
   return (
     <StyledUl>
       {movies?.map((movie: Movie) => (

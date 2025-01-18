@@ -1,18 +1,33 @@
-import { Content, DefaultCardContainer, DefaultCardWrapper, Title } from './Default.styled';
+import { SharedDefaultSkeleton } from '../skeleton/Default';
+import {
+  Content,
+  DefaultCardContainer,
+  DefaultCardContentsWrapper,
+  DefaultCardWrapper,
+  Title,
+  Unit,
+} from './Default.styled';
 
 interface Props {
   title: string | React.ReactElement;
   titleColor?: string;
   content: string | React.ReactElement;
+  unit?: string;
+  isLoading?: boolean;
   ref?: React.ForwardedRef<HTMLDivElement>;
 }
 
-export const SharedDefaultCard = ({ title, titleColor, content, ref }: Props) => {
+export const SharedDefaultCard = ({ title, titleColor, content, unit, isLoading, ref }: Props) => {
   return (
     <DefaultCardContainer ref={ref}>
       <DefaultCardWrapper>
         <Title color={titleColor}>{title}</Title>
-        <Content>{content}</Content>
+        <DefaultCardContentsWrapper>
+          <SharedDefaultSkeleton isLoading={isLoading}>
+            <Content>{content}</Content>
+          </SharedDefaultSkeleton>
+          <Unit>{unit}</Unit>
+        </DefaultCardContentsWrapper>
       </DefaultCardWrapper>
     </DefaultCardContainer>
   );
