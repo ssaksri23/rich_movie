@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { COLOR } from '../lib/palette';
-import { FONT_SIZE, FONT_WEIGHT } from '../config/font';
+import { FONT_SIZE, FONT_WEIGHT } from '../../../../config/font';
+import { COLOR } from '../../../../lib/palette';
 
 export const HeaderWrapper = styled.div`
   width: 100%;

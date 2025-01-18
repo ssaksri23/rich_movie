@@ -16,7 +16,6 @@ const Container = styled.div`
   gap: 0.75rem;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   background: ${COLOR['backgroundColor']};
 `;
 

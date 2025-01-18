@@ -1,14 +1,6 @@
 import styled from 'styled-components';
-import { COLOR } from '../lib/palette';
-import { FONT_SIZE } from '../config/font';
-
-export const Container = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-`;
+import { FONT_SIZE } from '../../config/font';
+import { COLOR } from '../../lib/palette';
 
 export const TotalValueCardLayoutWrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR } from '../lib/palette';
+import { COLOR } from '../../../../lib/palette';
 
 const FooterContainer = styled.div`
   position: relative;
@@ -43,7 +43,7 @@ const TextBlock = styled.p`
   margin: 0;
 `;
 
-const Footer = () => {
+export const SharedFooter = () => {
   return (
     <FooterContainer>
       <ContentsWrapper>
@@ -56,5 +56,3 @@ const Footer = () => {
     </FooterContainer>
   );
 };
-
-export default Footer;

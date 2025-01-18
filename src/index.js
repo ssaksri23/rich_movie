@@ -10,6 +10,7 @@ import RootLayout from './common/Layout';
 import { ThemeProvider } from 'styled-components';
 import theme from './lib/deviceTheme';
 import { createTheme, MantineProvider } from '@mantine/core';
+import GlobalStyles from './GlobalStyles';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <RootLayout>
           <MantineProvider theme={mantineTheme}>
             <RouterProvider router={router} />
