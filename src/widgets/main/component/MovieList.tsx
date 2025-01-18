@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import MovieItem, { MovieItemProps } from './component/MovieItem';
-import MovieDetailCardTrigger from './component/MovieDetailCardTrigger';
 import { forwardRef } from 'react';
+import MovieDetailCardTrigger from './MovieDetailCardTrigger';
+import MovieItem, { MovieItemProps } from './MovieItem';
 
 const StyledUl = styled.ul`
   display: flex;
@@ -18,7 +18,7 @@ interface Movie {
   audiAcc: string;
 }
 
-export const MovieListWidget = ({ data }) => {
+export const MovieList = ({ data }) => {
   const movies =
     data?.boxOfficeResult?.dailyBoxOfficeList ??
     new Array(10).fill({ movieNm: 'empty', openDt: 'empty', audiAcc: 'empty' }).map((initial, idx) => ({

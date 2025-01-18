@@ -30,7 +30,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const NationFilter = ({ nation, nationHandler }) => {
+export const NationFilter = ({ nation, nationHandler }) => {
   const [chooseText, setChooseText] = useState('검색하실 국가를 선택해주세요.');
   const [hidden, setHidden] = useState(true);
 

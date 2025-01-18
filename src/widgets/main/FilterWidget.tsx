@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
-import Filters from '../../components/Filter';
 import { FilterStore, IFilterStore } from '../../zustand/filter';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { fetchRankTop10Data } from '../../shared/api/movie';
 import { formatCalcInputValueToInline } from '../../shared/lib/format';
+import { RankingSearchFilter } from '../../entities/filter/ui';
 
 export const FilterWidget = () => {
   const initRender = useRef(true);
@@ -102,5 +102,5 @@ export const FilterWidget = () => {
     searchExecute();
   }, [date, nation, searchExecute]);
 
-  return <Filters nation={nation} nationHandler={NationHandler} />;
+  return <RankingSearchFilter nation={nation} nationHandler={NationHandler} />;
 };

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { COLOR } from '../../lib/palette';
-import NationFilter from './NationFilter';
-import dayjs from 'dayjs';
-import DateFilter from './DateFilter';
-import { useDatePicker } from './hooks/useDatePicker';
-import { FilterStore } from '../../zustand/filter';
 import { useEffect } from 'react';
+import dayjs from 'dayjs';
+import { COLOR } from '../../../lib/palette';
+import { FilterStore } from '../../../zustand/filter';
+import { useDatePicker } from '../hooks/useDatePicker';
+import { NationFilter } from './component/NationFilter';
+import { DateFilter } from './component/DateFilter';
 
 const Container = styled.div`
   position: relative;
@@ -26,7 +26,7 @@ const SearchFormWrapper = styled.div`
   gap: 0.25rem;
 `;
 
-const Filters = ({ nation, nationHandler }) => {
+export const RankingSearchFilter = ({ nation, nationHandler }) => {
   const { updateState } = FilterStore();
 
   const customDatePicker = useDatePicker({
@@ -56,5 +56,3 @@ const Filters = ({ nation, nationHandler }) => {
     </Container>
   );
 };
-
-export default Filters;

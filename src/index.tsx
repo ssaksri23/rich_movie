@@ -4,9 +4,9 @@ import './index.css';
 import '@mantine/core/styles.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
-import { router } from './routes/root';
+import { router, AppRouter } from './app/routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import RootLayout from './common/Layout';
+import RootLayout from './app/Layout';
 import { ThemeProvider } from 'styled-components';
 import theme from './lib/deviceTheme';
 import { createTheme, MantineProvider } from '@mantine/core';
@@ -18,6 +18,8 @@ const mantineTheme = createTheme({
   /** Your theme override here */
 });
 
+const appRouter: AppRouter = router;
+
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -25,7 +27,7 @@ ReactDOM.render(
         <GlobalStyles />
         <RootLayout>
           <MantineProvider theme={mantineTheme}>
-            <RouterProvider router={router} />
+            <RouterProvider router={appRouter} />
           </MantineProvider>
         </RootLayout>
       </ThemeProvider>

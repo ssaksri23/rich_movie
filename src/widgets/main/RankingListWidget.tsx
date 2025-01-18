@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import TotalAudiCnt from '../../components/Summary/TotalAudiCnt';
-import TotalSales from '../../components/Summary/TotalSales';
 import { fetchRankTop10Data } from '../../shared/api/movie';
-import { MovieListWidget } from '../MovieListWidget';
+import { MovieList } from './component/MovieList';
 import { FilterStore, IFilterStore } from '../../zustand/filter';
 import { MainSection, ErrorContent, ContentWrapper, TotalValueCardLayoutWrapper } from './RankingListWidget.styled';
+import { TotalAudiCnt, TotalSales } from '../../entities/movie/ui';
 
 export const RankingListWidget = () => {
   // ======== [ zustand state management] ==========
@@ -26,7 +25,7 @@ export const RankingListWidget = () => {
             <TotalAudiCnt />
             <TotalSales />
           </TotalValueCardLayoutWrapper>
-          <MovieListWidget data={data} />
+          <MovieList data={data} />
         </ContentWrapper>
       )}
     </MainSection>

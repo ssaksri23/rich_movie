@@ -1,5 +1,5 @@
-import { DailyBoxOffice } from '../../model/api';
-import { SharedDefaultTooltip } from '../../shared/ui';
+import { DailyBoxOffice } from '../../../model/api';
+import { SharedDefaultTooltip } from '../../../shared/ui';
 import MovieDetailCardContent from './MovieDetailCardContent';
 
 interface MovieDetailCardTriggerProps {

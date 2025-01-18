@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import { UNITS } from '../../config/unit';
-import { BoxOfficeApiReturnData } from '../../model/api';
-import { SharedDefaultCard } from '../../shared/ui';
-import { getTotalData } from '../../shared/lib/data';
-import { formatWonToMillionWon } from '../../shared/lib/format';
-import { FilterStore, IFilterStore } from '../../zustand/filter';
+import { UNITS } from '../../../config/unit';
+import { BoxOfficeApiReturnData } from '../../../model/api';
+import { getTotalData } from '../../../shared/lib/data';
+import { formatWonToMillionWon } from '../../../shared/lib/format';
+import { SharedDefaultCard } from '../../../shared/ui';
+import { FilterStore, IFilterStore } from '../../../zustand/filter';
 
-const TotalSales = () => {
+/**
+ * @desc Top 10 영화들에 대한 총 매출액을 보여주는 컴포넌트
+ */
+export const TotalSales: React.FC = () => {
   const { date, nation } = FilterStore<IFilterStore>((state) => state);
   const { data, isLoading, isFetching } = useQuery<BoxOfficeApiReturnData>({
     queryKey: ['movieData', date, nation],
@@ -26,5 +29,3 @@ const TotalSales = () => {
     />
   );
 };
-
-export default TotalSales;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { DailyBoxOffice } from '../../model/api';
-import { FONT_SIZE, FONT_WEIGHT } from '../../config/font';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../config/style';
+import { FONT_SIZE, FONT_WEIGHT } from '../../../config/font';
+import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
+import { DailyBoxOffice } from '../../../model/api';
 
 const TooltipContainer = styled.div`
   width: 100%;

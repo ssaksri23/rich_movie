@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { DatePickerInput } from '@mantine/dates';
-import { COLOR } from '../../lib/palette';
-import { useDatePicker } from './hooks/useDatePicker';
-import { CalendarIcon } from '../../shared/assets/icons';
+import { COLOR } from '../../../../lib/palette';
+import { CalendarIcon } from '../../../../shared/assets/icons';
+import { useDatePicker } from '../../hooks/useDatePicker';
 
 const DatePickerContainer = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ interface Props {
   useDatePicker: ReturnType<typeof useDatePicker>;
 }
 
-const DateFilter = ({ useDatePicker }: Props) => {
+export const DateFilter = ({ useDatePicker }: Props) => {
   const { date, updateDate } = useDatePicker;
   const maximumDate = new Date();
   maximumDate.setDate(maximumDate.getDate() - 1); // 어제 날짜로 설정
@@ -35,5 +35,3 @@ const DateFilter = ({ useDatePicker }: Props) => {
     </DatePickerContainer>
   );
 };
-
-export default DateFilter;
