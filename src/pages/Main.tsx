@@ -1,35 +1,17 @@
 import { useCallback, useEffect, useRef } from 'react';
-import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import Filters from '../components/Filter';
 import GlobalStyles from '../GlobalStyles';
-import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { IFilterStore, FilterStore } from '../zustand/filter';
 import TotalAudiCnt from '../components/Summary/TotalAudiCnt';
-import { TotalValueCardLayoutWrapper, ContentWrapper, ErrorContent } from './Main.styled';
+import { TotalValueCardLayoutWrapper, ContentWrapper, ErrorContent, MainSection, Container } from './Main.styled';
 import TotalSales from '../components/Summary/TotalSales';
 import { formatCalcInputValueToInline } from '../shared/lib/format';
 import { MovieListWidget } from '../widgets';
 import { fetchRankTop10Data } from '../shared/api/movie';
-
-const Container = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-`;
-
-const MainWrapper = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-`;
 
 const Main = () => {
   const initRender = useRef(true);
@@ -131,7 +113,7 @@ const Main = () => {
       <GlobalStyles />
       <Header />
       <Filters nation={nation} nationHandler={NationHandler} />
-      <MainWrapper>
+      <MainSection>
         {isError ? (
           <ErrorContent>데이터 요청에 문제가 발생하였습니다. 잠시 후 다시 시도해주세요.</ErrorContent>
         ) : (
@@ -142,10 +124,8 @@ const Main = () => {
             </TotalValueCardLayoutWrapper>
             <MovieListWidget data={data} />
           </ContentWrapper>
-          // <SharedDefaultSpinner loading={isLoading || isFetching}>
-          // </SharedDefaultSpinner>
         )}
-      </MainWrapper>
+      </MainSection>
       <Footer />
     </Container>
   );

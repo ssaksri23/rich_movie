@@ -7,7 +7,7 @@ import { SharedDefaultSkeleton } from '../../shared/ui';
 import { useQuery } from '@tanstack/react-query';
 import { FilterStore, IFilterStore } from '../../zustand/filter';
 
-const MovieBlock = styled.li`
+const MovieCardContainer = styled.li`
   display: flex;
   gap: 2rem;
   justify-content: space-between;
@@ -26,108 +26,50 @@ const MovieBlock = styled.li`
     margin-top: 0.1rem;
   }
 
-  .side__left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
-    .movie__title {
-      flex: 1;
-      width: 5rem;
-      font-weight: ${FONT_WEIGHT.REGULAR};
-      color: ${COLOR.text.basicColor};
-    }
-
-    .movie__rank {
-      font-size: ${FONT_SIZE.SEMI_LARGE};
-      border-radius: 0.5rem;
-      padding: 0.5rem;
-      width: 1.25em;
-      text-align: center;
-    }
+  @media ${(props) => props.theme.mobileM} {
+    padding: 1rem 0.5rem;
   }
+`;
 
-  .side__right {
-    display: inherit;
-    flex-flow: column wrap;
-    justify-content: center;
-    gap: 0.25rem;
-    min-width: 12rem;
-    align-items: flex-end;
-    font-weight: ${FONT_WEIGHT.REGULAR};
-  }
+const MovieLeftSideWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
 
   @media ${(props) => props.theme.tabletS} {
     .side__left {
-      .movie__title {
-        font-size: ${FONT_SIZE.SEMI_LARGE};
-      }
-
       .movie__rank-block {
         margin-right: 0.5rem;
-        .movie__rank {
-          font-size: ${FONT_SIZE.LARGE};
-          padding: 0.1rem;
-        }
-
-        .movie__rankOldAndNew {
-          font-size: ${FONT_SIZE.SEMI_SMALL};
-        }
       }
-    }
-
-    .side__right {
-      font-size: ${FONT_SIZE.SEMI_SMALL};
-    }
-  }
-
-  @media ${(props) => props.theme.mobileL} {
-    padding: 1rem 0.5em;
-    .side__left {
-      flex: 1;
-      display: inherit;
-      align-items: center;
-
-      .movie__title {
-        font-size: ${FONT_SIZE.SEMI_SMALL};
-        flex: 0.8;
-      }
-
-      .movie__rank-block {
-        margin-right: 0.3rem;
-        .movie__rank {
-          font-size: ${FONT_SIZE.SEMI_LARGE};
-          padding: 0.1rem;
-        }
-      }
-    }
-
-    .side__right {
-      flex: 0.6;
-      font-size: ${FONT_SIZE.SMALL};
     }
   }
 
   @media ${(props) => props.theme.mobileM} {
     padding: 1rem 0.5rem;
     .side__left {
-      .movie__title {
-        font-size: ${FONT_SIZE.SEMI_SMALL};
-        flex: 0.6;
-      }
-
       .movie__rank-block {
         margin-right: 0.2rem;
-        .movie__rank {
-          font-size: ${FONT_SIZE.MEDIUM};
-          padding: 0.1rem;
-        }
       }
     }
-    .side__right {
-      flex: 0.6;
-      font-size: ${FONT_SIZE.SMALL};
-    }
+  }
+`;
+
+const MovieRightSideWrapper = styled.div`
+  display: inherit;
+  flex-flow: column wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 12rem;
+  align-items: flex-end;
+  font-weight: ${FONT_WEIGHT.REGULAR};
+  @media ${(props) => props.theme.tabletS} {
+    font-size: ${FONT_SIZE.SEMI_SMALL};
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    flex: 0.6;
+    font-size: ${FONT_SIZE.SMALL};
   }
 `;
 
@@ -136,7 +78,7 @@ const RankWrapper = styled.div`
   position: relative;
 `;
 
-const RankLatest = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
+const NewEntryFlagText = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
   position: absolute;
   top: -0.5rem;
   left: -50%;
@@ -157,6 +99,65 @@ const RankLatest = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
       ${(props) =>
         props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
     }
+  }
+
+  @media ${(props) => props.theme.tabletS} {
+    .movie__rankOldAndNew {
+      font-size: ${FONT_SIZE.SEMI_SMALL};
+    }
+  }
+`;
+
+const MovieRank = styled.span`
+  font-size: ${FONT_SIZE.SEMI_LARGE};
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 1.25em;
+  text-align: center;
+
+  @media ${(props) => props.theme.mobileL} {
+    .movie__rank {
+      font-size: ${FONT_SIZE.SEMI_LARGE};
+      padding: 0.1rem;
+    }
+  }
+
+  @media ${(props) => props.theme.tabletS} {
+    .movie__rank {
+      font-size: ${FONT_SIZE.LARGE};
+      padding: 0.1rem;
+    }
+  }
+
+  @media ${(props) => props.theme.mobileL} {
+    font-size: ${FONT_SIZE.SEMI_LARGE};
+    padding: 0.1rem;
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    font-size: ${FONT_SIZE.MEDIUM};
+    padding: 0.1rem;
+  }
+`;
+
+const MovieTitle = styled.h2`
+  flex: 1;
+  width: 5rem;
+  font-weight: ${FONT_WEIGHT.REGULAR};
+  color: ${COLOR.text.basicColor};
+
+  @media ${(props) => props.theme.tabletS} {
+    font-size: ${FONT_SIZE.SEMI_LARGE};
+  }
+
+  @media ${(props) => props.theme.mobileL} {
+    font-size: ${FONT_SIZE.SEMI_SMALL};
+    flex: 0.8;
+  }
+
+  @media ${(props) => props.theme.mobileM} {
+    font-size: ${FONT_SIZE.SEMI_SMALL};
+    flex: 0.6;
   }
 `;
 
@@ -188,6 +189,9 @@ export interface MovieItemProps {
   ref: React.ForwardedRef<HTMLLIElement>;
 }
 
+const NewEntryFlag = ({ rankOldAndNew }) =>
+  rankOldAndNew === 'NEW' && <NewEntryFlagText rankOldAndNew={rankOldAndNew}>{'new'}</NewEntryFlagText>;
+
 const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => {
   const { date, nation } = FilterStore<IFilterStore>((state) => state);
   const { isLoading } = useQuery({
@@ -196,17 +200,17 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
   });
   const formattedAudiAcc = audiAcc?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //천 단위 (,) 붙이는 코드
   return (
-    <MovieBlock ref={ref} className="movie-block">
-      <div className="side__left">
+    <MovieCardContainer ref={ref}>
+      <MovieLeftSideWrapper>
         <RankWrapper>
-          <p className="movie__rank">{rank}</p>
-          {rankOldAndNew === 'NEW' && <RankLatest rankOldAndNew={rankOldAndNew}>{'new'}</RankLatest>}
+          <NewEntryFlag rankOldAndNew={rankOldAndNew} />
+          <MovieRank>{rank}</MovieRank>
         </RankWrapper>
-        <h2 className="movie__title">
+        <MovieTitle>
           <SharedDefaultSkeleton isLoading={isLoading}>{title}</SharedDefaultSkeleton>
-        </h2>
-      </div>
-      <div className="side__right">
+        </MovieTitle>
+      </MovieLeftSideWrapper>
+      <MovieRightSideWrapper>
         <InlineWrapper>
           <Label>개봉일 :</Label>
           <Value>
@@ -222,8 +226,8 @@ const MovieItem = ({ title, openDt, id, rank, rankOldAndNew, audiAcc, ref }) => 
           </Value>
           명
         </InlineWrapper>
-      </div>
-    </MovieBlock>
+      </MovieRightSideWrapper>
+    </MovieCardContainer>
   );
 };
 
