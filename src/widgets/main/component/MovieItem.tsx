@@ -53,9 +53,7 @@ const MovieRightSideWrapper = styled.div`
   max-width: 12rem;
   align-items: flex-end;
   font-weight: ${FONT_WEIGHT.REGULAR};
-  @media ${(props) => props.theme.tabletS} {
-    font-size: ${FONT_SIZE.SEMI_SMALL};
-  }
+  font-size: ${FONT_SIZE.SEMI_LARGE};
 
   @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.SMALL};

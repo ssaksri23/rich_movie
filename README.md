@@ -1,12 +1,22 @@
-# 박스오피스 영화 순위 페이지 (Self Project #4)
-
-- Created by **React\***
+# 박스오피스 영화 Top 10 랭킹 조회 서비스
 
 <hr>
 
 ## **Preview**
 
 > ### Renewal (2025)
+
+#### 🛠️ 2025.01.19
+
+- Mobile 반응형 레이아웃 및 UI 스타일 구현
+
+> Desktop Screen 🖥️
+
+![alt text](/result/250119_Result_Desktop.gif)
+
+> Mobile Screen 📱
+
+![alt text](/result/250119_Result_Mobile.gif)
 
 #### 🛠️ 2025.01.12
 
@@ -34,23 +44,24 @@
 
 > <hr>
 
-## **Features**
+## **Environment**
 
-(내용 업데이트 중...✏️)
+![Static Badge](https://img.shields.io/badge/react-grey?style=flat&logo=react&label=v18&labelColor=black)
 
-> <h3>React</h3>
->
-> - **axios** 라이브러리를 통해 영화 컨텐츠 정보 오픈소스 API을 사용
-> - **styled-component** 라이브러리를 통한 스타일 관리
-> - 반응형 레이아웃 적용(모바일/테블릿/노트북)
-> - ~~props 값의 정확도 향상을 위해 각 prop에 **propType** 지정~~ (TS 적용으로 대체됨\_2022.03)
-> <h3>TypeScript</h3>
-> - 기존 JavaScript --> TypeScript 적용
->
-> <h3> 기타 </h3>
->
-> (작성 중)
+![Static Badge](https://img.shields.io/badge/tanstack_/_react__query-grey?style=flat&logo=reactQuery&label=v5&labelColor=black)
+
+![Static Badge](https://img.shields.io/badge/styled_components-grey?style=flat&logo=styledComponents&label=v5&labelColor=black)
+
+-----!(🚧 작성 중 🚧)------
+
+- **axios** 라이브러리를 통해 영화 컨텐츠 정보 오픈소스 API을 사용
+- **styled-component** 라이브러리를 통한 스타일 관리
+- 반응형 레이아웃 적용(모바일/테블릿/노트북)
+- ~~props 값의 정확도 향상을 위해 각 prop에 **propType** 지정~~ (TS 적용으로 대체됨\_2022.03)
+- 기존 JavaScript --> TypeScript 적용
+
+-----(🚧 작성 중 🚧)!------
 
 ## **Go to the page**
 
-: https://dlwlsdn201.github.io/movie-rank-page/
+: <a href="https://project-box-office-react-dlwlsdn201s-projects.vercel.app/">서비스 사이트 바로가기 🔗</a>
