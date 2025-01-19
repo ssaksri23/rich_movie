@@ -68,31 +68,17 @@ const RankWrapper = styled.div`
 
 const NewEntryFlagText = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
   position: absolute;
-  top: -0.5rem;
+  top: -25%;
   left: -50%;
   align-self: flex-start;
   margin: 0;
   font-weight: ${FONT_WEIGHT.THIN};
   ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })}
 
-  @media ${(props) => props.theme.mobileL} {
-    font-size: ${FONT_SIZE.SEMI_SMALL};
-    ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })};
-  }
-
   @media ${(props) => props.theme.mobile} {
-    .movie__rankOldAndNew {
-      font-size: ${FONT_SIZE.SMALL};
-      margin-right: 0.2rem;
-      ${(props) =>
-        props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] }}
-    }
-  }
-
-  @media ${(props) => props.theme.tabletS} {
-    .movie__rankOldAndNew {
-      font-size: ${FONT_SIZE.SEMI_SMALL};
-    }
+    font-size: ${FONT_SIZE.SMALL};
+    margin-right: 0.2rem;
+    ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })}
   }
 `;
 
@@ -103,23 +89,11 @@ const MovieRank = styled.span`
   width: 1.25em;
   text-align: center;
 
-  @media ${(props) => props.theme.mobileL} {
-    .movie__rank {
-      font-size: ${FONT_SIZE.SEMI_LARGE};
-      padding: 0.1rem;
-    }
-  }
-
   @media ${(props) => props.theme.tabletS} {
     .movie__rank {
       font-size: ${FONT_SIZE.LARGE};
       padding: 0.1rem;
     }
-  }
-
-  @media ${(props) => props.theme.mobileL} {
-    font-size: ${FONT_SIZE.SEMI_LARGE};
-    padding: 0.1rem;
   }
 
   @media ${(props) => props.theme.mobile} {
