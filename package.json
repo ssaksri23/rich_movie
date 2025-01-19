@@ -68,7 +68,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://dlwlsdn201.github.io/movie-rank-page/",
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.62.15",
     "tsc-watch": "^4.6.2"
