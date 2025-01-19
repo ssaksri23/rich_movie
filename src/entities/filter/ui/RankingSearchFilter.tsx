@@ -50,9 +50,9 @@ export const RankingSearchFilter = ({ nation, nationHandler }) => {
         {/* 날짜 필터 */}
         <DateFilter useDatePicker={customDatePicker} />
       </SearchFormWrapper>
-      <h5 style={{ textAlign: 'center', width: '100%' }}>
-        조회 날짜 범위: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}
-      </h5>
+      <h4 style={{ textAlign: 'center', width: '100%' }}>
+        조회 가능 날짜: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}
+      </h4>
     </Container>
   );
 };
