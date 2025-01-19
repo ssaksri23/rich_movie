@@ -5,11 +5,11 @@ import { RESPONSIVE_MEDIA_QUERY } from '../../config/responsive';
 
 export const TotalValueCardLayoutWrapper = styled.div`
   display: flex;
-  gap: 1.5rem;
   width: 100%;
+  gap: 0.75rem;
 
-  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
-    gap: 0.75rem;
+  @media ${RESPONSIVE_MEDIA_QUERY.desktop} {
+    padding: 0 10rem;
   }
 `;
 

@@ -6,6 +6,7 @@ import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
 import { COLOR } from '../../../lib/palette';
 import { SharedDefaultSkeleton } from '../../../shared/ui';
 import { FilterStore, IFilterStore } from '../../../zustand/filter';
+import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
 
 const MovieCardContainer = styled.li`
   display: flex;
@@ -26,7 +27,7 @@ const MovieCardContainer = styled.li`
     margin-top: 0.1rem;
   }
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     padding: 1.5rem;
     gap: 1.25rem;
   }
@@ -38,7 +39,7 @@ const MovieLeftSideWrapper = styled.div`
   gap: 1.5rem;
   width: 100%;
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     gap: 1rem;
     justify-content: flex-start;
   }
@@ -56,7 +57,7 @@ const MovieRightSideWrapper = styled.div`
     font-size: ${FONT_SIZE.SEMI_SMALL};
   }
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.SMALL};
   }
 `;
@@ -75,7 +76,7 @@ const NewEntryFlagText = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
   font-weight: ${FONT_WEIGHT.THIN};
   ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })}
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.SMALL};
     margin-right: 0.2rem;
     ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })}
@@ -96,20 +97,21 @@ const MovieRank = styled.span`
     }
   }
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.MEDIUM};
     padding: 0.1rem;
   }
 `;
 
-const MovieTitle = styled.h2`
+const MovieTitle = styled.div`
   flex: 1;
   min-width: 5rem;
   font-weight: ${FONT_WEIGHT.REGULAR};
   color: ${COLOR.text.basicColor};
   word-break: keep-all;
+  font-size: ${FONT_SIZE.SEMI_LARGE};
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.MEDIUM};
   }
 `;
@@ -120,7 +122,7 @@ const InlineWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
-  @media ${(props) => props.theme.mobile} {
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     gap: 0.5rem;
   }
 `;

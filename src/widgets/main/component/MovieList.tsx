@@ -2,11 +2,16 @@ import styled from 'styled-components';
 import { forwardRef } from 'react';
 import MovieDetailCardTrigger from './MovieDetailCardTrigger';
 import MovieItem, { MovieItemProps } from './MovieItem';
+import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
 
 const StyledUl = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  @media ${RESPONSIVE_MEDIA_QUERY.desktop} {
+    padding: 0 10rem;
+  }
 `;
 
 interface Movie {
