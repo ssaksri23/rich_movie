@@ -6,6 +6,8 @@ import { FilterStore } from '../../../zustand/filter';
 import { useDatePicker } from '../hooks/useDatePicker';
 import { NationFilter } from './component/NationFilter';
 import { DateFilter } from './component/DateFilter';
+import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
+import { FONT_SIZE } from '../../../config/font';
 
 const Container = styled.div`
   position: relative;
@@ -24,6 +26,11 @@ const SearchFormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+`;
+
+const InfoText = styled.span`
+  text-align: center;
+  width: 100%;
 `;
 
 export const RankingSearchFilter = ({ nation, nationHandler }) => {
@@ -50,9 +57,7 @@ export const RankingSearchFilter = ({ nation, nationHandler }) => {
         {/* 날짜 필터 */}
         <DateFilter useDatePicker={customDatePicker} />
       </SearchFormWrapper>
-      <h4 style={{ textAlign: 'center', width: '100%' }}>
-        조회 가능 날짜: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}
-      </h4>
+      <InfoText>조회 가능 날짜: 2004.01.01 ~ {dayjs().subtract(1, 'day').format('YYYY.MM.DD')}</InfoText>
     </Container>
   );
 };

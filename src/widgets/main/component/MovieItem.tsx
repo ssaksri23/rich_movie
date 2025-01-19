@@ -26,8 +26,9 @@ const MovieCardContainer = styled.li`
     margin-top: 0.1rem;
   }
 
-  @media ${(props) => props.theme.mobileM} {
-    padding: 1rem 0.5rem;
+  @media ${(props) => props.theme.mobile} {
+    padding: 1.5rem;
+    gap: 1.25rem;
   }
 `;
 
@@ -37,21 +38,9 @@ const MovieLeftSideWrapper = styled.div`
   gap: 1.5rem;
   width: 100%;
 
-  @media ${(props) => props.theme.tabletS} {
-    .side__left {
-      .movie__rank-block {
-        margin-right: 0.5rem;
-      }
-    }
-  }
-
-  @media ${(props) => props.theme.mobileM} {
-    padding: 1rem 0.5rem;
-    .side__left {
-      .movie__rank-block {
-        margin-right: 0.2rem;
-      }
-    }
+  @media ${(props) => props.theme.mobile} {
+    gap: 1rem;
+    justify-content: flex-start;
   }
 `;
 
@@ -60,15 +49,14 @@ const MovieRightSideWrapper = styled.div`
   flex-flow: column wrap;
   justify-content: center;
   gap: 0.25rem;
-  min-width: 12rem;
+  max-width: 12rem;
   align-items: flex-end;
   font-weight: ${FONT_WEIGHT.REGULAR};
   @media ${(props) => props.theme.tabletS} {
     font-size: ${FONT_SIZE.SEMI_SMALL};
   }
 
-  @media ${(props) => props.theme.mobileM} {
-    flex: 0.6;
+  @media ${(props) => props.theme.mobile} {
     font-size: ${FONT_SIZE.SMALL};
   }
 `;
@@ -92,7 +80,7 @@ const NewEntryFlagText = styled.h4<{ rankOldAndNew: 'NEW' | 'OLD' }>`
     ${(props) => (props.rankOldAndNew === 'NEW' ? { color: COLOR['NewRankColor'] } : { color: COLOR['OldRankColor'] })};
   }
 
-  @media ${(props) => props.theme.mobileM} {
+  @media ${(props) => props.theme.mobile} {
     .movie__rankOldAndNew {
       font-size: ${FONT_SIZE.SMALL};
       margin-right: 0.2rem;
@@ -134,7 +122,7 @@ const MovieRank = styled.span`
     padding: 0.1rem;
   }
 
-  @media ${(props) => props.theme.mobileM} {
+  @media ${(props) => props.theme.mobile} {
     font-size: ${FONT_SIZE.MEDIUM};
     padding: 0.1rem;
   }
@@ -142,22 +130,13 @@ const MovieRank = styled.span`
 
 const MovieTitle = styled.h2`
   flex: 1;
-  width: 5rem;
+  min-width: 5rem;
   font-weight: ${FONT_WEIGHT.REGULAR};
   color: ${COLOR.text.basicColor};
+  word-break: keep-all;
 
-  @media ${(props) => props.theme.tabletS} {
-    font-size: ${FONT_SIZE.SEMI_LARGE};
-  }
-
-  @media ${(props) => props.theme.mobileL} {
-    font-size: ${FONT_SIZE.SEMI_SMALL};
-    flex: 0.8;
-  }
-
-  @media ${(props) => props.theme.mobileM} {
-    font-size: ${FONT_SIZE.SEMI_SMALL};
-    flex: 0.6;
+  @media ${(props) => props.theme.mobile} {
+    font-size: ${FONT_SIZE.MEDIUM};
   }
 `;
 
@@ -167,6 +146,9 @@ const InlineWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
+  @media ${(props) => props.theme.mobile} {
+    gap: 0.5rem;
+  }
 `;
 
 const Label = styled.div`

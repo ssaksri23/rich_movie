@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from 'styled-button-component';
 import { Dropdown, DropdownItem, DropdownMenu } from 'styled-dropdown-component';
 import styled from 'styled-components';
+import { RESPONSIVE_MEDIA_QUERY } from '../../../../config/responsive';
 
 //목록 감추기용 div
 const HideItemsBlock = styled.div`
@@ -27,6 +28,10 @@ const StyledButton = styled(Button)`
   &:focus {
     transition: background 0.2s;
     background: #4f47e5 !important;
+  }
+
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
+    width: 100%;
   }
 `;
 

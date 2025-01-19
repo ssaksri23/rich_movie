@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { FONT_SIZE, FONT_WEIGHT } from '../../../config/font';
 import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
 import { DailyBoxOffice } from '../../../model/api';
+import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
 
 const TooltipContainer = styled.div`
   width: 100%;
   min-width: 25rem;
   max-width: 40rem;
   height: 100%;
-  /* background: white; */
   border-radius: ${DEFAULT_BORDER_RADIUS_REM};
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -19,6 +19,12 @@ const TooltipContainer = styled.div`
 
   @media (prefers-color-scheme: dark) {
     background: #1f2937;
+  }
+
+  background-color: rgba(255, 255, 255, 0.7); /* 흰색 배경에 30% 투명도 */
+
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
+    min-width: 80vw;
   }
 `;
 
@@ -32,6 +38,10 @@ const Header = styled.div`
   @media (prefers-color-scheme: dark) {
     background: #1d4ed8;
   }
+
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
+    padding: 0.5rem;
+  }
 `;
 
 const HeaderTop = styled.div`
@@ -42,11 +52,11 @@ const HeaderTop = styled.div`
 
 const Badge = styled.span`
   color: white;
-  font-size: 12px;
+  font-size: ${FONT_SIZE.SMALL};
   font-weight: 500;
   padding: 4px 8px;
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: ${DEFAULT_BORDER_RADIUS_REM};
 `;
 
 const MovieTitle = styled.h3`
@@ -75,6 +85,10 @@ const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
+    gap: 1rem;
+  }
 `;
 
 const StatItem = styled.div`

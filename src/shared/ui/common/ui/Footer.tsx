@@ -14,8 +14,6 @@ const FooterContainer = styled.div`
   background: ${COLOR['backgroundColor']};
 
   @media ${(props) => props.theme.tabletM} {
-    /* margin-top: auto; */
-    /* padding: 1rem 0; */
   }
 `;
 
@@ -26,19 +24,13 @@ const ContentsWrapper = styled.div`
   flex-flow: row wrap;
   gap: 0.5rem;
 
-  @media ${(props) => props.theme.tabletM} {
-  }
-
-  @media ${(props) => props.theme.mobileL} {
-    width: 24rem;
-  }
-
-  @media ${(props) => props.theme.mobileM} {
-    width: 20rem;
+  @media ${(props) => props.theme.mobile} {
+    width: 100%;
+    gap: 0.125rem;
   }
 `;
 
-const TextBlock = styled.p`
+const TextBlock = styled.span`
   text-align: center;
   margin: 0;
 `;

@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import { FONT_SIZE } from '../../config/font';
 import { COLOR } from '../../lib/palette';
+import { RESPONSIVE_MEDIA_QUERY } from '../../config/responsive';
 
 export const TotalValueCardLayoutWrapper = styled.div`
   display: flex;
   gap: 1.5rem;
   width: 100%;
+
+  @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
+    gap: 0.75rem;
+  }
 `;
 
 export const MainSection = styled.section`
