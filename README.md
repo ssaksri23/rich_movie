@@ -44,6 +44,20 @@
 
 ---
 
+## **Features**
+
+- 국내/국외별 Top 10 영화 랭킹 데이터 정보 제공
+
+- 특정 날짜 기준의 Top 10 영화 랭킹 데이터 정보 제공
+
+- Top 10 영화들에 대한 `총 관객 수, 총 매출액` 정보 제공
+
+- 특정 영화에 대한 `순위, 개봉일, 누적 관객수` 정보 제공
+
+- 특정 영화에 대한 `일일 매출액, 당일 관객 수, 상영관 수, 점유율` 옵션 정보를 **Tooltip** UI로 제공
+
+---
+
 ## **Skills**
 
 ![Static Badge](https://img.shields.io/badge/react-grey?style=flat&logo=react&label=v18&labelColor=black)
