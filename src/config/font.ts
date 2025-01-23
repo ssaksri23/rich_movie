@@ -8,8 +8,8 @@ export const enum FONT_SIZE {
 }
 
 export const enum FONT_WEIGHT {
-  THIN = '400',
+  THIN = '300',
   REGULAR = '500',
-  SEMI_BOLD = '600',
-  BOLD = '700',
+  SEMI_BOLD = '700',
+  BOLD = '800',
 }

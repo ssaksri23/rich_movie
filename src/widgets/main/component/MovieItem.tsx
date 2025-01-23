@@ -10,7 +10,7 @@ import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
 
 const MovieCardContainer = styled.li`
   display: flex;
-  gap: 2rem;
+  /* gap: 2rem; */
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
@@ -50,10 +50,11 @@ const MovieRightSideWrapper = styled.div`
   flex-flow: column wrap;
   justify-content: center;
   gap: 0.25rem;
-  max-width: 12rem;
+  max-width: max-content;
+  min-width: 32%;
   align-items: flex-end;
-  font-weight: ${FONT_WEIGHT.REGULAR};
-  font-size: ${FONT_SIZE.SEMI_LARGE};
+  font-weight: ${FONT_WEIGHT.THIN};
+  font-size: ${FONT_SIZE.MEDIUM};
 
   @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.SMALL};
