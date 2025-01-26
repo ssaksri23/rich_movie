@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -29,15 +30,15 @@
 
     /* Modules */
     "module": "commonJS" /* Specify what module code is generated. */,
-    // "rootDir": "./",                                  /* Specify the root folder within your source files. */
+    // "rootDir": "./" /* Specify the root folder within your source files. */,
     "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
+    // "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
-      "./typings",
-      "./node_modules/@types",
-      "./typings/lib"
+      // "./typings",
+      "./node_modules/@types"
+      // "./typings/lib"
     ] /* Specify multiple folders that act like `./node_modules/@types`. */,
     "types": ["node"] /* Specify type package names to be included without being referenced in a source file. */,
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
@@ -46,7 +47,7 @@
 
     /* JavaScript Support */
     "allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
-    // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
+    "checkJs": false /* Enable error reporting in type-checked JavaScript files. */,
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from `node_modules`. Only applicable with `allowJs`. */
 
     /* Emit */
@@ -71,7 +72,7 @@
     // "noEmitHelpers": true,                            /* Disable generating custom helper functions like `__extends` in compiled output. */
     // "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
     // "preserveConstEnums": true,                       /* Disable erasing `const enum` declarations in generated code. */
-    "declarationDir": "typings" /* Specify the output directory for generated declaration files. */,
+    // "declarationDir": "typings" /* Specify the output directory for generated declaration files. */,
     // "preserveValueImports": true,                     /* Preserve unused imported values in the JavaScript output that would otherwise be removed. */
 
     /* Interop Constraints */
@@ -106,14 +107,12 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "paths": {
-    "*": ["./node_modules/*", "./typings/*"],
-    "@app/*": ["app/*"],
-    "@config/*": ["app/_config/*"],
-    "@environment/*": ["environments/*"],
-    "@shared/*": ["app/_shared/*"],
-    "@helpers/*": ["helpers/*"]
-  }
+  "include": [
+    "src/**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "craco.config.js"
+    // new
+  ],
+  "exclude": ["node_modules"]
 }
