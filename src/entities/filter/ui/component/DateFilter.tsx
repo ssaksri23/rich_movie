@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { DatePickerInput } from '@mantine/dates';
-import { COLOR } from '../../../../lib/palette';
-import { CalendarIcon } from '../../../../shared/assets/icons';
-import { useDatePicker } from '../../hooks/useDatePicker';
+import { COLOR } from '@shared/config/palette';
+import { CalendarIcon } from '@shared/assets/icons';
+import { useDatePicker } from '@entities/filter/hooks/useDatePicker';
 
 const DatePickerContainer = styled.div`
   position: relative;

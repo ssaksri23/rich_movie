@@ -7,8 +7,6 @@ import { RouterProvider } from 'react-router-dom';
 import { router, AppRouter } from './app/routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RootLayout from './app/Layout';
-import { ThemeProvider } from 'styled-components';
-import theme from './lib/deviceTheme';
 import { createTheme, MantineProvider } from '@mantine/core';
 import GlobalStyles from './GlobalStyles';
 
@@ -23,14 +21,12 @@ const appRouter: AppRouter = router;
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <RootLayout>
-          <MantineProvider theme={mantineTheme}>
-            <RouterProvider router={appRouter} />
-          </MantineProvider>
-        </RootLayout>
-      </ThemeProvider>
+      <GlobalStyles />
+      <RootLayout>
+        <MantineProvider theme={mantineTheme}>
+          <RouterProvider router={appRouter} />
+        </MantineProvider>
+      </RootLayout>
       {/* <ReactQueryDevtools initialIsOpen=s{false} /> */}
     </QueryClientProvider>
   </React.StrictMode>,

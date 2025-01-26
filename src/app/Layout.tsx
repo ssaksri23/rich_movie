@@ -1,6 +1,6 @@
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
+import { SharedHeader, SharedFooter } from '@shared/ui';
 import styled from 'styled-components';
-import { SharedFooter, SharedHeader } from '../shared/ui/common/ui';
-import { RESPONSIVE_MEDIA_QUERY } from '../config/responsive';
 
 const RootLayoutContainer = styled.div`
   padding: 2rem 3rem;

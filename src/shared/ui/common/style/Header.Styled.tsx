@@ -1,7 +1,7 @@
+import { FONT_SIZE, FONT_WEIGHT } from '@shared/config/font';
+import { COLOR } from '@shared/config/palette';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
 import styled from 'styled-components';
-import { FONT_SIZE, FONT_WEIGHT } from '../../../../config/font';
-import { COLOR } from '../../../../lib/palette';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../../config/responsive';
 
 export const HeaderContainer = styled.div`
   width: 100%;

@@ -1,8 +1,8 @@
+import { DailyBoxOffice } from '@shared/api/model/movie';
+import { FONT_SIZE, FONT_WEIGHT } from '@shared/config/font';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
+import { DEFAULT_BORDER_RADIUS_REM } from '@shared/config/style';
 import styled from 'styled-components';
-import { FONT_SIZE, FONT_WEIGHT } from '../../../config/font';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
-import { DailyBoxOffice } from '../../../model/api';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
 
 const TooltipContainer = styled.div`
   width: 100%;

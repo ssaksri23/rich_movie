@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { FilterStore, IFilterStore } from '../../zustand/filter';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import { fetchRankTop10Data } from '../../shared/api/movie';
-import { formatCalcInputValueToInline } from '../../shared/lib/format';
-import { RankingSearchFilter } from '../../entities/filter/ui';
+import { RankingSearchFilter } from '@entities/filter/ui';
+import { fetchRankTop10Data } from '@shared/api/movie';
+import { formatCalcInputValueToInline } from '@shared/lib/format';
+import { FilterStore, IFilterStore } from '@store/filter';
 
 export const FilterWidget = () => {
   const initRender = useRef(true);
@@ -15,7 +15,7 @@ export const FilterWidget = () => {
 
   // Access the client
 
-  // Qeuries
+  // Queries
   const { data, isFetched, refetch } = useQuery({
     queryKey: ['movieData', date, nation],
     queryFn: async () => fetchRankTop10Data({ date, nation }),
@@ -96,7 +96,7 @@ export const FilterWidget = () => {
   /* SECTION - [날짜 초기화] */
   useEffect(() => {
     setInitDate();
-  }, []);
+  });
 
   useEffect(() => {
     searchExecute();

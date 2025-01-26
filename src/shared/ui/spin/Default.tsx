@@ -1,6 +1,6 @@
+import { DEFAULT_BORDER_RADIUS_REM } from '@shared/config/style';
 import { ScaleLoader } from 'react-spinners';
 import styled from 'styled-components';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
 
 const LoaderContainer = styled.div`
   z-index: 0;

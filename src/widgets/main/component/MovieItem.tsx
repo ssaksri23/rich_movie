@@ -1,12 +1,12 @@
 //노마드코더 rendering Movies 영상
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
-import { FONT_WEIGHT, FONT_SIZE } from '../../../config/font';
-import { DEFAULT_BORDER_RADIUS_REM } from '../../../config/style';
-import { COLOR } from '../../../lib/palette';
-import { SharedDefaultSkeleton } from '../../../shared/ui';
-import { FilterStore, IFilterStore } from '../../../zustand/filter';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
+import { FONT_WEIGHT, FONT_SIZE } from '@shared/config/font';
+import { COLOR } from '@shared/config/palette';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
+import { DEFAULT_BORDER_RADIUS_REM } from '@shared/config/style';
+import { SharedDefaultSkeleton } from '@shared/ui';
+import { FilterStore, IFilterStore } from '@store/filter';
 
 const MovieCardContainer = styled.li`
   display: flex;

@@ -1,5 +1,5 @@
+import { COLOR } from '@shared/config/palette';
 import styled from 'styled-components';
-import { COLOR } from '../../../../lib/palette';
 
 const FooterContainer = styled.div`
   position: relative;

@@ -1,9 +1,9 @@
+import { BoxOfficeApiReturnData } from '@shared/api/model/movie';
+import { UNITS } from '@shared/config/unit';
+import { getTotalData } from '@shared/lib/data';
+import { SharedDefaultCard } from '@shared/ui';
+import { FilterStore, IFilterStore } from '@store/filter';
 import { useQuery } from '@tanstack/react-query';
-import { UNITS } from '../../../config/unit';
-import { BoxOfficeApiReturnData } from '../../../model/api';
-import { getTotalData } from '../../../shared/lib/data';
-import { SharedDefaultCard } from '../../../shared/ui';
-import { FilterStore, IFilterStore } from '../../../zustand/filter';
 
 /**
  * @desc Top 10 영화들에 대한 총 합계 관객 수를 보여주는 컴포넌트

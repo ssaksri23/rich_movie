@@ -1,5 +1,5 @@
+import { RESPONSIVE_BREAKPOINT } from '@shared/config/responsive';
 import { useEffect, useState } from 'react';
-import { RESPONSIVE_BREAKPOINT } from '../../config/responsive';
 
 type ResponsiveType = 'isMobile' | 'isTabletS' | 'isTabletL' | 'isLaptop' | 'isDesktop';
 

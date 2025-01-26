@@ -1,4 +1,4 @@
-import { FilterWidget, RankingListWidget } from '../widgets/main';
+import { FilterWidget, RankingListWidget } from '@widgets/main';
 
 const Main = () => {
   return (

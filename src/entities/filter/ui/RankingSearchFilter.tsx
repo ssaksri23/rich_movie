@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import { COLOR } from '../../../lib/palette';
-import { FilterStore } from '../../../zustand/filter';
-import { useDatePicker } from '../hooks/useDatePicker';
+import { FilterStore } from '@store/filter';
 import { NationFilter } from './component/NationFilter';
 import { DateFilter } from './component/DateFilter';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
-import { FONT_SIZE } from '../../../config/font';
+import { COLOR } from '@shared/config/palette';
+import { useDatePicker } from '@entities/filter/hooks/useDatePicker';
 
 const Container = styled.div`
   position: relative;

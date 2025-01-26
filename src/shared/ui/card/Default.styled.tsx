@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '../../../config/style';
-import { COLOR } from '../../../lib/palette';
-import { FONT_SIZE, FONT_WEIGHT } from '../../../config/font';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
+import { FONT_SIZE, FONT_WEIGHT } from '@shared/config/font';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
+import { COLOR } from '@shared/config/palette';
+import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '@shared/config/style';
 
 export const DefaultCardContainer = styled.div`
   width: 100%;

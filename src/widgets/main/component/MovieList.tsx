@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { forwardRef } from 'react';
 import MovieDetailCardTrigger from './MovieDetailCardTrigger';
 import MovieItem, { MovieItemProps } from './MovieItem';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../config/responsive';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
 
 const StyledUl = styled.ul`
   display: flex;

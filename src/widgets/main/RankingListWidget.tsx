@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchRankTop10Data } from '../../shared/api/movie';
 import { MovieList } from './component/MovieList';
-import { FilterStore, IFilterStore } from '../../zustand/filter';
 import { MainSection, ErrorContent, ContentWrapper, TotalValueCardLayoutWrapper } from './RankingListWidget.styled';
-import { TotalAudiCnt, TotalSales } from '../../entities/movie/ui';
+import { TotalAudiCnt, TotalSales } from '@entities/movie/ui';
+import { fetchRankTop10Data } from '@shared/api/movie';
+import { FilterStore, IFilterStore } from '@store/filter';
 
 export const RankingListWidget = () => {
   // ======== [ zustand state management] ==========

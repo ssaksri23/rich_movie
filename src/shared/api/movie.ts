@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BoxOfficeApiReturnData } from '../../model/api';
+import { BoxOfficeApiReturnData } from './model/movie';
 
 export const fetchRankTop10Data = async ({ date, nation }): Promise<BoxOfficeApiReturnData> => {
   const formattedDateForApi = date.split('-').join(''); // YYYY-MM-DD -> YYYYMMDD

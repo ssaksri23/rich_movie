@@ -1,6 +1,6 @@
 import { HoverCard } from '@mantine/core';
+import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '@shared/config/style';
 import styled from 'styled-components';
-import { DEFAULT_BORDER_RADIUS_REM, DEFAULT_BOX_SHADOW } from '../../../config/style';
 
 interface SharedDefaultTooltipProps {
   contents: React.ReactNode;

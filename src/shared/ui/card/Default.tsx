@@ -1,4 +1,4 @@
-import { SharedDefaultSkeleton } from '../skeleton/Default';
+import { SharedDefaultSkeleton } from '@shared/ui';
 import {
   Content,
   DefaultCardContainer,

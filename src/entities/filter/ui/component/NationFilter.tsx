@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from 'styled-button-component';
 import { Dropdown, DropdownItem, DropdownMenu } from 'styled-dropdown-component';
 import styled from 'styled-components';
-import { RESPONSIVE_MEDIA_QUERY } from '../../../../config/responsive';
+import { RESPONSIVE_MEDIA_QUERY } from '@shared/config/responsive';
 
 //목록 감추기용 div
 const HideItemsBlock = styled.div`
@@ -47,7 +47,7 @@ export const NationFilter = ({ nation, nationHandler }) => {
     if (nation === 'K') setChooseText('국내');
     else if (nation === 'F') setChooseText('해외');
     else setChooseText(chooseText);
-  }, [nation]);
+  }, [chooseText, nation]);
 
   return (
     <Dropdown>
