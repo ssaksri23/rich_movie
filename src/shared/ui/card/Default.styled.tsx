@@ -13,7 +13,7 @@ export const DefaultCardContainer = styled.div`
 
 export const DefaultCardWrapper = styled.div`
   width: 100%;
-  padding: 1.25rem 1rem;
+  padding: 1.25rem 2rem;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5rem;
@@ -32,9 +32,12 @@ export const DefaultCardContentsWrapper = styled.div`
 
 export const Title = styled.div<{ color?: string }>`
   color: ${(props) => props?.color ?? COLOR.text.basicColor};
-  font-size: ${FONT_SIZE.SEMI_SMALL};
+  font-size: ${FONT_SIZE.SEMI_LARGE};
   font-weight: ${FONT_WEIGHT.REGULAR};
 
+  @media ${RESPONSIVE_MEDIA_QUERY.tabletL} {
+    font-size: ${FONT_SIZE.MEDIUM};
+  }
   @media ${RESPONSIVE_MEDIA_QUERY.mobile} {
     font-size: ${FONT_SIZE.MEDIUM};
   }
