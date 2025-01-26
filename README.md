@@ -1,6 +1,6 @@
 # 박스오피스 영화 Top 10 랭킹 조회 서비스
 
-<hr>
+---
 
 ## **Preview**
 
@@ -42,25 +42,35 @@
 
 ![alt text](<Desktop .gif>)
 
-> <hr>
+---
 
-## **Environment**
+## **Features**
+
+- 국내/국외별 Top 10 영화 랭킹 데이터 정보 제공
+
+- 특정 날짜 기준의 Top 10 영화 랭킹 데이터 정보 제공
+
+- Top 10 영화들에 대한 `총 관객 수, 총 매출액` 정보 제공
+
+- 특정 영화에 대한 `순위, 개봉일, 누적 관객수` 정보 제공
+
+- 특정 영화에 대한 `일일 매출액, 당일 관객 수, 상영관 수, 점유율` 옵션 정보를 **Tooltip** UI로 제공
+
+---
+
+## **Skills**
 
 ![Static Badge](https://img.shields.io/badge/react-grey?style=flat&logo=react&label=v18&labelColor=black)
+
+![Static Badge](https://img.shields.io/badge/typescript-grey?style=flat&logo=typescript&label=v5&labelColor=black)
+
+![Static Badge](https://img.shields.io/badge/mantine-grey?style=flat&logo=mantine&label=v7&labelColor=black)
 
 ![Static Badge](https://img.shields.io/badge/tanstack_/_react__query-grey?style=flat&logo=reactQuery&label=v5&labelColor=black)
 
 ![Static Badge](https://img.shields.io/badge/styled_components-grey?style=flat&logo=styledComponents&label=v5&labelColor=black)
 
------!(🚧 작성 중 🚧)------
-
-- **axios** 라이브러리를 통해 영화 컨텐츠 정보 오픈소스 API을 사용
-- **styled-component** 라이브러리를 통한 스타일 관리
-- 반응형 레이아웃 적용(모바일/테블릿/노트북)
-- ~~props 값의 정확도 향상을 위해 각 prop에 **propType** 지정~~ (TS 적용으로 대체됨\_2022.03)
-- 기존 JavaScript --> TypeScript 적용
-
------(🚧 작성 중 🚧)!------
+---
 
 ## **Go to the page**
 
