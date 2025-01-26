@@ -2,9 +2,19 @@
 
 ---
 
+## **Go to the page** 🔗
+
+: <a href="https://project-box-office-react-dlwlsdn201s-projects.vercel.app/">서비스 사이트 바로가기 </a>
+
 ## **Preview**
 
 > ### Renewal (2025)
+
+#### 🛠️ 2025.01.26
+
+- Tablet 반응형 레이아웃 및 UI 스타일 구현
+
+![alt text](result/250126_Result_Tablet.gif)
 
 #### 🛠️ 2025.01.19
 
@@ -40,7 +50,7 @@
 
 > ### Legacy (~2024)
 
-![alt text](<Desktop .gif>)
+![alt text](</result/Desktop .gif>)
 
 ---
 
@@ -71,7 +81,3 @@
 ![Static Badge](https://img.shields.io/badge/styled_components-grey?style=flat&logo=styledComponents&label=v5&labelColor=black)
 
 ---
-
-## **Go to the page**
-
-: <a href="https://project-box-office-react-dlwlsdn201s-projects.vercel.app/">서비스 사이트 바로가기 🔗</a>
