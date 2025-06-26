@@ -39,7 +39,7 @@ export const SharedFooter = () => {
   return (
     <FooterContainer>
       <ContentsWrapper>
-        <TextBlock>e-mail: dev.leejinw@gmail.com</TextBlock>
+        <TextBlock>e-mail: ssaksri23@gmail.com</TextBlock>
         <TextBlock>/</TextBlock>
         <TextBlock>
           Data Resource by <a href="http://www.kobis.or.kr">http://www.kobis.or.kr</a>
