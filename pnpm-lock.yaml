@@ -95,6 +95,9 @@ importers:
       react-spinners:
         specifier: ^0.13.8
         version: 0.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      styled-button-component:
+        specifier: ^4.0.0
+        version: 4.0.0(react@18.3.1)(styled-components@5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
@@ -5463,6 +5466,12 @@ packages:
 
   styled-base-components@4.0.0:
     resolution: {integrity: sha512-1Ikyk279YnwyKnh5+Vlb6q1qfXZ+43xzAqMc4iB+LN7uM/ePJXlGME6gUw2P6DNq9lxRmQrYaWdKsfoiUN3oSQ==}
+    peerDependencies:
+      react: ^16.7.0
+      styled-components: ^4.1.2
+
+  styled-button-component@4.0.0:
+    resolution: {integrity: sha512-6I5kLFKhN4pU31fkDTCAZnLoS3gJJFVlDRnXMVFIDto+BEuSS7c6LT6oADhS9m8Fl+62atV9bYkOS2HDcTNMhg==}
     peerDependencies:
       react: ^16.7.0
       styled-components: ^4.1.2
@@ -12602,6 +12611,13 @@ snapshots:
   styled-base-components@4.0.0(react@18.3.1)(styled-components@5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)):
     dependencies:
       react: 18.3.1
+      styled-components: 5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+      styled-config: 4.0.0
+
+  styled-button-component@4.0.0(react@18.3.1)(styled-components@5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)):
+    dependencies:
+      react: 18.3.1
+      styled-base-components: 4.0.0(react@18.3.1)(styled-components@5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
       styled-components: 5.3.11(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
       styled-config: 4.0.0
 
