@@ -1,3 +1,4 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "devon-aide.resourcePath": "c:\\Users\\ssaks\\.vscode\\extensions\\lgcns-devon-aide.devon-aide-0.0.1\\resource"
 }
