@@ -6,9 +6,6 @@ publish = "build"
 NODE_VERSION = "18.20.5"
 PNPM_VERSION = "9.11.0"
 
-[[plugins]]
-package = "@netlify/plugin-node"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
